@@ -1,26 +1,4 @@
-<!--div style="margin: 20% auto; width: 30%;">
-  <div class="row">
-    <div class="col-lg-6">
-      Usuario
-    </div>
-    <div class="col-lg-6">
-      <input type="text"  [(ngModel)]="usuario">
-    </div>
-  </div>
-  <div class="row" style="margin-top: 5px">
-    <div class="col-lg-6">
-      Clave
-    </div>
-    <div class="col-lg-6">
-      <input type="password" [(ngModel)]="clave">
-    </div>
-  </div>
-  <div class="row" style="text-align: center; margin-top: 10px">
-    <div class="col-lg-12">
-      <button (click)="Entrar()" class="btn btn-info btn-lg" >Entrar</button>
-    </div>
-  </div>
-</div-->
+<!--
  <div class="container" >
   <div class="jumbotron" style="padding:50px;">
     <form action="return true;">
@@ -55,3 +33,41 @@
     </form>
   </div>
 </div>
+
+-->
+
+
+       
+        <div class="container register">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h3 class="register-heading">Sala e Juego</h3>
+                            <div class="row register-form">
+                                <div class="col-md-12">
+                                    <form method="post">
+                                        <div class="form-group">
+                                            <input  [(ngModel)]="usuario"  type="text" name="LGform1_user" class="form-control" placeholder="Usuario" value="" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input placeholder="Clave"  [(ngModel)]="clave" type="password" name="LGform1_pwd" class="form-control" value="" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="LGform1" class="btnContactSubmit" value="Login" />                       
+                                        </div>
+                                        <div class="form-group">
+                                            <input routerLink="/Registro" type="submit" name="Registro" class="btnContactSubmit" value="Registrarse" />                       
+                                        </div>
+                                        <div class="form-group">                                            
+                                            <a href="" class="btnForgetPwd" value="Login">Olvidaste tu contraseña?</a>
+                                            <!--<a href="ForgetPassword.php" class="btnForgetPwd" value="Login">Olvidaste tu contraseña?</a>-->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
