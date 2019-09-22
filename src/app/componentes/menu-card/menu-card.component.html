@@ -1,4 +1,4 @@
-<div class="container" >
+<!--<div class="container" >
     <div class="card">
       <img class="img-thumbnail"   src="./assets/imagenes/cerebro.jpg" alt="Avatar" style="width:100%">
       <h1>Velocidad y agilidad aritmética </h1>
@@ -38,3 +38,47 @@
       <p>           <button class="button"  (click)="Juego('Adivina')">Jugar</button></p>
     </div>
   </div>
+-->
+<!--
+  Please note: this code is in no way ready to be used as is in production on your website. It will need to be adapted to be cross browser compliant & accessible. I just wanted to share how one might go about this effect with CSS & JS and no other dependencies
+-->
+<div class="container">
+  <div class="card-column column-0">
+    <div class="card card-color-0" routerLink="/Juegos/Agilidad">    
+      <div class="border"></div>
+      <img src="../../../assets/imagenes/cubo.jpg" />
+      <h1 routerLink="/Juegos/Agilidad" >Velocidad y Agilidad Aritmética </h1>
+    </div>
+    <div class="card card-color-2" routerLink=" /Juegos/PiedraPapelTijera">
+      <div class="border"></div>
+      <img src="../../../assets/imagenes/manos.jpg" />
+      <h1 routerLink=" /Juegos/PiedraPapelTijera">Piedra<br>Papel<br>ó Tijera</h1>
+    </div>
+  </div>
+  <div class="card-column column-1">
+    <div class="card card-color-1" routerLink="/Juegos/Adivina">
+      <div class="border"></div>
+      <img src="../../../assets/imagenes/pregunta.jpg" /> 
+      <h1 routerLink="/Juegos/Adivina" >Adivina el Número Secreto</h1>
+    </div>
+    <div class="card card-color-3" routerLink="/Juegos/Tateti">
+      <div class="border"></div>
+      <img src="../../../assets/imagenes/tateti.jpg" />
+      <h1 routerLink="/Juegos/Tateti">TaTeTi</h1>
+    </div>
+    <div class="card card-color-4" routerLink="/Juegos/Memotec">
+      <div class="border"></div>
+      <img src="../../../assets/imagenes/memotec.jpg" />
+      <h1 routerLink="/Juegos/Memotec">MemoTec</h1>
+    </div>
+  </div>
+</div>
+
+<div id="cover" class="cover"></div>
+
+<div id="open-content" class="open-content">
+  <a href="#" id="close-content" class="close-content"><span class="x-1"></span><span class="x-2"></span></a>
+  <img id="open-content-image" src="" />
+  <div class="text" id="open-content-text">
+  </div>
+</div>

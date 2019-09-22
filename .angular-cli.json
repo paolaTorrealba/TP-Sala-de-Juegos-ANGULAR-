@@ -22,7 +22,8 @@
         "../node_modules/bootstrap/dist/css/bootstrap.css"    
       ],
       "scripts": ["./assets/js/quiensoy.js",
-        "./assets/js/principal.js"],
+        "./assets/js/principal.js",
+        "./assets/js/menuCard.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
