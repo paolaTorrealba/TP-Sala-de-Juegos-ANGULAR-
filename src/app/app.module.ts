@@ -97,4 +97,6 @@ import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/pi
   providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ 
+ }
