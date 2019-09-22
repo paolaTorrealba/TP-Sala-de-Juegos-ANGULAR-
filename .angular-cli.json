@@ -21,7 +21,8 @@
       "styles": [      
         "../node_modules/bootstrap/dist/css/bootstrap.css"    
       ],
-      "scripts": ["./assets/js/principal.js"],
+      "scripts": ["./assets/js/quiensoy.js",
+        "./assets/js/principal.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
