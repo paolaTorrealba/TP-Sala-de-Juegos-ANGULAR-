@@ -35,12 +35,8 @@
     <h1>
       {{nuevoJuego.nombre}}!
     </h1>
-   </div>
-  <h2></h2>
-
-
-<form id="msform">
-    
+</div>
+<form id="msform">    
     <fieldset>
         <button  (click)="generarnumero()"  name="next" class="next action-button" >Nuevo Numero</button>
         <h2 [hidden]="nuevoJuego.numeroSecreto==0">Se ha generado un nuevo número secreto</h2>
@@ -59,5 +55,5 @@
    <br>
     <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
     <h3 [hidden]="nuevoJuego.gano">--- Usted aún no gano ---</h3>
-  </form>
+</form>
   
