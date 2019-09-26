@@ -1,9 +1,8 @@
 import { log } from 'util';
 import { Injectable } from '@angular/core';
-
 import { Http, Response } from '@angular/http';
-
 import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -11,15 +10,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class MiHttpService {
 
-  constructor( public http: Http ) { }
+  constructor( public http: HttpClient ) { }
 
-  public httpGetP ( url: string)
+  private url = 'https://restcountries.eu/rest/v2/';
+
+
+  public httpGetP ( metodo : string):Observable<any>
   {
-    return this.http
-    .get( url )
-    .toPromise()
-    .then( this.extractData )
-    .catch( this.handleError );
+    console.log(this.url);
+    return this.http.get(this.url + metodo).pipe(res => res);
+ 
+  
   }
 
   public httpPostP( url: string, objeto: any )

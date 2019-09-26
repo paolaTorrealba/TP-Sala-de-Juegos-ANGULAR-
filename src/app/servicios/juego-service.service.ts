@@ -12,7 +12,8 @@ export class JuegoServiceService {
 //    this.peticion = this.miHttp.httpGetO("https://restcountries.eu/rest/v2/all");
   }
 
-  public listar(): Array<Juego> {
+  //Paola: comento por error de compilacion al agegar http
+  /*public listar(): Array<Juego> {
    this.miHttp.httpGetP("https://restcountries.eu/rest/v2/all")
     .then( data => {
       console.log( data );
@@ -39,7 +40,7 @@ export class JuegoServiceService {
     miArray.push(new JuegoAdivina("Juego 5", false));
     miArray.push(new JuegoAdivina("Juego 6", false));
     return miArray;
-  }
+  } */
 
   public listarPromesa(): Promise<Array<Juego>> {
     this.peticion

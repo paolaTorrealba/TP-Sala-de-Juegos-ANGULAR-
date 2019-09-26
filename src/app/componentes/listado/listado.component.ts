@@ -19,10 +19,11 @@ export class ListadoComponent implements OnInit {
     
   }
 
-  llamaService(){
+  //Paola: comento por error de compilacion al agegar http
+  /*llamaService(){
     console.log("llamaService");
     this.listadoParaCompartir= this.miServicioJuego.listar();
-  }
+  }*/
 
   llamaServicePromesa(){
     console.log("llamaServicePromesa");

@@ -6,7 +6,8 @@ import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivin
 import { ListadoDeResultadosComponent } from './componentes/listado-de-resultados/listado-de-resultados.component';
 import { LoginComponent } from './componentes/login/login.component';
 //  import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HttpModule } from '@angular/http';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { AccordionModule } from 'ngx-bootstrap';
 // agrego las clases para utilizar ruteo
@@ -49,16 +50,17 @@ import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 import { ListadoDePaisesComponent } from './componentes/listado-de-paises/listado-de-paises.component';
-import { MapaDeGoogleComponent } from './componentes/mapa-de-google/mapa-de-google.component'
-import { AgmCoreModule } from '@agm/core';
+
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { MemotecComponent } from './componentes/memotec/memotec.component';
+import { PaisesComponent } from './componentes/paises/paises.component';
+import { AnimalesComponent } from './componentes/animales/animales.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, 
     AdivinaElNumeroComponent,
     ListadoDeResultadosComponent,
     ErrorComponent,
@@ -77,21 +79,21 @@ import { MemotecComponent } from './componentes/memotec/memotec.component';
     QuienSoyComponent,
     AnagramaComponent,
     ListadoDePaisesComponent,
-    MapaDeGoogleComponent,
     JugadoresListadoComponent,
     InputJugadoresComponent,
     SexoPipe,
     PiedraPapelTijeraComponent,
-    MemotecComponent
+    MemotecComponent,
+    PaisesComponent,
+    AnimalesComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RuteandoModule,
-    HttpModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
-    })
+    HttpClientModule,
+    
     // NgbModule.forRoot(MiRuteo),
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
