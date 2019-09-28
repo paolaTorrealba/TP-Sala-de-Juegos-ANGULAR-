@@ -25,7 +25,8 @@ import { JugadoresListadoComponent } from '../componentes/jugadores-listado/juga
 import {PiedraPapelTijeraComponent } from '../componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 
 import { PaisesComponent } from '../componentes/paises/paises.component';
-import { AnimalesComponent } from '../componentes/animales/animales.component';
+// import { AnimalesComponent } from '../componentes/animales/animales.component';
+import { MemotecComponent } from '../componentes/memotec/memotec.component';
 
 
 // declaro donde quiero que se dirija
@@ -40,7 +41,7 @@ const MiRuteo = [
 {path: 'Listado' , component: ListadoComponent},
 //{path: 'Paises' , component: ListadoDePaisesComponent},
 {path: 'Paises' , component: PaisesComponent},
-{path: 'Animales' , component: AnimalesComponent},
+{path: 'Memotec' , component: MemotecComponent},
 
 { path: 'Juegos' ,
 component: JuegosComponent ,
@@ -50,6 +51,7 @@ children:
       {path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent},
       {path: 'PiedraPapelTijera' , component: PiedraPapelTijeraComponent},
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
+      {path: 'Memotec' , component: MemotecComponent},
       {path: 'Agilidad' , component: AgilidadAritmeticaComponent}]
 },
 {path: '**' , component: ErrorComponent},

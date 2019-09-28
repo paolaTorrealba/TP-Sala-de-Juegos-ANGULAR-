@@ -56,7 +56,6 @@ import { SexoPipe } from './pipes/sexo.pipe';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { MemotecComponent } from './componentes/memotec/memotec.component';
 import { PaisesComponent } from './componentes/paises/paises.component';
-import { AnimalesComponent } from './componentes/animales/animales.component';
 
 @NgModule({
   declarations: [
@@ -84,8 +83,7 @@ import { AnimalesComponent } from './componentes/animales/animales.component';
     SexoPipe,
     PiedraPapelTijeraComponent,
     MemotecComponent,
-    PaisesComponent,
-    AnimalesComponent
+    PaisesComponent
 
   ],
   imports: [
