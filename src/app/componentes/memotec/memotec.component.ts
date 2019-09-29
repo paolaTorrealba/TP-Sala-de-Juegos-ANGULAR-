@@ -43,8 +43,7 @@ export class MemotecComponent implements OnInit {
 
  obtenerAnimalesRandom() {
   
-  this.animalesRandom= [];
-  console.log("estoy en random")
+  this.animalesRandom= [];  
   console.log(this.animales);
   let num=0;
   while(num<8) {
@@ -58,8 +57,6 @@ export class MemotecComponent implements OnInit {
 
 PerteneceAnimal(nombre:string) {
   console.log(this.animalesRandom);
-  console.log("esty en pertenece");
-
   for(let i=0;i<this.animalesRandom.length;i++)
   {
     console.log(this.animalesRandom);

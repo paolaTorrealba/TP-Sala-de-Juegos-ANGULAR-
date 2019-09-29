@@ -1,27 +1,76 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> -->
+
+<!--   
+  <div class="fondo"> -->
 <div style="text-align:center">
-  <h1>
-    {{nuevoJuego.nombre}}!
-  </h1>
- </div>
-<h2></h2>
-<form name="juego">
+    <h1>
+      {{nuevoJuego.nombre}}!
+    </h1>
+</div>
+<form id="msform"> 
+ <fieldset>
+   <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+      <div class="container">
 
-   <label>ingrese una opcion:  </label> 
-   <h2><button (click)="generarnumero()"  class="btn btn-info btn-lg">Juega el sistema</button></h2>
- 
-    <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/>
-    <h1>{{nuevoJuego.numeroIngresado}}  </h1>
- 
-    <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" class="btn btn-success btn-lg">Verificar</button></h2>
- 
-    <h2><button *ngIf="nuevoJuego.numeroSecreto==0 " (click)="generarnumero()"  class="btn btn-info btn-lg">Nuevo número secreto</button></h2>
- 
-    <h2><p *ngIf="nuevoJuego.numeroSecreto!=0" ><i class="fa fa-spinner fa-spin"></i>Esperando que ingrese un número</p></h2>
+        <div class="bordeNumeros">
+          <button  *ngIf="botonComenzarVerificar == true" (click)="primerJuego()"  class="next action-button" >Jugar!</button>
+          <div class="img"><br>             
+            <h1>Seleccione una opción</h1>
+            <div class="box">
+              <button id="botonPiedra" class="button"(click)="generarPartida(1)"> Piedra </button> 
+              <button id="botonPapel"  class="button"(click)="generarPartida(2)"> Papel </button>
+              <button id="botonTijera" class="button"(click)="generarPartida(3)"> Tijera </button>
+            </div>     
+            <br><br>
+                <br>          
+                <!-- <div *ngIf="mostrarGif == true" class="gif"> -->
+                <div  > 
+                    <img src="../../../assets/PPT/img/usuario.png"  >
+                    <img src="../../../assets/PPT/img/neo.png"  >
+                </div>
+                <!-- <h4>Seleccione opcion</h4> -->
+                <!-- <button id="botonPiedra" disabled class="btn btn-default btn-xs" (click)="generarPartida(1)" >Piedra</button>
+                <button id="botonPapel"  disabled class="btn btn-default btn-xs"(click)="generarPartida(2)">Papel</button>
+                <button id="botonTijera" disabled class="btn btn-default btn-xs"(click)="generarPartida(3)">Tijera</button> -->
+                
+                <hr class="style12">
+               
+                <!-- resultados -->
+                <div class="resultados">
+                    <img id="resultado1"  >
+                    <img id="resultado2" >
+                </div>
 
-    <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-    <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3>
+                <section id="msjPuntos"></section>
+                <h3 *ngIf="labelPuntos == true" >
+                  <kbd class= "label-info">Vos <i class="far fa-hand-point-right"></i> {{puntos}}</kbd>
+                  VS
+                  <kbd class= "label-danger"> {{puntosRival}} <i class="far fa-hand-point-left"></i> Rival</kbd>
+                </h3>
+                <h3 *ngIf="labelGanaste == true" >
+                    <kbd class= "label-success"> Ganaste!!! <i class="far fa-thumbs-up"></i></kbd>
+                </h3>
+                <h3 *ngIf="labelPerdiste == true" >
+                    <kbd class= "label-danger"> Perdiste :(<i class="far fa-thumbs-down"></i></kbd>
+                </h3>        
+          </div>
 
+          <div class = "botones">
+                <!-- <button type="buttons" (click)="ocultarSonido()"  class="buttons"> Sonido</button> -->
+                <!-- <br><br><br><br> -->               
+                <button  type="buttons"   class="next action-button" >Salir</button>
+             
+          </div>
+        </div> 
+           
+      </div> <!--container-->
+
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+
+</fieldset>  
 
 </form>
-<div id="snackbar">{{Mensajes}}</div>

@@ -56,6 +56,8 @@ import { SexoPipe } from './pipes/sexo.pipe';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { MemotecComponent } from './componentes/memotec/memotec.component';
 import { PaisesComponent } from './componentes/paises/paises.component';
+import { TatetiComponent } from './componentes/tateti/tateti.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,9 @@ import { PaisesComponent } from './componentes/paises/paises.component';
     SexoPipe,
     PiedraPapelTijeraComponent,
     MemotecComponent,
-    PaisesComponent
+    PaisesComponent,
+    TatetiComponent,
+    FooterComponent
 
   ],
   imports: [

@@ -27,6 +27,8 @@ import {PiedraPapelTijeraComponent } from '../componentes/piedra-papel-tijera/pi
 import { PaisesComponent } from '../componentes/paises/paises.component';
 // import { AnimalesComponent } from '../componentes/animales/animales.component';
 import { MemotecComponent } from '../componentes/memotec/memotec.component';
+import { TatetiComponent } from '../componentes/tateti/tateti.component';
+import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
 
 
 // declaro donde quiero que se dirija
@@ -52,6 +54,8 @@ children:
       {path: 'PiedraPapelTijera' , component: PiedraPapelTijeraComponent},
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
       {path: 'Memotec' , component: MemotecComponent},
+      {path: 'Anagrama' , component: AnagramaComponent},
+      {path: 'Tateti' , component: TatetiComponent},
       {path: 'Agilidad' , component: AgilidadAritmeticaComponent}]
 },
 {path: '**' , component: ErrorComponent},
