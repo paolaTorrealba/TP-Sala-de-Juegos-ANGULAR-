@@ -32,18 +32,20 @@ import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
 
 
 // declaro donde quiero que se dirija
-const MiRuteo = [
-{path: 'Jugadores' , component: JugadoresListadoComponent},
-{path: '' , component: PrincipalComponent},
-{path: 'Login' , component: LoginComponent},
-//{path: 'Mapa' , component: MapaDeGoogleComponent},
-{path: 'QuienSoy' , component: QuienSoyComponent},
-{path: 'Registro' , component: RegistroComponent},
-{path: 'Principal' , component: PrincipalComponent},
-{path: 'Listado' , component: ListadoComponent},
-//{path: 'Paises' , component: ListadoDePaisesComponent},
-{path: 'Paises' , component: PaisesComponent},
-{path: 'Memotec' , component: MemotecComponent},
+const MiRuteo = [        
+      {path: '' , component: LoginComponent},
+      {path: 'Principal' , component: PrincipalComponent},
+      {path: 'Jugadores' , component: JugadoresListadoComponent},
+      {path: 'Login' , component: LoginComponent},
+      {path: 'QuienSoy' , component: QuienSoyComponent},
+      {path: 'Registro' , component: RegistroComponent},
+      {path: 'Principal' , component: PrincipalComponent},
+      {path: 'Listado' , component: ListadoComponent},
+      {path: 'Paises' , component: PaisesComponent},
+      {path: 'Memotec' , component: MemotecComponent},
+      //{path: '' , component: PrincipalComponent},     
+      //{path: 'Paises' , component: ListadoDePaisesComponent},
+      //{path: 'Mapa' , component: MapaDeGoogleComponent},
 
 { path: 'Juegos' ,
 component: JuegosComponent ,

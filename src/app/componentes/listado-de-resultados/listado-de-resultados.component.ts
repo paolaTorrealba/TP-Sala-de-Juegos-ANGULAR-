@@ -1,4 +1,3 @@
-
 import { Component, OnInit , Input, EventEmitter} from '@angular/core';
 import {Jugador} from '../../clases/jugador'
 
@@ -9,7 +8,7 @@ import {Jugador} from '../../clases/jugador'
 })
 export class ListadoDeResultadosComponent implements OnInit {
  @Input()
- listado: Array<any>;
+ listado: Array<Jugador>;
  objeto: Object;
  jugador: Jugador;
 

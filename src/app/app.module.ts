@@ -58,6 +58,9 @@ import { MemotecComponent } from './componentes/memotec/memotec.component';
 import { PaisesComponent } from './componentes/paises/paises.component';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import {AuthService} from '../app/servicios/auth.service';
+// import { AngularFireModule } from '@angular/fire'; 
+// import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -95,12 +98,14 @@ import { FooterComponent } from './componentes/footer/footer.component';
     FormsModule,
     RuteandoModule,
     HttpClientModule,
+    // AngularFireModule,
+    // AngularFireAuthModule,
     
     // NgbModule.forRoot(MiRuteo),
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
   ],
-  providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
+  providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
