@@ -12,17 +12,17 @@ import { Juego } from '../clases/juego';
     
     
           arrayDePalabras : Array <any >= [
-            { ordenada:"Saco",desordenada:"Cosa" },
-            { ordenada:"Alicante",desordenada:"Caliente" },
-            { ordenada:"Frase",desordenada:"Fresa" },
-            { ordenada:"Amor",desordenada:"Roma" },
-            { ordenada:"Delira",desordenada:"Lidera" },
-            { ordenada:"Pedro",desordenada:"Poder" },
-            { ordenada:"Resto",desordenada:"Retos" },
-            { ordenada:"Trata",desordenada:"Tarta" },
-            { ordenada:"Toro",desordenada:"Roto" },
-            { ordenada:"Cronista",desordenada:"Cortinas" },
-            { ordenada:"Eva",desordenada:"Ave" }
+            { ordenada:"SACO",desordenada:"COSA" },
+            { ordenada:"ALICANTE",desordenada:"CALIENTE" },
+            { ordenada:"FRASE",desordenada:"FRESA" },
+            { ordenada:"AMOR",desordenada:"ROMA" },
+            { ordenada:"DELIRA",desordenada:"LIDERA" },
+            { ordenada:"PEDRO",desordenada:"PODER" },
+            { ordenada:"RESTO",desordenada:"RETOS" },
+            { ordenada:"TRATA",desordenada:"TARTA" },
+            { ordenada:"TORO",desordenada:"ROTO" },
+            { ordenada:"CRONISTA",desordenada:"CORTINAS" },
+            { ordenada:"EVA",desordenada:"AVE" }
     
         ];
     

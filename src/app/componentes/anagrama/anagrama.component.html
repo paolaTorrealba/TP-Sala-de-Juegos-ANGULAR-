@@ -9,26 +9,27 @@
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
       <div class="container">
-                      <p> </p> 
-                      <h1>Adivina la palabra escondida: </h1>
-                      <button *ngIf="ocultarComenzar" (click)="generarPalabra()"   class="next action-button" >Jugar!</button> 
-
-                      <br> <h1 class="secreta">{{nuevoJuego.palabraDesordenada}}</h1>
-                      <br /> <input [(ngModel)]="nuevoJuego.palabraIngresada" placeholder="palabra ordenada" name="palabraOrdenadaa" type="text" class="form-control" style="width: 420px;font-size: 51px;"/>
-                      <br><br>                 
-
-                      <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" class="btn btn-primary btn-lg btn-block">Verificar</button></h2>
-                      <h2><p *ngIf="!ocultarVerificar" ><p *ngIf="!ocultarVerificar"></p></h2>
-                    </div> <!--container-->
-                    <div id="snackbar">{{Mensajes}}</div> 
-                      <div class="col-sm-2 sidenav">        
-                    </div>
-                  </div>
-                  <div class="col-sm-1"></div>
-                </div>
+              <p> </p> 
               
-              </fieldset>  
-              <br><br><br>
+              <button *ngIf="ocultarComenzar" (click)="generarPalabra()"   class="next action-button" >Jugar!</button> 
+              <h1>Adivina la palabra escondida: </h1>
+              <h1 class="secreta">{{nuevoJuego.palabraDesordenada}}</h1>
+              <br /> <input [(ngModel)]="nuevoJuego.palabraIngresada" placeholder="palabra ordenada" name="palabraOrdenadaa" type="text" class="form-control" style="font-size: 30px;
+              height: 40%;"/>
+              <br><br>                 
+
+              <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" class="btn btn-primary btn-lg btn-block">Verificar</button></h2>
+              <h2><p *ngIf="!ocultarVerificar" ><p *ngIf="!ocultarVerificar"></p></h2>
+            </div> <!--container-->
+            <div id="snackbar">{{Mensajes}}</div> 
+              <div class="col-sm-2 sidenav">        
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>
               
-              </form>
+  </fieldset>  
+  <br><br><br>
+  
+  </form>
 
