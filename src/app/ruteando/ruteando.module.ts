@@ -49,13 +49,14 @@ const MiRuteo = [
 component: JuegosComponent ,
 children:
      [{path: '' , component: MenuCardComponent},
-     {path: 'Adivina' , component: AdivinaElNumeroComponent},
+      {path: 'Adivina' , component: AdivinaElNumeroComponent},
       {path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent},
       {path: 'PiedraPapelTijera' , component: PiedraPapelTijeraComponent},
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
       {path: 'Memotec' , component: MemotecComponent},
       {path: 'Anagrama' , component: AnagramaComponent},
       {path: 'Tateti' , component: TatetiComponent},
+      {path: 'Listado' , component: ListadoComponent},
       {path: 'Agilidad' , component: AgilidadAritmeticaComponent}]
 },
 {path: '**' , component: ErrorComponent},

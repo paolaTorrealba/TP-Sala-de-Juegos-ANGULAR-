@@ -1,16 +1,17 @@
 import { Juego } from '../clases/juego'
+
 export class Memotec extends  Juego {
    
     numeroSecreto: number = 0;
     numeroIngresado = 0;
-    constructor(nombre?: string, gano?: boolean, jugador?:string) {
-        super("Memotec",gano,jugador);
-     
+    nombre="Memotec";
+
+    constructor(nombre?: string, gano?: boolean, jugador?:string, intentos?:any,resultado?:string) {
+      super(nombre,gano,jugador, intentos,resultado);  
     
-      
-      }
-//hacer
-      public verificar(): boolean {
+   }
+  
+   public verificar(): boolean {
         throw new Error("Method not implemented.");
     }
     }

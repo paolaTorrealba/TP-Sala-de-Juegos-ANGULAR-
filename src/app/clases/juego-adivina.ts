@@ -4,14 +4,11 @@ export class JuegoAdivina extends  Juego {
     numeroSecreto: number = 0;
     numeroIngresado = 0;
     nombre="Adivina el numero";
-    constructor(nombre?: string, gano?: boolean, jugador?:string, intentos?:any,resultado?:string) {
-        super(nombre,gano,jugador, intentos,resultado);
-    // constructor(nombre?: string, gano?: boolean, jugador?:string) {
-    //     super("Adivina el número",gano,jugador);
-     
     
-      
-      }
+    constructor(nombre?: string, gano?: boolean, jugador?:string, intentos?:any,resultado?:string) {
+        super(nombre,gano,jugador, intentos,resultado);      
+    }
+
     public verificar() {
         if (this.numeroIngresado == this.numeroSecreto) {
           this.gano = true;
