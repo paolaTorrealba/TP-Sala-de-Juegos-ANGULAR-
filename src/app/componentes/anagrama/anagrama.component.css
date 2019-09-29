@@ -1,36 +1,89 @@
-.fondo{
+/* .fondo{ */
 
     /* background-image: url(".../../../docs/assets/imagenes/color_principal.jpg"); */
-      margin-top: -60px;
+      /* margin-top: -60px;
       background-size: cover;
       background-repeat: no-repeat;
-    }
-    #msform fieldset {
-        background: rgba(67, 72, 82, 0.884);
-        border: 0 none;
-        border-radius: 3px;
-        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-        padding: 20px 30px;
-        box-sizing: border-box;
-        width: 80%;
-        margin: 0 10%;
-        
-        /*stacking fieldsets above each other*/
-        position: relative;
+    } */
+    .secreta{
+      color:rgb(219, 3, 122);
+      text-align: center
     }
     
-  form {
-      border: 2px solid rgb(33, 243, 44);
-   
-      background: rgba(52, 54, 52, 0.8);
-      color: white;
-      
-  }
-  
-  h1{
+    .titulo{
+      text-align: center;
+      font-family: Tahoma, Arial, sans-serif;
+      color: rgb(0, 0, 0);
+      /* margin: 50px 0; */
+      margin-bottom: 10px;
+      margin-top: 30px;
       font-size: 3.5rem;
       text-align: center;
-  }
+    }
+    #msform {
+      width: 40%;
+      text-align: center;
+      position: relative;
+      margin-left: 8%;
+      margin-right: 8%;
+    }
+    #msform fieldset {
+      background: rgba(67, 72, 82, 0.884);
+      border: 0 none;
+      border-radius: 3px;
+      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+      padding: 20px 30px;
+      box-sizing: border-box;
+      width: 200%;
+      margin: 0 10%;
+      
+      /*stacking fieldsets above each other*/
+      position: relative;
+    }
+    /*Hide all except first fieldset*/
+    #msform fieldset:not(:first-of-type) {
+      display: none;
+    }
+    /*inputs*/
+    #msform input, #msform textarea {
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: montserrat;
+      color: #2C3E50;
+      font-size: 13px;
+    }
+    /*buttons*/
+    #msform .action-button {
+      width: 170px;
+      background: rgba(0, 225, 255, 0.568);
+      font-weight: bold;
+      color: rgb(0, 24, 88);
+      border: 0 none;
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 10px 5px;
+      margin: 10px 5px;
+    }
+    #msform .action-button:hover, #msform .action-button:focus {
+      box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    }
+    
+
+    h1 {
+      text-align: center;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #06D85F;
+      /* margin: 50px 0; */
+      margin-bottom: 10px;
+      margin-top: 30px;
+      font-size: 3.5rem;
+      text-align: center;
+    }
+
   #snackbar {
       visibility: hidden;
       min-width: 250px;

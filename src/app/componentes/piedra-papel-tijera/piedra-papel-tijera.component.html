@@ -1,10 +1,6 @@
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> -->
-
-<!--   
-  <div class="fondo"> -->
 <div style="text-align:center">
-    <h1>
-      {{nuevoJuego.nombre}}!
+    <h1 class="titulo">
+            {{nuevoJuego.nombre}}!
     </h1>
 </div>
 <form id="msform"> 
@@ -13,60 +9,44 @@
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
       <div class="container">
-
-        <div class="bordeNumeros">
-          <button  *ngIf="botonComenzarVerificar == true" (click)="primerJuego()"  class="next action-button" >Jugar!</button>
-          <div class="img"><br>             
-            <h1>Seleccione una opción</h1>
-            <div class="box">
-              <button id="botonPiedra" class="button"(click)="generarPartida(1)"> Piedra </button> 
-              <button id="botonPapel"  class="button"(click)="generarPartida(2)"> Papel </button>
-              <button id="botonTijera" class="button"(click)="generarPartida(3)"> Tijera </button>
-            </div>     
-            <br><br>
-                <br>          
-                <!-- <div *ngIf="mostrarGif == true" class="gif"> -->
-                <div  > 
-                    <img src="../../../assets/PPT/img/usuario.png"  >
-                    <img src="../../../assets/PPT/img/neo.png"  >
-                </div>
-                <!-- <h4>Seleccione opcion</h4> -->
-                <!-- <button id="botonPiedra" disabled class="btn btn-default btn-xs" (click)="generarPartida(1)" >Piedra</button>
-                <button id="botonPapel"  disabled class="btn btn-default btn-xs"(click)="generarPartida(2)">Papel</button>
-                <button id="botonTijera" disabled class="btn btn-default btn-xs"(click)="generarPartida(3)">Tijera</button> -->
-                
-                <hr class="style12">
-               
-                <!-- resultados -->
-                <div class="resultados">
-                    <img id="resultado1"  >
-                    <img id="resultado2" >
-                </div>
-
-                <section id="msjPuntos"></section>
-                <h3 *ngIf="labelPuntos == true" >
-                  <kbd class= "label-info">Vos <i class="far fa-hand-point-right"></i> {{puntos}}</kbd>
-                  VS
-                  <kbd class= "label-danger"> {{puntosRival}} <i class="far fa-hand-point-left"></i> Rival</kbd>
-                </h3>
-                <h3 *ngIf="labelGanaste == true" >
-                    <kbd class= "label-success"> Ganaste!!! <i class="far fa-thumbs-up"></i></kbd>
-                </h3>
-                <h3 *ngIf="labelPerdiste == true" >
-                    <kbd class= "label-danger"> Perdiste :(<i class="far fa-thumbs-down"></i></kbd>
-                </h3>        
-          </div>
-
-          <div class = "botones">
-                <!-- <button type="buttons" (click)="ocultarSonido()"  class="buttons"> Sonido</button> -->
-                <!-- <br><br><br><br> -->               
-                <button  type="buttons"   class="next action-button" >Salir</button>
-             
-          </div>
-        </div> 
-           
+            <div class="bordeNumeros">
+                  <button  *ngIf="botonComenzarVerificar == true" (click)="primerJuego()"  class="next action-button" >Jugar!</button>
+                  <div class="img"><br>             
+                      <h1>Seleccione una opción</h1>
+                      <div class="box">
+                          <button id="botonPiedra" class="button"(click)="generarPartida(1)"> Piedra </button> 
+                          <button id="botonPapel"  class="button"(click)="generarPartida(2)"> Papel </button>
+                          <button id="botonTijera" class="button"(click)="generarPartida(3)"> Tijera </button>
+                      </div>     
+                      <br><br><br> 
+                      <div> 
+                          <img src="../../../assets/PPT/img/usuario.png"  >
+                          <img src="../../../assets/PPT/img/neo.png"  >
+                      </div>           
+                      <hr class="style12">               
+                      <!-- resultados -->
+                      <div class="resultados">
+                          <img id="resultado1"  >
+                          <img id="resultado2" >
+                      </div>
+                      <section id="msjPuntos"></section>
+                      <h3 *ngIf="labelPuntos == true" >
+                          <kbd class= "label-info">Vos <i class="far fa-hand-point-right"></i> {{puntos}}</kbd>
+                          VS
+                          <kbd class= "label-danger"> {{puntosRival}} <i class="far fa-hand-point-left"></i> Rival</kbd>
+                      </h3>
+                      <h3 *ngIf="labelGanaste == true" >
+                          <kbd class= "label-success"> Ganaste!!! <i class="far fa-thumbs-up"></i></kbd>
+                      </h3>
+                      <h3 *ngIf="labelPerdiste == true" >
+                          <kbd class= "label-danger"> Perdiste :(<i class="far fa-thumbs-down"></i></kbd>
+                      </h3>        
+                  </div>
+                  <div class = "botones">                 
+                        <button  type="buttons"   class="next action-button" >Salir</button>                
+                  </div>
+            </div>  <!--bordeNumeros-->           
       </div> <!--container-->
-
     </div>
     <div class="col-sm-1"></div>
   </div>

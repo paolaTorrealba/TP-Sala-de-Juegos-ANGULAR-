@@ -1,43 +1,34 @@
-<div class="container-fluid text-center">    
-    <div class="row content">
-      <div class="col-sm-2 sidenav">
-      </div>
-      <div class="col-sm-8 text-left"> 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div style="text-align:center">
-          <h1 style="color:rgb(48, 5, 128);">
-            Anagrama
-          </h1>
-         </div>
-        <h2></h2>
-        <form name="juego" >
-          <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-7">
-                
-                
-                <p> </p> 
-                  <h2>Podrás armar la palabra escondida??</h2> <br> <h1 style="color:rgb(141, 4, 79); text-align: center">{{nuevoJuego.palabraDesordenada}}  </h1>
-                  <br /> <input [(ngModel)]="nuevoJuego.palabraIngresada" placeholder="palabra ordenada" name="palabraOrdenadaa" type="text" class="form-control" style="width: 420px;font-size: 51px;"/>
-                  <br><br>
-                  <!-- <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.esperando!=0" (click)="verificar()" class="btn btn-success btn-lg">Verificar</button></h2>    -->        
-                  <h2><button *ngIf="ocultarComenzar" (click)="generarPalabra()"  class="btn btn-outline-primary btn-lg btn-block">Empezá</button></h2> 
-  
-                  <!---->
-                  <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" class="btn btn-primary btn-lg btn-block">Verificar</button></h2>
-                  
-                  
-                  
-                  <h2><p *ngIf="!ocultarVerificar" >Esperando que ingreses una palabra<p class="loader" *ngIf="!ocultarVerificar"></p></h2>
-            </div>
-            <div class="col-sm-3"></div>
-          </div>
-  
-        </form>
-        <div id="snackbar">{{Mensajes}}</div> 
-      <div class="col-sm-2 sidenav">        
-      </div>
-    </div>
-  </div>
-  
-  </div>
+<div style="text-align:center">
+    <h1 class="titulo">
+      {{nuevoJuego.nombre}}!
+    </h1>
+</div>
+<form id="msform"> 
+ <fieldset>
+   <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+      <div class="container">
+                      <p> </p> 
+                      <h1>Adivina la palabra escondida: </h1>
+                      <button *ngIf="ocultarComenzar" (click)="generarPalabra()"   class="next action-button" >Jugar!</button> 
+
+                      <br> <h1 class="secreta">{{nuevoJuego.palabraDesordenada}}</h1>
+                      <br /> <input [(ngModel)]="nuevoJuego.palabraIngresada" placeholder="palabra ordenada" name="palabraOrdenadaa" type="text" class="form-control" style="width: 420px;font-size: 51px;"/>
+                      <br><br>                 
+
+                      <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" class="btn btn-primary btn-lg btn-block">Verificar</button></h2>
+                      <h2><p *ngIf="!ocultarVerificar" ><p *ngIf="!ocultarVerificar"></p></h2>
+                    </div> <!--container-->
+                    <div id="snackbar">{{Mensajes}}</div> 
+                      <div class="col-sm-2 sidenav">        
+                    </div>
+                  </div>
+                  <div class="col-sm-1"></div>
+                </div>
+              
+              </fieldset>  
+              <br><br><br>
+              
+              </form>
+

@@ -1,21 +1,55 @@
-<div class="fondo">
-    <h1 style="color:red; text-align: center">TaTeTi</h1>
-<div style="text-align: center">
-    <button mat-raised-button (click)="presion(0,0)" class="casilla">{{nuevoJuego.posiciones[0][0]}}</button>
-    <button mat-raised-button (click)="presion(0,1)" class="casilla">{{nuevoJuego.posiciones[0][1]}}</button>
-    <button mat-raised-button (click)="presion(0,2)" class="casilla">{{nuevoJuego.posiciones[0][2]}}</button>
-    <br>
-    <button mat-raised-button (click)="presion(1,0)" class="casilla">{{nuevoJuego.posiciones[1][0]}}</button>
-    <button mat-raised-button (click)="presion(1,1)" class="casilla">{{nuevoJuego.posiciones[1][1]}}</button>
-    <button mat-raised-button (click)="presion(1,2)" class="casilla">{{nuevoJuego.posiciones[1][2]}}</button>
-    <br>
-    <button mat-raised-button (click)="presion(2,0)" class="casilla">{{nuevoJuego.posiciones[2][0]}}</button>
-    <button mat-raised-button (click)="presion(2,1)" class="casilla">{{nuevoJuego.posiciones[2][1]}}</button>
-    <button mat-raised-button (click)="presion(2,2)" class="casilla">{{nuevoJuego.posiciones[2][2]}}</button>
-  </div>
-  <div style="text-align: center">
-    <button mat-button class="btn btn-warning btn-lg" (click)="nuevoJuego.reiniciar()">Reiniciar</button>
-  </div>
-
-  <div id="snackbar">{{Mensajes}}</div>
+<!-- <div class="fondo">
+    <h1 style="color:red; text-align: center">TaTeTi</h1> -->
+<div style="text-align:center">
+    <h1>
+      {{nuevoJuego.nombre}}!
+    </h1>
 </div>
+<form id="msform">    
+  <fieldset>
+    <div class="row">
+      <div class="container">
+          <div style="text-align: center">
+                <button mat-raised-button (click)="presion(0,0)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[0][0]}}</button>
+                <button mat-raised-button (click)="presion(0,1)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[0][1]}}</button>
+                <button mat-raised-button (click)="presion(0,2)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[0][2]}}</button>
+                <br>
+                <button mat-raised-button (click)="presion(1,0)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[1][0]}}</button>
+                <button mat-raised-button (click)="presion(1,1)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[1][1]}}</button>
+                <button mat-raised-button (click)="presion(1,2)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[1][2]}}</button>
+                <br>
+                <button mat-raised-button (click)="presion(2,0)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[2][0]}}</button>
+                <button mat-raised-button (click)="presion(2,1)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[2][1]}}</button>
+                <button mat-raised-button (click)="presion(2,2)" class="button2 b-orange rot-135">{{nuevoJuego.posiciones[2][2]}}</button>
+            </div>
+            <div style="text-align: center">
+                <button  *ngIf="botonComenzarVerificar == true" (click)="primerJuego()"  class="next action-button" >Jugar!</button>
+                <button mat-button class="next action-button" (click)="nuevoJuego.reiniciar()">Reiniciar</button>
+            </div>
+            <div id="snackbar">{{Mensajes}}</div>
+<!-- 
+
+
+
+            <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+<div class="ctn">
+<button (click)="nuevoJuego.reiniciar()" class="button b-green">Green Button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button b-pink">Pink Button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button b-red">Red Button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button b-orange">Orange Button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button b-blue">Blue Button</button>
+<br/>
+<button (click)="nuevoJuego.reiniciar()" class="button2 b-green rot-135">Green button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button2 b-pink rot-135">Pink button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button2 b-red rot-135">Red button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button2 b-orange rot-135">Orange button</button>
+<button (click)="nuevoJuego.reiniciar()" class="button2 b-blue rot-135">Blue button</button> -->
+<!-- </div> -->
+
+      </div> <!--contenenedor-->
+<!-- </div> -->
+    </div> <!-- row -->
+  </fieldset>
+  <br><br><br>
+<form>   
+ 
