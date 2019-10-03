@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<!--Donde se encuentre este tag, se instancian los componentes dependientes del ruteo-->\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "\r\n<!--Donde se encuentre este tag, se instancian los componentes dependientes del ruteo-->\r\n<router-outlet></router-outlet> \r\n<br>\r\n <app-footer></app-footer>\r\n    \r\n"
 
 /***/ }),
 
@@ -108,7 +108,9 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__componentes_piedra_papel_tijera_piedra_papel_tijera_component__ = __webpack_require__("../../../../../src/app/componentes/piedra-papel-tijera/piedra-papel-tijera.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__componentes_memotec_memotec_component__ = __webpack_require__("../../../../../src/app/componentes/memotec/memotec.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__componentes_paises_paises_component__ = __webpack_require__("../../../../../src/app/componentes/paises/paises.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__componentes_animales_animales_component__ = __webpack_require__("../../../../../src/app/componentes/animales/animales.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__componentes_tateti_tateti_component__ = __webpack_require__("../../../../../src/app/componentes/tateti/tateti.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__componentes_footer_footer_component__ = __webpack_require__("../../../../../src/app/componentes/footer/footer.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__app_servicios_auth_service__ = __webpack_require__("../../../../../src/app/servicios/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -166,6 +168,10 @@ const MiRuteo = [{path: 'error' , component: ErrorComponent},
 
 
 
+
+
+// import { AngularFireModule } from '@angular/fire'; 
+// import { AngularFireAuthModule } from '@angular/fire/auth';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -197,7 +203,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_32__componentes_piedra_papel_tijera_piedra_papel_tijera_component__["a" /* PiedraPapelTijeraComponent */],
                 __WEBPACK_IMPORTED_MODULE_33__componentes_memotec_memotec_component__["a" /* MemotecComponent */],
                 __WEBPACK_IMPORTED_MODULE_34__componentes_paises_paises_component__["a" /* PaisesComponent */],
-                __WEBPACK_IMPORTED_MODULE_35__componentes_animales_animales_component__["a" /* AnimalesComponent */]
+                __WEBPACK_IMPORTED_MODULE_35__componentes_tateti_tateti_component__["a" /* TatetiComponent */],
+                __WEBPACK_IMPORTED_MODULE_36__componentes_footer_footer_component__["a" /* FooterComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -205,7 +212,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_18__ruteando_ruteando_module__["a" /* RuteandoModule */],
                 __WEBPACK_IMPORTED_MODULE_7__angular_common_http__["b" /* HttpClientModule */],
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_21__servicios_juego_service_service__["a" /* JuegoServiceService */], __WEBPACK_IMPORTED_MODULE_8__servicios_mi_http_mi_http_service__["a" /* MiHttpService */], __WEBPACK_IMPORTED_MODULE_9__servicios_paises_service__["a" /* PaisesService */], __WEBPACK_IMPORTED_MODULE_11__servicios_archivos_jugadores_service__["a" /* ArchivosJugadoresService */], __WEBPACK_IMPORTED_MODULE_10__servicios_jugadores_service__["a" /* JugadoresService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_21__servicios_juego_service_service__["a" /* JuegoServiceService */], __WEBPACK_IMPORTED_MODULE_8__servicios_mi_http_mi_http_service__["a" /* MiHttpService */], __WEBPACK_IMPORTED_MODULE_9__servicios_paises_service__["a" /* PaisesService */], __WEBPACK_IMPORTED_MODULE_11__servicios_archivos_jugadores_service__["a" /* ArchivosJugadoresService */], __WEBPACK_IMPORTED_MODULE_10__servicios_jugadores_service__["a" /* JugadoresService */], __WEBPACK_IMPORTED_MODULE_37__app_servicios_auth_service__["a" /* AuthService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -235,10 +242,11 @@ var __extends = (this && this.__extends) || (function () {
 
 var JuegoAdivina = /** @class */ (function (_super) {
     __extends(JuegoAdivina, _super);
-    function JuegoAdivina(nombre, gano, jugador) {
-        var _this = _super.call(this, "Adivina el número", gano, jugador) || this;
+    function JuegoAdivina(nombre, gano, jugador, intentos, resultado) {
+        var _this = _super.call(this, nombre, gano, jugador, intentos, resultado) || this;
         _this.numeroSecreto = 0;
         _this.numeroIngresado = 0;
+        _this.nombre = "Adivina el numero";
         return _this;
     }
     JuegoAdivina.prototype.verificar = function () {
@@ -289,45 +297,36 @@ var __extends = (this && this.__extends) || (function () {
 
 var JuegoAgilidad = /** @class */ (function (_super) {
     __extends(JuegoAgilidad, _super);
-    function JuegoAgilidad(nombre, gano, jugador) {
-        var _this = _super.call(this, "Agilidad Aritmetica", gano, jugador) || this;
-        _this.primerNumero = 0;
-        _this.segundoNumero = 0;
-        _this.operadorList = ["suma", "resta", "multiplicacion", "division"];
-        _this.operadorSeleccionado = '';
-        _this.resultado = 0;
-        _this.resultadoIngresado = 0;
-        return _this;
+    function JuegoAgilidad(nombre, gano, jugador, intentos, resultado) {
+        return _super.call(this, "Agilidad Aritmetica", gano, jugador, intentos, resultado) || this;
     }
+    JuegoAgilidad.prototype.generar = function () {
+        this.primerNumero = Math.round(Math.random() * 10);
+        this.segundoNumero = Math.round(Math.random() * 10);
+        var numOperador = Math.round(Math.random() * 3);
+        switch (numOperador) {
+            case 0:
+                this.operador = "+";
+                this.resultado = this.primerNumero + this.segundoNumero;
+                break;
+            case 1:
+                this.operador = "-";
+                this.resultado = this.primerNumero - this.segundoNumero;
+                break;
+            case 2:
+                this.operador = "*";
+                this.resultado = this.primerNumero * this.segundoNumero;
+                break;
+            case 3:
+                this.operador = "/";
+                if (this.segundoNumero != 0)
+                    this.resultado = this.primerNumero / this.segundoNumero;
+                break;
+        }
+    };
     JuegoAgilidad.prototype.verificar = function () {
-        if ((this.primerNumero != 0) && (this.segundoNumero != 0) && (this.operadorSeleccionado != '')) {
-            switch (this.operadorSeleccionado) {
-                case '+': {
-                    this.resultado = this.primerNumero + this.segundoNumero;
-                    break;
-                }
-                case '-': {
-                    this.resultado = this.primerNumero - this.segundoNumero;
-                    break;
-                }
-                case '/': {
-                    if (this.segundoNumero > 0)
-                        this.resultado = this.primerNumero / this.segundoNumero;
-                    else {
-                        console.log("error al dividir por 0");
-                    }
-                    break;
-                }
-                case '*': {
-                    this.resultado = this.primerNumero * this.segundoNumero;
-                    break;
-                }
-                default: {
-                    break;
-                }
-            }
-            if (this.resultadoIngresado == this.resultado)
-                this.gano = true;
+        if (this.resultado == this.resultadoUsuario) {
+            this.gano = true;
         }
         if (this.gano) {
             return true;
@@ -339,7 +338,116 @@ var JuegoAgilidad = /** @class */ (function (_super) {
     return JuegoAgilidad;
 }(__WEBPACK_IMPORTED_MODULE_0__clases_juego__["a" /* Juego */]));
 
+//     primerNumero :number;
+//     segundoNumero :number;
+//     operadorList :string;
+//     operadorSeleccionado : any='';
+//     resultado = 0;
+//     resultadoIngresado = 0;
+//     constructor(nombre?: string, gano?: boolean, jugador?:string) {
+//         super("Agilidad Aritmetica",gano,jugador);      
+//     }
+//     public verificar() {
+//         if ((this.primerNumero !=0) &&  (this.segundoNumero!=0) && (this.operadorSeleccionado!='')) {
+//             switch(this.operadorSeleccionado) { 
+//                 case '+': { 
+//                     this.resultado= this.primerNumero +  this.segundoNumero;
+//                    break; 
+//                 } 
+//                 case '-': { 
+//                     this.resultado= this.primerNumero -  this.segundoNumero;         
+//                    break; 
+//                 } 
+//                 case '/': { 
+//                     if(this.segundoNumero>0)
+//                         this.resultado= this.primerNumero / this.segundoNumero;   
+//                     else  {
+//                         console.log("error al dividir por 0");
+//                     }    
+//                 break; 
+//                 } 
+//                 case '*': { 
+//                     this.resultado= this.primerNumero *  this.segundoNumero;         
+//                    break; 
+//                 } 
+//                 default: { 
+//                    break; 
+//                 } 
+//             } 
+//             if(this.resultadoIngresado == this.resultado )
+//                this.gano = true;
+//         }
+//         if (this.gano) {
+//           return true;
+//         } else {
+//           return false;
+//         }
+//      }
+// }
 //# sourceMappingURL=juego-agilidad.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/clases/juego-anagrama.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JuegoAnagrama; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clases_juego__ = __webpack_require__("../../../../../src/app/clases/juego.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var JuegoAnagrama = /** @class */ (function (_super) {
+    __extends(JuegoAnagrama, _super);
+    function JuegoAnagrama(nombre, gano, jugador, intentos, resultado) {
+        var _this = _super.call(this, nombre, gano, jugador, intentos, resultado) || this;
+        _this.arrayDePalabras = [
+            { ordenada: "SACO", desordenada: "COSA" },
+            { ordenada: "ALICANTE", desordenada: "CALIENTE" },
+            { ordenada: "FRASE", desordenada: "FRESA" },
+            { ordenada: "AMOR", desordenada: "ROMA" },
+            { ordenada: "DELIRA", desordenada: "LIDERA" },
+            { ordenada: "PEDRO", desordenada: "PODER" },
+            { ordenada: "RESTO", desordenada: "RETOS" },
+            { ordenada: "TRATA", desordenada: "TARTA" },
+            { ordenada: "TORO", desordenada: "ROTO" },
+            { ordenada: "CRONISTA", desordenada: "CORTINAS" },
+            { ordenada: "EVA", desordenada: "AVE" }
+        ];
+        _this.nombre = "Anagrama";
+        return _this;
+    }
+    JuegoAnagrama.prototype.asignarPalabra = function () {
+        var indice;
+        indice = Math.floor(Math.random() * this.arrayDePalabras.length);
+        console.log(this.arrayDePalabras[indice]["ordenada"]);
+        this.palabraDesordenada = this.arrayDePalabras[indice]["desordenada"];
+        this.palabraOrdenada = this.arrayDePalabras[indice]["ordenada"];
+    };
+    JuegoAnagrama.prototype.verificar = function () {
+        if (this.palabraIngresada.toLowerCase() == this.palabraOrdenada.toLowerCase()) {
+            this.gano = true;
+        }
+        if (this.gano) {
+            return true;
+        }
+        else {
+            return false;
+        }
+        return false;
+    };
+    return JuegoAnagrama;
+}(__WEBPACK_IMPORTED_MODULE_0__clases_juego__["a" /* Juego */]));
+
+//# sourceMappingURL=juego-anagrama.js.map
 
 /***/ }),
 
@@ -362,33 +470,63 @@ var __extends = (this && this.__extends) || (function () {
 
 var JuegoPiedraPapelTijera = /** @class */ (function (_super) {
     __extends(JuegoPiedraPapelTijera, _super);
-    function JuegoPiedraPapelTijera(nombre, gano, jugador) {
-        var _this = _super.call(this, "", false, "") || this;
-        _this.numeroSecreto = 0;
-        _this.numeroIngresado = 0;
+    function JuegoPiedraPapelTijera(nombre, gano, jugador, intentos, resultado) {
+        var _this = 
+        //super("Piedra-Papel-Tijera",gano,jugador);
+        _super.call(this, nombre, gano, jugador, intentos, resultado) || this;
+        _this.elecccionJugador = 0;
+        _this.eleccionRandom = 0;
+        _this.arrayPalabras = [
+            { palabra: "pierda", id: 1 },
+            { palabra: "papel", id: 2 },
+            { palabra: "tijera", id: 3 },
+        ];
+        //this.jugador =localStorage.getItem("jugador");
+        _this.nombre = "Piedra, Papel o Tijera";
         return _this;
     }
+    JuegoPiedraPapelTijera.prototype.asignarPPT = function (eleccionAux) {
+        var random = Math.floor(Math.random() * this.arrayPalabras.length);
+        this.eleccionRandom = this.arrayPalabras[random].id;
+        this.elecccionJugador = eleccionAux;
+    };
     JuegoPiedraPapelTijera.prototype.verificar = function () {
-        if (this.numeroIngresado == this.numeroSecreto) {
-            this.gano = true;
+        switch (this.elecccionJugador) {
+            case 1:
+                if (this.eleccionRandom == 1) {
+                    this.resultado = null;
+                }
+                if (this.eleccionRandom == 2) {
+                    this.resultado = false;
+                }
+                if (this.eleccionRandom == 3) {
+                    this.resultado = true;
+                }
+                break;
+            case 2:
+                if (this.eleccionRandom == 1) {
+                    this.resultado = true;
+                }
+                if (this.eleccionRandom == 2) {
+                    this.resultado = null;
+                }
+                if (this.eleccionRandom == 3) {
+                    this.resultado = false;
+                }
+                break;
+            case 3:
+                if (this.eleccionRandom == 1) {
+                    this.resultado = false;
+                }
+                if (this.eleccionRandom == 2) {
+                    this.resultado = true;
+                }
+                if (this.eleccionRandom == 3) {
+                    this.resultado = null;
+                }
+                break;
         }
-        if (this.gano) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    JuegoPiedraPapelTijera.prototype.generarnumero = function () {
-        this.numeroSecreto = Math.floor((Math.random() * 100) + 1);
-        console.info('numero Secreto:' + this.numeroSecreto);
-        this.gano = false;
-    };
-    JuegoPiedraPapelTijera.prototype.retornarAyuda = function () {
-        if (this.numeroIngresado < this.numeroSecreto) {
-            return "Falta";
-        }
-        return "Te pasate";
+        return this.resultado;
     };
     return JuegoPiedraPapelTijera;
 }(__WEBPACK_IMPORTED_MODULE_0__clases_juego__["a" /* Juego */]));
@@ -403,25 +541,185 @@ var JuegoPiedraPapelTijera = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Juego; });
 var Juego = /** @class */ (function () {
-    function Juego(nombre, gano, jugador) {
-        this.nombre = 'Sin Nombre';
+    function Juego(nombre, gano, jugador, intentos, resultado) {
+        this.nombre = '';
         this.gano = false;
-        if (nombre)
-            this.nombre = nombre;
-        if (gano)
+        if (nombre) {
+            /*this.nombre = nombre;
+          if (gano)
             this.gano = gano;
-        if (jugador)
+          if(jugador)
+            this.jugador=jugador;
+          else
+            this.jugador= "natalia natalia";*/
+            this.gano = gano;
             this.jugador = jugador;
-        else
-            this.jugador = "natalia natalia";
+            this.intentos = intentos;
+            this.resultado = resultado;
+        }
     }
+    Juego.prototype.guardarLocal = function () {
+        var idstring = localStorage.getItem("Id");
+        console.log(idstring);
+        if (idstring == null) {
+            this.id = 1;
+            localStorage.setItem("Id", "1");
+        }
+        else {
+            this.id = +idstring;
+            this.id = this.id + 1;
+            localStorage.setItem("Id", this.id.toString());
+        }
+        var x = { "nombre": this.nombre,
+            "jugador": this.jugador,
+            "resultado": this.gano,
+            "intentos": this.intentos
+        };
+        localStorage.setItem("partida " + this.id, JSON.stringify(x));
+        console.log(localStorage.getItem("Id"));
+    };
     Juego.prototype.retornarAyuda = function () {
         return "NO hay Ayuda definida";
     };
     return Juego;
 }());
 
+//   constructor(nombre?: string, gano?: boolean,jugador?:string) {
+//     if (nombre)
+//       this.nombre = nombre;
+//     if (gano)
+//       this.gano = gano;
+//     if(jugador)
+//       this.jugador=jugador;
+//     else
+//       this.jugador= "natalia natalia";
+//   }
+//   public abstract verificar():boolean; 
+//   public retornarAyuda() {
+//     return "NO hay Ayuda definida";
+//   }
+// }
 //# sourceMappingURL=juego.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/clases/jugador.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Jugador; });
+var Jugador = /** @class */ (function () {
+    function Jugador() {
+    }
+    return Jugador;
+}());
+
+//# sourceMappingURL=jugador.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/clases/memotec.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Memotec; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clases_juego__ = __webpack_require__("../../../../../src/app/clases/juego.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var Memotec = /** @class */ (function (_super) {
+    __extends(Memotec, _super);
+    function Memotec(nombre, gano, jugador, intentos, resultado) {
+        var _this = _super.call(this, nombre, gano, jugador, intentos, resultado) || this;
+        _this.numeroSecreto = 0;
+        _this.numeroIngresado = 0;
+        _this.nombre = "Memotec";
+        return _this;
+    }
+    Memotec.prototype.verificar = function () {
+        throw new Error("Method not implemented.");
+    };
+    return Memotec;
+}(__WEBPACK_IMPORTED_MODULE_0__clases_juego__["a" /* Juego */]));
+
+//# sourceMappingURL=memotec.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/clases/tateti.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Tateti; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clases_juego__ = __webpack_require__("../../../../../src/app/clases/juego.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var Tateti = /** @class */ (function (_super) {
+    __extends(Tateti, _super);
+    function Tateti(nombre, gano, jugador, intentos, resultado) {
+        var _this = _super.call(this, nombre, gano, jugador, intentos, resultado) || this;
+        _this.nombre = "Tateti";
+        return _this;
+    }
+    Tateti.prototype.generarTateti = function () {
+        this.posiciones = [['-', '-', '-'],
+            ['-', '-', '-'],
+            ['-', '-', '-']];
+        this.juega = 'O';
+        this.jugadas = 5;
+    };
+    Tateti.prototype.reiniciar = function () {
+        this.generarTateti();
+    };
+    Tateti.prototype.generarAleatorio = function () {
+        this.i = Math.floor((Math.random() * 3) + 0);
+        this.j = Math.floor((Math.random() * 3) + 0);
+    };
+    Tateti.prototype.validar = function () {
+        if (this.posiciones[this.i][this.j] != "-")
+            return true;
+        return false;
+    };
+    Tateti.prototype.eleccionMaquina = function () {
+        do {
+            this.generarAleatorio();
+            console.log("i: " + this.i + " j: " + this.j);
+        } while (this.validar() && this.jugadas > 1);
+        this.posiciones[this.i][this.j] = this.juega;
+        this.jugadas -= 1;
+        console.log(this.jugadas);
+    };
+    Tateti.prototype.cambiarJugador = function () {
+        if (this.juega == 'O') {
+            this.juega = 'X';
+        }
+        else
+            this.juega = 'O';
+    };
+    Tateti.prototype.verificar = function () {
+        return true;
+    };
+    return Tateti;
+}(__WEBPACK_IMPORTED_MODULE_0__clases_juego__["a" /* Juego */]));
+
+//# sourceMappingURL=tateti.js.map
 
 /***/ }),
 
@@ -788,7 +1086,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "/* .fondo{ */\r\n\r\n    /* background-image: url(\".../../../docs/assets/imagenes/color_principal.jpg\"); */\r\n      /* margin-top: -60px;\r\n      background-size: cover;\r\n      background-repeat: no-repeat;\r\n    } */\r\n    .secreta{\r\n      color:#ffc107;\r\n      text-align: center\r\n    }\r\n    \r\n    .titulo{\r\n      text-align: center;\r\n      font-family: Tahoma, Arial, sans-serif;\r\n      color: rgb(0, 0, 0);\r\n      /* margin: 50px 0; */\r\n      margin-bottom: 10px;\r\n      margin-top: 30px;\r\n      font-size: 3.5rem;\r\n      text-align: center;\r\n    }\r\n    #msform {\r\n      width: 40%;\r\n      text-align: center;\r\n      position: relative;\r\n      margin-left: 8%;\r\n      margin-right: 8%;\r\n    }\r\n    #msform fieldset {\r\n      background: rgba(67, 72, 82, 0.884);\r\n      border: 0 none;\r\n      border-radius: 3px;\r\n      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);\r\n      padding: 20px 30px;\r\n      box-sizing: border-box;\r\n      width: 200%;\r\n      margin: 0 10%;\r\n      \r\n      /*stacking fieldsets above each other*/\r\n      position: relative;\r\n    }\r\n    /*Hide all except first fieldset*/\r\n    #msform fieldset:not(:first-of-type) {\r\n      display: none;\r\n    }\r\n    /*inputs*/\r\n    #msform input, #msform textarea {\r\n      padding: 15px;\r\n      border: 1px solid #ccc;\r\n      border-radius: 3px;\r\n      margin-bottom: 10px;\r\n      width: 100%;\r\n      box-sizing: border-box;\r\n      font-family: montserrat;\r\n      color: #2C3E50;\r\n      font-size: 13px;\r\n    }\r\n    /*buttons*/\r\n    #msform .action-button {\r\n      width: 170px;\r\n      background: rgba(0, 225, 255, 0.568);\r\n      font-weight: bold;\r\n      color: rgb(0, 24, 88);\r\n      border: 0 none;\r\n      border-radius: 10px;\r\n      cursor: pointer;\r\n      padding: 10px 5px;\r\n      margin: 10px 5px;\r\n    }\r\n    #msform .action-button:hover, #msform .action-button:focus {\r\n      box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;\r\n    }\r\n    \r\n\r\n    h1 {\r\n      text-align: center;\r\n      font-family: Tahoma, Arial, sans-serif;\r\n      color: #06D85F;\r\n      /* margin: 50px 0; */\r\n      margin-bottom: 10px;\r\n      margin-top: 30px;\r\n      font-size: 3.5rem;\r\n      text-align: center;\r\n    }\r\n\r\n  #snackbar {\r\n      visibility: hidden;\r\n      min-width: 250px;\r\n      margin-left: -125px;\r\n     \r\n      color: #fff;\r\n      text-align: center;\r\n      border-radius: 2px;\r\n      padding: 16px;\r\n      position: fixed;\r\n      z-index: 1;\r\n      left: 50%;\r\n      bottom: 30px;\r\n      font-size: 17px;\r\n  }\r\n  #snackbar.Ganador {\r\n      background-color: rgba(7, 55, 214, 0.973);\r\n  }\r\n  #snackbar.Perdedor {\r\n      background-color: rgb(255, 0, 0);\r\n  }\r\n  #snackbar.show {\r\n      visibility: visible;\r\n      animation: fadein 0.5s, fadeout 0.5s 2.5s;\r\n  }\r\n  \r\n  \r\n  .loader {\r\n      font-size: 10px;\r\n      margin: 50px auto;\r\n      text-indent: -9999em;\r\n      width: 11em;\r\n      height: 11em;\r\n      border-radius: 50%;\r\n      background: #ffffff;\r\n      background: linear-gradient(to right, #dd3f61 10%, rgba(255, 255, 255, 0) 42%);\r\n      position: relative;\r\n      border: solid rgb(165, 3, 79);\r\n      animation: load3 1.4s infinite linear;\r\n      transform: translateZ(0);\r\n    }\r\n    .loader:before {\r\n      width: 50%;\r\n      height: 50%;\r\n      background: #ffffff;\r\n      border-radius: 100% 0 0 0;\r\n      position: absolute;\r\n      top: 0;\r\n      left: 0;\r\n      content: '';\r\n    }\r\n    .loader:after {\r\n      \r\n      width: 75%;\r\n      height: 75%;\r\n      border-radius: 50%;\r\n      content: '';\r\n      margin: auto;\r\n      position: absolute;\r\n      top: 0;\r\n      left: 0;\r\n      bottom: 0;\r\n      right: 0;\r\n    }\r\n    @keyframes load3 {\r\n      0% {\r\n        transform: rotate(0deg);\r\n      }\r\n      100% {\r\n        transform: rotate(360deg);\r\n      }\r\n    }\r\n    ", ""]);
 
 // exports
 
@@ -801,7 +1099,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/anagrama/anagrama.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  anagrama works!\r\n</p>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n    <h1 class=\"titulo\">\r\n      {{nuevoJuego.nombre}}!\r\n    </h1>\r\n</div>\r\n<form id=\"msform\"> \r\n <fieldset>\r\n   <div class=\"row\">\r\n      <div class=\"col-sm-1\"></div>\r\n      <div class=\"col-sm-10\">\r\n      <div class=\"container\">\r\n              <p> </p> \r\n              \r\n              <button *ngIf=\"ocultarComenzar\" (click)=\"generarPalabra()\"   class=\"next action-button\" >Jugar!</button> \r\n              <h1>Adivina la palabra escondida: </h1>\r\n              <h1 class=\"secreta\">{{nuevoJuego.palabraDesordenada}}</h1>\r\n              <br /> <input [(ngModel)]=\"nuevoJuego.palabraIngresada\" placeholder=\"palabra ordenada\" name=\"palabraOrdenadaa\" type=\"text\" class=\"form-control\" style=\"font-size: 30px;\r\n              height: 40%;\"/>\r\n              <br><br>                 \r\n\r\n              <h2 [hidden]=\"ocultarVerificar\"><button  *ngIf=\"nuevoJuego.numeroSecreto!=0\" (click)=\"verificar()\" class=\"btn btn-primary btn-lg btn-block\">Verificar</button></h2>\r\n              <h2><p *ngIf=\"!ocultarVerificar\" ><p *ngIf=\"!ocultarVerificar\"></p></h2>\r\n            </div> <!--container-->\r\n            <div id=\"snackbar\">{{Mensajes}}</div> \r\n              <div class=\"col-sm-2 sidenav\">        \r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-1\"></div>\r\n        </div>\r\n              \r\n  </fieldset>  \r\n  <br><br><br>\r\n  \r\n  </form>\r\n\r\n"
 
 /***/ }),
 
@@ -811,6 +1109,7 @@ module.exports = "<p>\r\n  anagrama works!\r\n</p>\r\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnagramaComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clases_juego_anagrama__ = __webpack_require__("../../../../../src/app/clases/juego-anagrama.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -821,9 +1120,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AnagramaComponent = /** @class */ (function () {
     function AnagramaComponent() {
+        this.ocultarComenzar = true;
+        this.jugador = JSON.parse(localStorage.getItem("Id"));
+        this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_juego_anagrama__["a" /* JuegoAnagrama */]("Anagrama", false, this.jugador, 0, "00");
+        this.ocultarVerificar = true;
     }
+    AnagramaComponent.prototype.generarPalabra = function () {
+        this.nuevoJuego.asignarPalabra();
+        this.contador = 0;
+        this.ocultarVerificar = false;
+        this.nuevoJuego.gano = false;
+        this.Mensajes = "";
+        this.ocultarComenzar = false;
+    };
+    AnagramaComponent.prototype.verificar = function () {
+        this.contador++;
+        this.ocultarVerificar = true;
+        if (this.nuevoJuego.verificar()) {
+            this.MostarMensaje("Adivinaste la palabra!!!", true);
+        }
+        else {
+            this.mensaje = "No acertaste, buena suerte la proxima!";
+            this.MostarMensaje(this.mensaje);
+            this.nuevoJuego.palabraIngresada = "";
+            this.nuevoJuego.palabraDesordenada = "";
+        }
+        console.info("Gano: ", this.nuevoJuego.gano);
+        this.nuevoJuego.jugador = sessionStorage.getItem('user');
+        this.nuevoJuego.guardarLocal();
+        this.ocultarComenzar = true;
+    };
+    AnagramaComponent.prototype.MostarMensaje = function (mensaje, gano) {
+        if (gano === void 0) { gano = false; }
+        this.Mensajes = mensaje;
+        var x = document.getElementById("snackbar");
+        if (gano) {
+            x.className = "show Ganador";
+        }
+        else {
+            x.className = "show Perdedor";
+        }
+        var modelo = this;
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+            //modelo.ocultarVerificar=false;
+        }, 3000);
+        console.info("objeto", x);
+    };
     AnagramaComponent.prototype.ngOnInit = function () {
     };
     AnagramaComponent = __decorate([
@@ -838,140 +1184,6 @@ var AnagramaComponent = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=anagrama.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/componentes/animales/animales.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h1>ANIMALES</h1>\n\n    <button  (click)=\"jugar()\"  name=\"next\" class=\"next action-button\" >Jugar!</button>\n    <p>Se le mostraran 8 imagenes de animales al azar y tendrá que memorizarlas en 8 segundos.\n      Al acabar el tiempo se le preguntará por el animal que aparece en cierta ubicación. \n    </p>\n  \n   \n    <div *ngIf=\"mostrarFotos && juegoEmpezado\">\n      <div class=\"row\"><h2 style=\"text-align: center;\">tiempo: {{tiempo}}</h2></div>\n      <div class=\"row\">\n        <h2>1</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[0]['path']}}\" width=\"150px\" height=\"100px\" /></div></a>\n        <h2>2</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[1]['path']}}\" width=\"150px\" height=\"100px\" /></div></a>\n      </div>\n      <div class=\"row\">\n        <h2>3</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[2]['path']}}\" width=\"140px\" height=\"100px\" /></div></a>\n        <h2>4</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[3]['path']}}\" width=\"140px\" height=\"100px\" /></div></a>\n      </div>\n      <div class=\"row\">\n        <h2>5</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[4]['path']}}\" width=\"140px\" height=\"100px\" /></div></a>\n        <h2>6</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[5]['path']}}\" width=\"140px\" height=\"100px\" /></div></a>\n      </div>\n      <div class=\"row\">\n        <h2>7</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[6]['path']}}\" width=\"140px\" height=\"100px\" /></div></a>\n        <h2>8</h2><a href=\"#\"><div class=\"col-md-3 col-sm-4 col-xs-6\"><img class=\"img-responsive\" src=\n        \"{{animalesRandom[7]['path']}}\" width=\"140px\" height=\"100px\" /></div></a>\n      </div>\n    </div>\n   \n\n\n    <div *ngIf=\"!mostrarFotos && juegoEmpezado\">\n      <h1>{{mensaje}}</h1>     \n        <p>Respuesta: </p>\n        <input type=\"text\" required [(ngModel)]=\"respuesta\" />    \n     \n        <div class=\"flex-v center-horizontal center-vertical height-100\" (click)=\"verificar()\">\n          <div class=\"text-title\">Verificar</div>\n        </div>      \n    </div>\n  \n    <div *ngIf=\"!ocultar && !mostrarSpiner\" class=\"flex-v buttons-container\">\n      <h1>{{mensajeRespuesta}}</h1>\n      \n        <div class=\"flex-v center-horizontal center-vertical height-100\" (click)=\"jugar()\">\n          <div class=\"text-title\">Jugar otra partida!</div>\n        </div>\n      \n     \n       \n          <div class=\"text-title\">Salir!</div>\n      \n      \n    </div>\n\n  \n  \n\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/componentes/animales/animales.component.scss":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "page-juego-descuento .scroll-content {\n  background-size: cover;\n  background-position: center;\n  background-color: #FCE5C6; }\n\npage-juego-descuento ion-navbar {\n  padding: 20px 10px !important; }\n  page-juego-descuento ion-navbar ion-icon {\n    color: white; }\n\npage-juego-descuento ion-navbar ion-icon {\n  font-size: 50px !important; }\n\npage-juego-descuento h1 {\n  text-align: center;\n  margin-bottom: 10px;\n  padding: 5px 10px 5px 10px;\n  color: black;\n  font-family: cinzel;\n  margin-bottom: 0; }\n\npage-juego-descuento .buttons-container {\n  height: calc(100% - 1em); }\n\npage-juego-descuento .big-button-container {\n  border-radius: 1em;\n  cursor: pointer;\n  border-radius: 1em; }\n\npage-juego-descuento .text-title {\n  color: white;\n  font-size: 3.5rem; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/componentes/animales/animales.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnimalesComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__servicios_animales_http_service__ = __webpack_require__("../../../../../src/app/servicios/animales-http.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var AnimalesComponent = /** @class */ (function () {
-    function AnimalesComponent(animalesService) {
-        var _this = this;
-        this.animalesService = animalesService;
-        this.myColor = '';
-        this.numeroSecreto = 0;
-        this.numeroIngresado = 0;
-        this.animales = new Array();
-        this.animalesRandom = new Array();
-        this.animalesService.getAnimales().subscribe(function (lista) {
-            _this.animales = lista;
-            _this.mostrarSpiner = false;
-            _this.ocultar = true;
-        });
-    }
-    AnimalesComponent.prototype.obtenerAnimalesRandom = function () {
-        this.animalesRandom = [];
-        var num = 0;
-        while (num < 8) {
-            var numRandom = Math.floor((Math.random() * 50));
-            if (this.PerteneceAnimal(this.animales[numRandom].nombreAnimal)) {
-                this.animalesRandom.push(this.animales[numRandom]);
-                num++;
-            }
-        }
-    };
-    AnimalesComponent.prototype.PerteneceAnimal = function (nombre) {
-        for (var i = 0; i < this.animalesRandom.length; i++) {
-            if (this.animalesRandom[i].nombreAnimal == nombre) {
-                return false;
-            }
-        }
-        return true;
-    };
-    AnimalesComponent.prototype.jugar = function () {
-        var _this = this;
-        this.obtenerAnimalesRandom();
-        this.mostrarFotos = true;
-        this.juegoEmpezado = true;
-        this.ocultar = true;
-        var numRandom = Math.floor((Math.random() * 8)) + 1;
-        this.tiempo = 8;
-        this.mensaje = '';
-        this.respuesta = '';
-        this.repetidor = setInterval(function () {
-            _this.tiempo--;
-            if (_this.tiempo == 0) {
-                //this.GuardarJugada()
-                clearInterval(_this.repetidor);
-                _this.tiempo = 8;
-                _this.mensaje = "Cual es el nombre del animal de la foto: " + numRandom + "?";
-                _this.nombreAnimal = _this.animalesRandom[numRandom - 1].nombreAnimal;
-                _this.mostrarFotos = false;
-            }
-        }, 900);
-    };
-    AnimalesComponent.prototype.verificar = function () {
-        this.respuesta = this.respuesta.toLowerCase();
-        if (this.respuesta == this.nombreAnimal) {
-            this.mensajeRespuesta = "Felicidades!! Ganaste";
-        }
-        else {
-            this.mensajeRespuesta = "Lo siento, perdiste. El animal era " + this.nombreAnimal;
-        }
-        this.ocultar = false;
-    };
-    AnimalesComponent.prototype.ngOnInit = function () {
-        this.mostrarFotos = false;
-        this.juegoEmpezado = false;
-        this.myColor = "primary";
-        this.color = "red";
-        this.tiempo = 8;
-        this.mensaje = '';
-    };
-    var _a;
-    AnimalesComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            selector: 'app-animales',
-            template: __webpack_require__("../../../../../src/app/componentes/animales/animales.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/componentes/animales/animales.component.scss")],
-            providers: [__WEBPACK_IMPORTED_MODULE_1__servicios_animales_http_service__["a" /* AnimalesHttpService */]]
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__servicios_animales_http_service__["a" /* AnimalesHttpService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__servicios_animales_http_service__["a" /* AnimalesHttpService */]) === "function" && _a || Object])
-    ], AnimalesComponent);
-    return AnimalesComponent;
-}());
-
-//# sourceMappingURL=animales.component.js.map
 
 /***/ }),
 
@@ -1100,6 +1312,67 @@ var ErrorComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/componentes/footer/footer.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Footer -->\n<footer class=\"page-footer font-small blue\" \nstyle=\"background-color: rgba(0, 0, 0, 0.356);  width: -webkit-fill-available;\nposition: fixed;\nbottom: 0;  \">\n\n    <!-- Copyright -->\n    <div class=\"footer-copyright text-center py-3\"style=\"color:aliceblue; \">\n      <h4 class=\"h4\" style=\"color:rgb(255, 255, 255) ;font-family: unset; margin-left: 75%;\"> Paola Torrealba</h4>\n    </div>\n    <!-- Copyright -->\n  \n  </footer>\n  <!-- Footer -->"
+
+/***/ }),
+
+/***/ "../../../../../src/app/componentes/footer/footer.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/componentes/footer/footer.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FooterComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var FooterComponent = /** @class */ (function () {
+    function FooterComponent() {
+    }
+    FooterComponent.prototype.ngOnInit = function () {
+    };
+    FooterComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-footer',
+            template: __webpack_require__("../../../../../src/app/componentes/footer/footer.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/componentes/footer/footer.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], FooterComponent);
+    return FooterComponent;
+}());
+
+//# sourceMappingURL=footer.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/componentes/input-jugadores/input-jugadores.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1182,7 +1455,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/juegos/juegos.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<app-menu></app-menu>\r\n<div style=\"text-align:center\">\r\n  <h1>\r\n<br>\r\n  </h1>\r\n </div>\r\n <router-outlet></router-outlet>\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<app-menu></app-menu>\r\n<div style=\"text-align:center\">\r\n  <h1>\r\n<br>\r\n  </h1>\r\n </div>\r\n \r\n <router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -1388,7 +1661,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "/* .fondo{\r\n\r\n    background-image: url(\".../../../docs/assets/imagenes/color_principal.jpg\");\r\n    margin-top: -60px;\r\n    padding: 9%;\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\r\n  } */\r\n\r\n\r\n  .project-tab {\r\n    padding: 10%;\r\n    margin-top: -8%;\r\n}\r\n.project-tab #tabs{\r\n    background: #007b5e;\r\n    color: #eee;\r\n}\r\n.project-tab #tabs h6.section-title{\r\n    color: #eee;\r\n}\r\n.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {\r\n    color: #3cff00;\r\n    background-color: transparent;\r\n    border-color: transparent transparent #d31e3c;\r\n    border-bottom: 3px solid !important;\r\n    font-size: 16px;\r\n    font-weight: bold;\r\n}\r\n.project-tab .nav-link {\r\n    border: 1px solid transparent;\r\n    border-top-left-radius: .25rem;\r\n    border-top-right-radius: .25rem;\r\n    color: #db2a50;\r\n    border-color: transparent transparent #d32b55;\r\n    border-bottom: 3px solid !important;\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n}\r\n.project-tab .nav-link:hover {\r\n    border: none;\r\n    color: #3cff00;\r\n}\r\n.project-tab .nav-link:before {\r\n    border: none;\r\n    color: #3cff00;\r\n}\r\n.project-tab thead{\r\n    background: #e97ba5;\r\n    color: #333;\r\n}\r\n.project-tab td{\r\n    text-decoration: none;\r\n    color: rgb(216, 31, 102);\r\n    font-weight: 600;\r\n}", ""]);
 
 // exports
 
@@ -1401,7 +1674,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/listado-de-resultados/listado-de-resultados.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--div *ngFor=\"let juego of listado\">\r\n\r\n<p> {{juego.nombre}} </p>\r\n<p> {{juego.jugador}} </p>\r\n\r\n</div-->\r\n\r\n<table class=\"table table-condensed\">\r\n    <thead>\r\n      <tr>\r\n        <th>Juego</th>\r\n        <th>Jugador</th>\r\n        <th>Resultado</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let juego of listado\">\r\n        <td>{{juego.nombre}} </td>\r\n        <td>{{juego.jugador}} </td> \r\n        <td *ngIf=\"juego.gano\">Gano </td>   \r\n        <td *ngIf=\"!juego.gano\">Perdio</td>     \r\n      </tr>\r\n     \r\n    </tbody>\r\n  </table>"
+module.exports = "<!--div *ngFor=\"let juego of listado\">\r\n\r\n<p> {{juego.nombre}} </p>\r\n<p> {{juego.jugador}} </p>\r\n\r\n</div-->\r\n<!-- \r\n<table class=\"table table-condensed\">\r\n    <thead>\r\n      <tr>\r\n        <th>Juego</th>\r\n        <th>Jugador</th>\r\n        <th>Resultado</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let juego of listado\">\r\n        <td>{{juego.nombre}} </td>\r\n        <td>{{juego.jugador}} </td> \r\n        <td *ngIf=\"juego.gano\">Gano </td>   \r\n        <td *ngIf=\"!juego.gano\">Perdio</td>     \r\n      </tr>\r\n     \r\n    </tbody>\r\n  </table> -->\r\n\r\n  <section id=\"tabs\" class=\"project-tab\">\r\n      <div class=\"container\">\r\n          <div class=\"row\">\r\n              <div class=\"col-md-12\">\r\n                 \r\n                  <div class=\"tab-content\" id=\"nav-tabContent\">\r\n                      <div class=\"tab-pane fade show active\" id=\"nav-home\" role=\"tabpanel\" aria-labelledby=\"nav-home-tab\">\r\n                          <table class=\"table\" cellspacing=\"0\" style=\"text-align: center\">\r\n                              <thead>\r\n                                  <tr>\r\n                                    <th>Jugador</th>\r\n                                    <th>Juego</th>\r\n                                    <th>Resultado</th>\r\n                                  </tr>\r\n                              </thead>\r\n                              <tbody style=\"text-align: center\">\r\n                                  <tr *ngFor=\"let juego of listado\">\r\n                                      <td>{{juego['usuario']}}</td>\r\n                                      <td>{{juego['nombre']}}</td>\r\n                                      <td *ngIf=\"juego['gano']\">gano</td>\r\n                                      <td *ngIf=\"!juego['gano']\">perdio</td>\r\n                                  </tr>\r\n                                  \r\n                              </tbody>\r\n                          </table>\r\n                      </div>\r\n                      \r\n                  </div>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </section>\r\n  "
 
 /***/ }),
 
@@ -1411,6 +1684,7 @@ module.exports = "<!--div *ngFor=\"let juego of listado\">\r\n\r\n<p> {{juego.no
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListadoDeResultadosComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clases_jugador__ = __webpack_require__("../../../../../src/app/clases/jugador.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1421,6 +1695,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ListadoDeResultadosComponent = /** @class */ (function () {
     function ListadoDeResultadosComponent() {
     }
@@ -1428,6 +1703,23 @@ var ListadoDeResultadosComponent = /** @class */ (function () {
     };
     ListadoDeResultadosComponent.prototype.ver = function () {
         console.info(this.listado);
+    };
+    ListadoDeResultadosComponent.prototype.obtenerDatos = function () {
+        var i;
+        this.listado = new Array();
+        for (var i_1 = 1; i_1 < localStorage.length; i_1++) {
+            var aux = i_1.toString();
+            this.objeto = JSON.parse(localStorage.getItem("partida " + aux));
+            if (this.objeto['nombre']) {
+                this.jugador = new __WEBPACK_IMPORTED_MODULE_1__clases_jugador__["a" /* Jugador */]();
+                this.jugador.nombre = this.objeto['nombre'];
+                this.jugador.gano = this.objeto['resultado'];
+                this.jugador.usuario = this.objeto['jugador'];
+            }
+            console.log(this.jugador);
+            this.listado.push(this.jugador);
+        }
+        console.log(this.listado);
     };
     var _a;
     __decorate([
@@ -1470,7 +1762,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/listado/listado.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<!--input type=\"button\" (click)=\"llamaService()\" class=\"btn btn-info\" value=\"Pulsame\" > \r\n<input type=\"button\" (click)=\"llamaServicePromesa()\" class=\"btn btn-info\" value=\"Pulsame Promesa\" --> \r\n\r\n<!-- Centered Pills -->\r\n<ul class=\"nav nav-pills nav-justified\">\r\n    <li class=\"active\"><a routerLink=\"/Principal\">Sala de Juegos</a></li>\r\n    <li><a (click)=\"llamaService()\">Servicio</a></li>\r\n    <li><a (click)=\"llamaServicePromesa()\">Serv Promesa</a></li>\r\n    <li><a (click)=\"llamaServicePromesa()\">Serv observable</a></li>\r\n  </ul>\r\n  \r\n<app-listado-de-resultados [listado]=\"listadoParaCompartir\"> </app-listado-de-resultados>\r\n\r\n"
+module.exports = "\r\n<!--input type=\"button\" (click)=\"llamaService()\" class=\"btn btn-info\" value=\"Pulsame\" > \r\n<input type=\"button\" (click)=\"llamaServicePromesa()\" class=\"btn btn-info\" value=\"Pulsame Promesa\" --> \r\n\r\n<!-- Centered Pills -->\r\n<!-- <ul class=\"nav nav-pills nav-justified\">\r\n    <li class=\"active\"><a routerLink=\"/Principal\">Sala de Juegos</a></li>\r\n    <li><a (click)=\"llamaService()\">Servicio</a></li>\r\n    <li><a (click)=\"llamaServicePromesa()\">Serv Promesa</a></li>\r\n    <li><a (click)=\"llamaServicePromesa()\">Serv observable</a></li>\r\n  </ul>\r\n   -->\r\n<app-menu></app-menu>\r\n<app-listado-de-resultados [listado]=\"listadoParaCompartir\"> </app-listado-de-resultados>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1595,7 +1887,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".btnContactSubmit\r\n{\r\n    width: 50%;\r\n    border-radius: 1rem;\r\n    padding: 1.5%;\r\n    color: #fff;\r\n    background-color: #0062cc;\r\n    border: none;\r\n    cursor: pointer;\r\n    margin-right: 6%;\r\n    background-color: rgb(248, 244, 14);\r\n    color: rgb(0, 0, 0);\r\n    margin-top: 4%;\r\n    margin-left: 25%;\r\n}\r\n.register .nav-tabs .nav-link:hover{\r\n    border: none;\r\n}\r\n.text-align{\r\n    margin-top: -3%;\r\n    margin-bottom: -9%;\r\n\r\n    padding: 10%;\r\n    margin-left: 30%;\r\n}\r\n.form-new{\r\n    margin-right: 22%;\r\n    margin-left: 20%;\r\n}\r\n.register-heading{\r\n    margin-left: 21%;\r\n    margin-bottom: 10%;\r\n    color: #e9ecef;\r\n}\r\n.register-heading h1{\r\n    margin-left: 30%;\r\n    margin-bottom: 10%;\r\n    color: #e9ecef;\r\n}\r\n.btnLoginSubmit{\r\n    border: none;\r\n    padding: 2%;\r\n    width: 25%;\r\n    cursor: pointer;\r\n    background: #29abe2;\r\n    color: #fff;\r\n}\r\n.btnForgetPwd{\r\n    cursor: pointer;\r\n    margin-right: 5%;\r\n    color: #f8f9fa;\r\n}\r\n.register{\r\n    background: -webkit-linear-gradient(left, #3931af, #00c6ff);\r\n    margin-top: 3%;\r\n    /*padding: 3%;*/\r\n    padding-bottom: 10%;\r\n    padding-top: 10%;\r\n    border-radius: 2.5rem;\r\n}\r\n.nav-tabs .nav-link{\r\n    border: 1px solid transparent;\r\n    border-top-left-radius: .25rem;\r\n    border-top-right-radius: .25rem;\r\n    color: white;\r\n}\r\n/*\r\nform {\r\n    border: 10px solid #f1f1f1;\r\n    padding: 10px;\r\n    background:gray;\r\n}\r\n\r\ninput[type=text], input[type=password] {\r\n    width: 100%;\r\n    padding: 12px 20px;\r\n    margin: 8px 0;\r\n    display: inline-block;\r\n    border: 1px solid #ccc;\r\n    box-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n    background-color: #4CAF50;\r\n    color: white;\r\n    padding: 14px 20px;\r\n    margin: 8px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    width: 100%;\r\n}\r\n\r\nbutton:hover {\r\n    opacity: 0.8;\r\n}\r\n\r\n.cancelbtn {\r\n    width: auto;\r\n    padding: 10px 18px;\r\n    background-color: #f44336;\r\n}\r\n.aceptbtn {\r\n    width: auto;\r\n    padding: 10px 18px;\r\n    background-color: #3664F4;\r\n}\r\n.imgcontainer {\r\n    text-align: center;\r\n    margin: 24px 0 12px 0;\r\n}\r\n\r\nimg.avatar {\r\n    width: 40%;\r\n    border-radius: 50%;\r\n}\r\n\r\n.container {\r\n    padding: 16px;\r\n}\r\n\r\nspan.psw {\r\n    float: right;\r\n    padding-top: 16px;\r\n}\r\n\r\n/* Change styles for span and cancel button on extra small screens */\r\n/*@media screen and (max-width: 300px) {\r\n    span.psw {\r\n       display: block;\r\n       float: none;\r\n    }\r\n    .cancelbtn {\r\n       width: 100%;\r\n    }\r\n}\r\n*/\r\n", ""]);
+exports.push([module.i, ".btnContactSubmit\r\n{\r\n    width: 50%;\r\n    border-radius: 1rem;\r\n    padding: 1.5%;\r\n    color: #fff;\r\n    background-color: #0062cc;\r\n    border: none;\r\n    cursor: pointer;\r\n    margin-right: 6%;\r\n    background-color: rgb(248, 244, 14);\r\n    color: rgb(0, 0, 0);\r\n    margin-top: 4%;\r\n    margin-left: 25%;\r\n}\r\n.register .nav-tabs .nav-link:hover{\r\n    border: none;\r\n}\r\n.text-align{\r\n    margin-top: -3%;\r\n    margin-bottom: -9%;\r\n\r\n    padding: 10%;\r\n    margin-left: 30%;\r\n}\r\n.form-new{\r\n    margin-right: 22%;\r\n    margin-left: 20%;\r\n}\r\n.register-heading{\r\n    margin-left: 21%;\r\n    margin-bottom: 10%;\r\n    color: #e9ecef;\r\n}\r\n.register-heading h1{\r\n    margin-left: 30%;\r\n    margin-bottom: 10%;\r\n    color: #e9ecef;\r\n}\r\n.btnLoginSubmit{\r\n    border: none;\r\n    padding: 2%;\r\n    width: 25%;\r\n    cursor: pointer;\r\n    background: #29abe2;\r\n    color: #fff;\r\n}\r\n.btnForgetPwd{\r\n    cursor: pointer;\r\n    margin-right: 5%;\r\n    color: #f8f9fa;\r\n}\r\n.register{\r\n    background: -webkit-linear-gradient(left, #3931af, #00c6ff);\r\n    /* margin-top: 3%; */\r\n    /* padding-bottom: 10%; */\r\n    /* padding-top: 10%; */\r\n    border-radius: 4.5rem;\r\n    width: 35%;  \r\n}\r\n.nav-tabs .nav-link{\r\n    border: 1px solid transparent;\r\n    border-top-left-radius: .25rem;\r\n    border-top-right-radius: .25rem;\r\n    color: white;\r\n}\r\n/*\r\nform {\r\n    border: 10px solid #f1f1f1;\r\n    padding: 10px;\r\n    background:gray;\r\n}\r\n\r\ninput[type=text], input[type=password] {\r\n    width: 100%;\r\n    padding: 12px 20px;\r\n    margin: 8px 0;\r\n    display: inline-block;\r\n    border: 1px solid #ccc;\r\n    box-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n    background-color: #4CAF50;\r\n    color: white;\r\n    padding: 14px 20px;\r\n    margin: 8px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    width: 100%;\r\n}\r\n\r\nbutton:hover {\r\n    opacity: 0.8;\r\n}\r\n\r\n.cancelbtn {\r\n    width: auto;\r\n    padding: 10px 18px;\r\n    background-color: #f44336;\r\n}\r\n.aceptbtn {\r\n    width: auto;\r\n    padding: 10px 18px;\r\n    background-color: #3664F4;\r\n}\r\n.imgcontainer {\r\n    text-align: center;\r\n    margin: 24px 0 12px 0;\r\n}\r\n\r\nimg.avatar {\r\n    width: 40%;\r\n    border-radius: 50%;\r\n}\r\n\r\n.container {\r\n    padding: 16px;\r\n}\r\n\r\nspan.psw {\r\n    float: right;\r\n    padding-top: 16px;\r\n}\r\n\r\n/* Change styles for span and cancel button on extra small screens */\r\n/*@media screen and (max-width: 300px) {\r\n    span.psw {\r\n       display: block;\r\n       float: none;\r\n    }\r\n    .cancelbtn {\r\n       width: 100%;\r\n    }\r\n}\r\n*/\r\n", ""]);
 
 // exports
 
@@ -1608,7 +1900,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--\r\n <div class=\"container\" >\r\n  <div class=\"jumbotron\" style=\"padding:50px;\">\r\n    <form action=\"return true;\">\r\n      <div class=\"imgcontainer\">\r\n        <img src=\"./assets/imagenes/login.png\" alt=\"Avatar\" class=\"avatar\" max-width=\"104\" >\r\n      </div>\r\n\r\n      <div class=\"container\">\r\n        <label><b>Usuario</b></label>\r\n        <input type=\"text\" placeholder=\"Usuario\"  [(ngModel)]=\"usuario\"  name=\"uname\" required>\r\n\r\n        <label><b>Clave</b></label>\r\n        <input type=\"password\" placeholder=\"Clave\"  [(ngModel)]=\"clave\" name=\"psw\" required>\r\n            \r\n        <button *ngIf=\"logeando\"  (click)=\"MoverBarraDeProgreso()\" >Ingresar</button>\r\n       \r\n        <div *ngIf=\"!logeando\" class=\"progress\">\r\n            <div class=\"progress-bar progress-bar-info progress-bar-striped active\" [class]=\"clase\" role=\"progressbar\" aria-valuenow=\"10\" aria-valuemin=\"0\" aria-valuemax=\"100\" [style.width]=\"ProgresoDeAncho\" >\r\n              {{progresoMensaje}} - {{progreso}}%\r\n            </div>\r\n        </div>\r\n       \r\n        <input type=\"checkbox\" checked=\"checked\"> Recordar mis datos\r\n      </div>\r\n\r\n      <div class=\"container\" style=\"background-color:#f1f1f1\">\r\n        <button type=\"button\" class=\"cancelbtn\">Cancelar</button>\r\n        <button type=\"button\" class=\"aceptbtn\" routerLink=\"/Registro\" >Registrarse</button>\r\n        <span class=\"psw\">Te olvidaste <a href=\"#\">la clave?</a></span>\r\n      </div>\r\n     \r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n-->\r\n\r\n\r\n       \r\n        <div class=\"container register\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"tab-content\" id=\"myTabContent\">\r\n                        <div class=\"tab-pane fade show active text-align form-new\" id=\"home\" role=\"tabpanel\" aria-labelledby=\"home-tab\">\r\n                            <h3 class=\"register-heading\">Sala e Juego</h3>\r\n                            <div class=\"row register-form\">\r\n                                <div class=\"col-md-12\">\r\n                                    <form method=\"post\">\r\n                                        <div class=\"form-group\">\r\n                                            <input  [(ngModel)]=\"usuario\"  type=\"text\" name=\"LGform1_user\" class=\"form-control\" placeholder=\"Usuario\" value=\"\" required/>\r\n                                        </div>\r\n                                        <div class=\"form-group\">\r\n                                            <input placeholder=\"Clave\"  [(ngModel)]=\"clave\" type=\"password\" name=\"LGform1_pwd\" class=\"form-control\" value=\"\" required/>\r\n                                        </div>\r\n                                        <div class=\"form-group\">\r\n                                            <input type=\"submit\" name=\"LGform1\" class=\"btnContactSubmit\" value=\"Login\" />                       \r\n                                        </div>\r\n                                        <div class=\"form-group\">\r\n                                            <input routerLink=\"/Registro\" type=\"submit\" name=\"Registro\" class=\"btnContactSubmit\" value=\"Registrarse\" />                       \r\n                                        </div>\r\n                                        <div class=\"form-group\">                                            \r\n                                            <a href=\"\" class=\"btnForgetPwd\" value=\"Login\">Olvidaste tu contraseña?</a>\r\n                                            <!--<a href=\"ForgetPassword.php\" class=\"btnForgetPwd\" value=\"Login\">Olvidaste tu contraseña?</a>-->\r\n                                        </div>\r\n                                    </form>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n"
+module.exports = "<!--\r\n <div class=\"container\" >\r\n  <div class=\"jumbotron\" style=\"padding:50px;\">\r\n    <form action=\"return true;\">\r\n      <div class=\"imgcontainer\">\r\n        <img src=\"./assets/imagenes/login.png\" alt=\"Avatar\" class=\"avatar\" max-width=\"104\" >\r\n      </div>\r\n\r\n      <div class=\"container\">\r\n        <label><b>Usuario</b></label>\r\n        <input type=\"text\" placeholder=\"Usuario\"  [(ngModel)]=\"usuario\"  name=\"uname\" required>\r\n\r\n        <label><b>Clave</b></label>\r\n        <input type=\"password\" placeholder=\"Clave\"  [(ngModel)]=\"clave\" name=\"psw\" required>\r\n            \r\n        <button *ngIf=\"logeando\"  (click)=\"MoverBarraDeProgreso()\" >Ingresar</button>\r\n       \r\n        <div *ngIf=\"!logeando\" class=\"progress\">\r\n            <div class=\"progress-bar progress-bar-info progress-bar-striped active\" [class]=\"clase\" role=\"progressbar\" aria-valuenow=\"10\" aria-valuemin=\"0\" aria-valuemax=\"100\" [style.width]=\"ProgresoDeAncho\" >\r\n              {{progresoMensaje}} - {{progreso}}%\r\n            </div>\r\n        </div>\r\n       \r\n        <input type=\"checkbox\" checked=\"checked\"> Recordar mis datos\r\n      </div>\r\n\r\n      <div class=\"container\" style=\"background-color:#f1f1f1\">\r\n        <button type=\"button\" class=\"cancelbtn\">Cancelar</button>\r\n        <button type=\"button\" class=\"aceptbtn\" routerLink=\"/Registro\" >Registrarse</button>\r\n        <span class=\"psw\">Te olvidaste <a href=\"#\">la clave?</a></span>\r\n      </div>\r\n     \r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n-->\r\n<app-cabecera></app-cabecera> \r\n<br>\r\n<app-footer></app-footer>      \r\n        <div class=\"container register\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"tab-content\" id=\"myTabContent\">\r\n                        <div class=\"tab-pane fade show active text-align form-new\" id=\"home\" role=\"tabpanel\" aria-labelledby=\"home-tab\">\r\n                            <h1 class=\"register-heading\">Ingreso</h1>\r\n                            <div class=\"row register-form\">\r\n                                <div class=\"col-md-12\">\r\n                                    <form method=\"post\">\r\n                                        <div class=\"form-group\">\r\n                                            <input  [(ngModel)]=\"user.email\"  type=\"text\" name=\"LGform1_user\" class=\"form-control\" placeholder=\"Usuario\" value=\"\" required/>\r\n                                        </div>\r\n                                        <div class=\"form-group\">\r\n                                            <input placeholder=\"Contraseña\"  [(ngModel)]=\"user.password \" type=\"password\" name=\"LGform1_pwd\" class=\"form-control\" value=\"\" required/>\r\n                                        </div>\r\n                                        <div class=\"form-group\" *ngIf=\"logeando\">\r\n                                                <!-- <button  class=\"btn btn-primary\" (click)=\"MoverBarraDeProgreso()\" >Ingresar</button> -->\r\n                                                <button   class=\"btn btn-primary\" (click)=\"entrarComoAdmin()\" >Ingresar como admin</button>\r\n                                                <button class=\"btn btn-primary\"  (click)=\"entrarComoInvitado()\" >Ingresar como invitado</button>\r\n                                        </div>\r\n                                        <div *ngIf=\"!logeando\" class=\"progress\">\r\n                                                <div class=\"progress-bar progress-bar-info progress-bar-striped active\" [class]=\"clase\" role=\"progressbar\" aria-valuenow=\"10\" aria-valuemin=\"0\" aria-valuemax=\"100\" [style.width]=\"ProgresoDeAncho\" >\r\n                                                  {{progresoMensaje}} - {{progreso}}%\r\n                                                </div>\r\n                                            </div>\r\n                                        <!-- <div class=\"container\" *ngIf=\"logeando\" >\r\n                                                <button type=\"button\" class=\"cancelbtn\" (click)=\"borrar()\">Cancelar</button>\r\n                                                <button type=\"button\" class=\"aceptbtn\" routerLink=\"/Registro\" >Registrarse</button>\r\n                                                \r\n                                       </div> -->\r\n                                        <!-- <div class=\"form-group\">\r\n                                            <input routerLink=\"/Registro\" type=\"submit\" name=\"Registro\" class=\"btnContactSubmit\" value=\"Registrarse\" />                       \r\n                                        </div> -->\r\n                                        <!-- <div class=\"form-group\">                                            \r\n                                            <a href=\"\" class=\"btnForgetPwd\" value=\"Login\">Olvidaste tu contraseña?</a> -->\r\n                                            <!--<a href=\"ForgetPassword.php\" class=\"btnForgetPwd\" value=\"Login\">Olvidaste tu contraseña?</a>-->\r\n                                        <!-- </div> -->\r\n                                    </form>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n"
 
 /***/ }),
 
@@ -1619,8 +1911,9 @@ module.exports = "<!--\r\n <div class=\"container\" >\r\n  <div class=\"jumbotro
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_TimerObservable__ = __webpack_require__("../../../../rxjs/observable/TimerObservable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_TimerObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_TimerObservable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servicios_auth_service__ = __webpack_require__("../../../../../src/app/servicios/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_TimerObservable__ = __webpack_require__("../../../../rxjs/observable/TimerObservable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_TimerObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_TimerObservable__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1633,31 +1926,78 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(route, router) {
+    function LoginComponent(route, router, auth) {
         this.route = route;
         this.router = router;
-        this.usuario = '';
-        this.clave = '';
+        this.auth = auth;
+        this.user = { email: '', password: '' };
         this.progresoMensaje = "esperando...";
         this.logeando = true;
         this.clase = "progress-bar progress-bar-info progress-bar-striped ";
         this.progreso = 0;
         this.ProgresoDeAncho = "0%";
+        var session = sessionStorage.getItem('user');
+        if (session == null) {
+            this.logueado = false;
+        }
+        else {
+            this.logueado = true;
+        }
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
+    // Entrar() {
+    //   if (this.user === 'email' && this.clave === 'admin') {
+    //     this.router.navigate(['/Principal']);
+    //   }
+    // }
     LoginComponent.prototype.Entrar = function () {
-        if (this.usuario === 'admin' && this.clave === 'admin') {
-            this.router.navigate(['/Principal']);
+        // this.auth.loginUser(this.user.email,this.user.password ).then((user) => {
+        //   this.router.navigate(['/Principal']);
+        //   sessionStorage.setItem("user",user.email);
+        //   sessionStorage.setItem("muestra","true");
+        //   }
+        this.respuestaAuth = this.auth.loginUser(this.user.email, this.user.password);
+        console.log(this.respuestaAuth);
+        if (!this.respuestaAuth) {
+            this.progreso = 0;
+            this.ProgresoDeAncho = "0%";
+            this.MostarMensaje("Error al loguearse", true);
+            this.logeando = true;
         }
+    };
+    LoginComponent.prototype.entrarComoAdmin = function () {
+        this.user.email = "ptorrealba@gmail.com";
+        this.user.password = "12345";
+        this.router.navigate(['/Principal']);
+    };
+    LoginComponent.prototype.MostarMensaje = function (mensaje, gano) {
+        this.mensaje = mensaje;
+        var x = document.getElementById("snackbar");
+        if (gano)
+            x.className = "show Ganador";
+        var modelo = this;
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+            //modelo.ocultarVerificar=false;
+        }, 3000);
+        console.info("objeto", x);
+    };
+    LoginComponent.prototype.entrarComoInvitado = function () {
+        this.user.email = "invitado@gmail.com";
+        this.user.password = "12345";
+        // this.repetidor = setInterval(()=>{ 
+        this.MoverBarraDeProgreso();
+        // }, 4000);
     };
     LoginComponent.prototype.MoverBarraDeProgreso = function () {
         var _this = this;
         this.logeando = false;
         this.clase = "progress-bar progress-bar-danger progress-bar-striped active";
         this.progresoMensaje = "NSA spy...";
-        var timer = __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_TimerObservable__["TimerObservable"].create(200, 50);
+        var timer = __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_TimerObservable__["TimerObservable"].create(200, 50);
         this.subscription = timer.subscribe(function (t) {
             console.log("inicio");
             _this.progreso = _this.progreso + 1;
@@ -1665,11 +2005,11 @@ var LoginComponent = /** @class */ (function () {
             switch (_this.progreso) {
                 case 15:
                     _this.clase = "progress-bar progress-bar-warning progress-bar-striped active";
-                    _this.progresoMensaje = "Verificando ADN...";
+                    _this.progresoMensaje = "Verificando Usuario...";
                     break;
                 case 30:
                     _this.clase = "progress-bar progress-bar-Info progress-bar-striped active";
-                    _this.progresoMensaje = "Adjustando encriptación..";
+                    _this.progresoMensaje = "Verificando Contraseña..";
                     break;
                 case 60:
                     _this.clase = "progress-bar progress-bar-success progress-bar-striped active";
@@ -1677,29 +2017,30 @@ var LoginComponent = /** @class */ (function () {
                     break;
                 case 75:
                     _this.clase = "progress-bar progress-bar-success progress-bar-striped active";
-                    _this.progresoMensaje = "Recompilando claves facebook, gmail, chats..";
+                    // this.progresoMensaje="Recompilando claves facebook, gmail, chats..";
                     break;
                 case 85:
                     _this.clase = "progress-bar progress-bar-success progress-bar-striped active";
-                    _this.progresoMensaje = "Instalando KeyLogger..";
+                    _this.progresoMensaje = "Proceso Finalizado. Ingresando...";
                     break;
                 case 100:
                     console.log("final");
                     _this.subscription.unsubscribe();
-                    _this.Entrar();
+                    // this.Entrar();
+                    _this.router.navigate(['/Principal']);
                     break;
             }
         });
         //this.logeando=true;
     };
-    var _a, _b;
+    var _a, _b, _c;
     LoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-login',
             template: __webpack_require__("../../../../../src/app/componentes/login/login.component.html"),
             styles: [__webpack_require__("../../../../../src/app/componentes/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__servicios_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__servicios_auth_service__["a" /* AuthService */]) === "function" && _c || Object])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -1711,7 +2052,7 @@ var LoginComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/componentes/memotec/memotec.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  memotec works!\n</p>\n"
+module.exports = "<div style=\"text-align:center\">\n  <h1 class=\"titulo\">\n          {{nuevoJuego.nombre}}!\n  </h1>\n</div>\n<form id=\"msform\"> \n<fieldset>\n <div class=\"row\">\n    <div class=\"col-sm-1\"></div>\n    <div class=\"col-sm-12\">\n    <div class=\"container\">\n              <button  (click)=\"jugar()\"  name=\"next\" class=\"next action-button\" >Jugar!</button>  \n              <div *ngIf=\"mostrarFotos && juegoEmpezado\">\n                  <div class=\"box\">\n                     <h2 style=\"text-align: center;\"> Tiempo: {{tiempo}}</h2>                    \n                  </div>       \n                   <div>\n                        <div class=\"row\">\n                            <h2>1</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                            \"{{animalesRandom[0]['path']}}\" width=\"150px\" height=\"100px\" /></div>\n                            <h2>2</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                            \"{{animalesRandom[1]['path']}}\" width=\"150px\" height=\"100px\" /></div>\n                            <h2>3</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                              \"{{animalesRandom[2]['path']}}\" width=\"140px\" height=\"100px\" /></div>\n                            <h2>4</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                                \"{{animalesRandom[3]['path']}}\" width=\"140px\" height=\"100px\" /></div>\n                        </div>                   \n                        <div class=\"row\">\n                            <h2>5</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                            \"{{animalesRandom[4]['path']}}\" width=\"140px\" height=\"100px\" /></div>\n                            <h2>6</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                            \"{{animalesRandom[5]['path']}}\" width=\"140px\" height=\"100px\" /></div>                  \n                            <h2>7</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                            \"{{animalesRandom[6]['path']}}\" width=\"140px\" height=\"100px\" /></div>\n                            <h2>8</h2><div class=\"col-md-2\"><img class=\"img-responsive\" src=\n                            \"{{animalesRandom[7]['path']}}\" width=\"140px\" height=\"100px\" /></div>\n                        </div>\n                  </div>\n              </div>\n   \n          \n\n    <div *ngIf=\"!mostrarFotos && juegoEmpezado\">\n      <h1>{{mensaje}}</h1>     \n        <p>Respuesta: </p>\n        <input type=\"text\" required [(ngModel)]=\"nuevoJuego.respuesta\" name=\"respuesta\"/>    \n     \n        <div class=\"flex-v center-horizontal center-vertical height-100\" (click)=\"verificar()\">\n          <div class=\"text-title\">Verificar</div>\n        </div>      \n    </div>\n  \n    <div *ngIf=\"!ocultar && !mostrarSpiner\" class=\"flex-v buttons-container\">\n      <h1>{{mensajeRespuesta}}</h1>\n      \n        <div class=\"flex-v center-horizontal center-vertical height-100\" (click)=\"jugar()\">\n          <div class=\"text-title\">Jugar otra partida!</div>\n        </div>\n          <div class=\"text-title\">Salir!</div>\n      \n      \n    </div>\n\n  </div> <!--container-->\n</div>\n<div class=\"col-sm-1\"></div>\n</div>\n\n</fieldset>  \n\n</form>\n\n  \n  \n\n"
 
 /***/ }),
 
@@ -1723,7 +2064,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "page-juego-descuento .scroll-content {\n  background-size: cover;\n  background-position: center;\n  background-color: #FCE5C6; }\n\npage-juego-descuento ion-navbar {\n  padding: 20px 10px !important; }\n  page-juego-descuento ion-navbar ion-icon {\n    color: white; }\n\npage-juego-descuento ion-navbar ion-icon {\n  font-size: 50px !important; }\n\npage-juego-descuento h1 {\n  text-align: center;\n  margin-bottom: 10px;\n  padding: 5px 10px 5px 10px;\n  color: black;\n  font-family: cinzel;\n  margin-bottom: 0; }\n\npage-juego-descuento .buttons-container {\n  height: calc(100% - 1em); }\n\npage-juego-descuento .big-button-container {\n  border-radius: 1em;\n  cursor: pointer;\n  border-radius: 1em; }\n\npage-juego-descuento .text-title {\n  color: white;\n  font-size: 3.5rem; }\n\nhtml, body {\n  height: 50%;\n  padding: 0;\n  margin: 0; }\n\n#msform {\n  /* width: 400px; */\n  margin: 50px auto;\n  text-align: center;\n  position: relative; }\n\n#msform fieldset {\n  background: rgba(67, 72, 82, 0.884);\n  border: 0 none;\n  border-radius: 3px;\n  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);\n  padding: 20px 30px;\n  box-sizing: border-box;\n  width: 80%;\n  margin: 0 10%;\n  /*stacking fieldsets above each other*/\n  position: relative; }\n\n/*Hide all except first fieldset*/\n#msform fieldset:not(:first-of-type) {\n  display: none; }\n\n/*inputs*/\n#msform input, #msform textarea {\n  padding: 15px;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  margin-bottom: 10px;\n  width: 100%;\n  box-sizing: border-box;\n  font-family: montserrat;\n  color: #2C3E50;\n  font-size: 13px; }\n\n/*buttons*/\n#msform .action-button {\n  width: 170px;\n  background: rgba(0, 225, 255, 0.568);\n  font-weight: bold;\n  color: #001858;\n  border: 0 none;\n  border-radius: 10px;\n  cursor: pointer;\n  padding: 10px 5px;\n  margin: 10px 5px; }\n\n#msform .action-button:hover, #msform .action-button:focus {\n  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60; }\n\n.fondo {\n  background-color: aquamarine;\n  background-size: cover;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%; }\n\n.imagen {\n  margin-left: 50px;\n  vertical-align: middle;\n  border-style: none; }\n\n#encima:before {\n  content: '';\n  background: url(https://i.imgur.com/dJLNhFN.jpg) no-repeat left top;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\nbody {\n  font-family: Arial, sans-serif;\n  background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat;\n  background-size: cover;\n  height: 100vh; }\n\n.titulo {\n  text-align: center;\n  font-family: Tahoma, Arial, sans-serif;\n  color: black;\n  /* margin: 50px 0; */\n  margin-bottom: 10px;\n  margin-top: 30px;\n  font-size: 3.5rem;\n  text-align: center; }\n\nhr.style12 {\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n  border: 0;\n  border-top: 1px solid #b3d7ff; }\n\nh1 {\n  text-align: center;\n  font-family: Tahoma, Arial, sans-serif;\n  color: #06D85F;\n  /* margin: 50px 0; */\n  margin-bottom: 10px;\n  margin-top: 30px; }\n\n.animales {\n  /* margin: 0 auto; */\n  background: #212529a3;\n  padding: 30px;\n  border: 2px solid #fff;\n  border-radius: 20px/50px;\n  background-clip: padding-box;\n  text-align: center;\n  color: #f8f9fa; }\n\n.box {\n  width: 35%;\n  margin: 0 auto;\n  background: #212529a3;\n  padding: 20px;\n  border: 2px solid #fff;\n  border-radius: 20px/50px;\n  background-clip: padding-box;\n  text-align: center;\n  color: #06D85F; }\n\n.button {\n  font-size: 1em;\n  padding: 10px;\n  margin-left: 10px;\n  color: #fffffff7;\n  border: 2px solid #0a9846;\n  border-radius: 20px/50px;\n  background-color: #061415;\n  text-decoration: none;\n  cursor: pointer;\n  transition: all 0.3s ease-out; }\n\n.button:hover {\n  background: #06D85F; }\n\n.overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: rgba(0, 0, 0, 0.7);\n  transition: opacity 500ms;\n  visibility: hidden;\n  opacity: 0; }\n\n.overlay:target {\n  visibility: visible;\n  opacity: 1; }\n\n.popup {\n  margin: 70px auto;\n  padding: 20px;\n  background: #fff;\n  border-radius: 5px;\n  width: 30%;\n  position: relative;\n  transition: all 5s ease-in-out; }\n\n.popup h2 {\n  margin-top: 0;\n  color: #333;\n  font-family: Tahoma, Arial, sans-serif; }\n\n.popup .close {\n  position: absolute;\n  top: 20px;\n  right: 30px;\n  transition: all 200ms;\n  font-size: 30px;\n  font-weight: bold;\n  text-decoration: none;\n  color: #333; }\n\n.popup .close:hover {\n  color: #06D85F; }\n\n.popup .content {\n  max-height: 30%;\n  overflow: auto; }\n\n@media screen and (max-width: 700px) {\n  .box {\n    width: 40%; }\n  .popup {\n    width: 70%; } }\n", ""]);
 
 // exports
 
@@ -1739,6 +2080,8 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MemotecComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clases_memotec__ = __webpack_require__("../../../../../src/app/clases/memotec.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servicios_animales_http_service__ = __webpack_require__("../../../../../src/app/servicios/animales-http.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1749,18 +2092,196 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var MemotecComponent = /** @class */ (function () {
-    function MemotecComponent() {
+    function MemotecComponent(animalesService) {
+        this.animalesService = animalesService;
+        this.enviarJuego = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        this.myColor = '';
+        this.numeroSecreto = 0;
+        this.numeroIngresado = 0;
+        this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_memotec__["a" /* Memotec */]();
+        console.log(this.nuevoJuego);
+        this.animales = new Array();
+        this.animalesRandom = new Array();
+        this.traerAnimales();
+        this.mostrarSpiner = false;
+        this.ocultar = true;
     }
     MemotecComponent.prototype.ngOnInit = function () {
+        this.mostrarFotos = false;
+        this.juegoEmpezado = false;
+        this.myColor = "primary";
+        this.color = "red";
+        this.tiempo = 8;
+        this.mensaje = '';
     };
+    // Selecciona animales desde la lista cargada de forma random
+    MemotecComponent.prototype.obtenerAnimalesRandom = function () {
+        this.animalesRandom = [];
+        console.log(this.animales);
+        var num = 0;
+        while (num < 8) {
+            var numRandom = Math.floor((Math.random() * 23));
+            if (this.PerteneceAnimal(this.animales[numRandom].nombreAnimal)) {
+                this.animalesRandom.push(this.animales[numRandom]);
+                num++;
+            }
+        }
+    };
+    MemotecComponent.prototype.jugar = function () {
+        var _this = this;
+        this.obtenerAnimalesRandom();
+        this.mostrarFotos = true;
+        this.juegoEmpezado = true;
+        this.ocultar = true;
+        var numRandom = Math.floor((Math.random() * 8)) + 1;
+        this.tiempo = 8;
+        this.mensaje = '';
+        this.respuesta = '';
+        this.repetidor = setInterval(function () {
+            _this.tiempo--;
+            if (_this.tiempo == 0) {
+                //this.GuardarJugada()
+                clearInterval(_this.repetidor);
+                _this.tiempo = 8;
+                _this.mensaje = "Cual es el nombre del animal de la foto: " + numRandom + "?";
+                _this.nombreAnimal = _this.animalesRandom[numRandom - 1].nombreAnimal;
+                _this.mostrarFotos = false;
+            }
+        }, 900);
+    };
+    MemotecComponent.prototype.verificar = function () {
+        this.respuesta = this.respuesta.toLowerCase();
+        if (this.respuesta == this.nombreAnimal) {
+            this.mensajeRespuesta = "Felicidades!! Ganaste";
+        }
+        else {
+            this.mensajeRespuesta = "Lo siento, perdiste. El animal era " + this.nombreAnimal;
+        }
+        this.ocultar = false;
+    };
+    //  Filtra las imagenes repetidas
+    MemotecComponent.prototype.PerteneceAnimal = function (nombre) {
+        console.log(this.animalesRandom);
+        for (var i = 0; i < this.animalesRandom.length; i++) {
+            console.log(this.animalesRandom);
+            if (this.animalesRandom[i].nombreAnimal == nombre) {
+                return false;
+            }
+        }
+        return true;
+    };
+    MemotecComponent.prototype.traerAnimales = function () {
+        this.animales = [
+            {
+                "nombreAnimal": "aguila",
+                "path": "./assets/imagenes/animales/aguila.jpg"
+            },
+            {
+                "nombreAnimal": "caballo",
+                "path": "./assets/imagenes/animales/caballo.jpg"
+            },
+            {
+                "nombreAnimal": "cabra",
+                "path": "./assets/imagenes/animales/cabra.jpg"
+            },
+            {
+                "nombreAnimal": "chancho",
+                "path": "./assets/imagenes/animales/chancho.jpg"
+            },
+            {
+                "nombreAnimal": "chimpance",
+                "path": "./assets/imagenes/animales/chimpance.jpg"
+            },
+            {
+                "nombreAnimal": "cisne",
+                "path": "./assets/imagenes/animales/cisne.jpg"
+            },
+            {
+                "nombreAnimal": "conejo",
+                "path": "./assets/imagenes/animales/conejo.jpg"
+            },
+            {
+                "nombreAnimal": "gallina",
+                "path": "./assets/imagenes/animales/gallina.jpg"
+            },
+            {
+                "nombreAnimal": "gallo",
+                "path": "./assets/imagenes/animales/gallo.jpg"
+            },
+            {
+                "nombreAnimal": "gato",
+                "path": "./assets/imagenes/animales/gato.jpg"
+            },
+            {
+                "nombreAnimal": "gorila",
+                "path": "./assets/imagenes/animales/gorila.jpg"
+            },
+            {
+                "nombreAnimal": "leon",
+                "path": "./assets/imagenes/animales/leon.jpg"
+            },
+            {
+                "nombreAnimal": "loro",
+                "path": "./assets/imagenes/animales/loro.jpg"
+            },
+            {
+                "nombreAnimal": "nutria",
+                "path": "./assets/imagenes/animales/nutria.jpg"
+            },
+            {
+                "nombreAnimal": "orangutan",
+                "path": "./assets/imagenes/animales/orangutan.jpg"
+            },
+            {
+                "nombreAnimal": "oveja",
+                "path": "./assets/imagenes/animales/oveja.jpg"
+            },
+            {
+                "nombreAnimal": "paloma",
+                "path": "./assets/imagenes/animales/paloma.jpg"
+            },
+            {
+                "nombreAnimal": "panda",
+                "path": "./assets/imagenes/animales/panda.jpg"
+            },
+            {
+                "nombreAnimal": "pato",
+                "path": "./assets/imagenes/animales/pato.jpg"
+            },
+            {
+                "nombreAnimal": "perro",
+                "path": "./assets/imagenes/animales/perro.jpg"
+            },
+            {
+                "nombreAnimal": "raton",
+                "path": "./assets/imagenes/animales/raton.jpg"
+            },
+            {
+                "nombreAnimal": "tigre",
+                "path": "./assets/imagenes/animales/tigre.jpg"
+            },
+            {
+                "nombreAnimal": "vaca",
+                "path": "./assets/imagenes/animales/vaca.jpg"
+            }
+        ];
+    };
+    var _a, _b;
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]) === "function" && _a || Object)
+    ], MemotecComponent.prototype, "enviarJuego", void 0);
     MemotecComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-memotec',
             template: __webpack_require__("../../../../../src/app/componentes/memotec/memotec.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/componentes/memotec/memotec.component.scss")]
+            styles: [__webpack_require__("../../../../../src/app/componentes/memotec/memotec.component.scss")],
+            providers: [__WEBPACK_IMPORTED_MODULE_2__servicios_animales_http_service__["a" /* AnimalesHttpService */]]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__servicios_animales_http_service__["a" /* AnimalesHttpService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__servicios_animales_http_service__["a" /* AnimalesHttpService */]) === "function" && _b || Object])
     ], MemotecComponent);
     return MemotecComponent;
 }());
@@ -1790,7 +2311,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/menu-card/menu-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"container\" >\r\n    <div class=\"card\">\r\n      <img class=\"img-thumbnail\"   src=\"./assets/imagenes/cerebro.jpg\" alt=\"Avatar\" style=\"width:100%\">\r\n      <h1>Velocidad y agilidad aritmética </h1>\r\n      <p class=\"title\">Juego de agilidad mental</p>\r\n      <p>UTN FRA </p>\r\n  \r\n      <a href=\"#\"><i class=\"fa fa-dribbble\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-twitter\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-facebook\"></i></a> \r\n      <p>           <button class=\"button\"  (click)=\"Juego('Agilidad')\">Jugar</button></p>\r\n    \r\n    </div>\r\n  \r\n    <div class=\"card\">\r\n      <img class=\"img-thumbnail\" src=\"./assets/imagenes/ppt.jpg\" alt=\"Avatar\" style=\"width:100%\">\r\n      <h1>Piedra Papel o Tijera</h1>\r\n      <p class=\"title\">Juega contra la máquina</p>\r\n      <p>UTN FRA </p>\r\n      \r\n      <a href=\"#\"><i class=\"fa fa-dribbble\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-twitter\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-facebook\"></i></a> \r\n      <p>           <button class=\"button\"  (click)=\"Juego('PPT')\">Jugar</button></p>\r\n    </div>\r\n    <div class=\"card\">\r\n      <img  class=\"img-thumbnail\"  src=\"./assets/imagenes/adivina.png\" alt=\"Avatar\" style=\"width:100%\">\r\n      <h1>Adivina el número secreto</h1>\r\n      <p class=\"title\">Juega de estrategia</p>\r\n      <p>UTN FRA </p>\r\n      \r\n      <a href=\"#\"><i class=\"fa fa-dribbble\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-twitter\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-facebook\"></i></a> \r\n      <p>           <button class=\"button\"  (click)=\"Juego('Adivina')\">Jugar</button></p>\r\n    </div>\r\n  </div>\r\n-->\r\n<!--\r\n  Please note: this code is in no way ready to be used as is in production on your website. It will need to be adapted to be cross browser compliant & accessible. I just wanted to share how one might go about this effect with CSS & JS and no other dependencies\r\n-->\r\n<div class=\"container\">\r\n  <div class=\"card-column column-0\">\r\n    <div class=\"card card-color-0\" routerLink=\"/Juegos/Agilidad\">    \r\n      <div class=\"border\"></div>\r\n      <!--<img src=\"../../../assets/imagenes/cubo.jpg\" />-->\r\n        <img src=\"./assets/imagenes/cubo.jpg\" />\r\n      <h1 routerLink=\"/Juegos/Agilidad\" >Velocidad y Agilidad Aritmética </h1>\r\n    </div>\r\n    <div class=\"card card-color-2\" routerLink=\" /Juegos/PiedraPapelTijera\">\r\n      <div class=\"border\"></div>\r\n       <!--<img src=\"../../../assets/imagenes/manos.jpg\" />-->\r\n       <img src=\"./assets/imagenes/manos.jpg\" />\r\n      <h1 routerLink=\" /Juegos/PiedraPapelTijera\">Piedra<br>Papel<br>ó Tijera</h1>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-column column-1\">\r\n    <div class=\"card card-color-1\" routerLink=\"/Juegos/Adivina\">\r\n      <div class=\"border\"></div>\r\n      <!-- <img src=\"../../../assets/imagenes/pregunta.jpg\" /> -->\r\n       <img src=\"./assets/imagenes/pregunta.jpg\" />\r\n      <h1 routerLink=\"/Juegos/Adivina\" >Adivina el Número Secreto</h1>\r\n    </div>\r\n    <div class=\"card card-color-3\" routerLink=\"/Juegos/Tateti\">\r\n      <div class=\"border\"></div>\r\n      <!-- <img src=\"../../../assets/imagenes/tateti.jpg\" />-->\r\n      <img src=\"./assets/imagenes/tateti.jpg\" />\r\n      <h1 routerLink=\"/Juegos/Tateti\">TaTeTi</h1>\r\n    </div>\r\n    <div class=\"card card-color-4\" routerLink=\"/Juegos/Memotec\">\r\n      <div class=\"border\"></div>\r\n      <!--<img src=\"../../../assets/imagenes/memotec.jpg\" />-->\r\n      <img src=\"./assets/imagenes/memotec.jpg\" />\r\n      <h1 routerLink=\"/Juegos/Memotec\">MemoTec</h1>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div id=\"cover\" class=\"cover\"></div>\r\n\r\n<div id=\"open-content\" class=\"open-content\">\r\n  <a href=\"#\" id=\"close-content\" class=\"close-content\"><span class=\"x-1\"></span><span class=\"x-2\"></span></a>\r\n  <img id=\"open-content-image\" src=\"\" />\r\n  <div class=\"text\" id=\"open-content-text\">\r\n  </div>\r\n</div>"
+module.exports = "<!--<div class=\"container\" >\r\n    <div class=\"card\">\r\n      <img class=\"img-thumbnail\"   src=\"./assets/imagenes/cerebro.jpg\" alt=\"Avatar\" style=\"width:100%\">\r\n      <h1>Velocidad y agilidad aritmética </h1>\r\n      <p class=\"title\">Juego de agilidad mental</p>\r\n      <p>UTN FRA </p>\r\n  \r\n      <a href=\"#\"><i class=\"fa fa-dribbble\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-twitter\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-facebook\"></i></a> \r\n      <p>           <button class=\"button\"  (click)=\"Juego('Agilidad')\">Jugar</button></p>\r\n    \r\n    </div>\r\n  \r\n    <div class=\"card\">\r\n      <img class=\"img-thumbnail\" src=\"./assets/imagenes/ppt.jpg\" alt=\"Avatar\" style=\"width:100%\">\r\n      <h1>Piedra Papel o Tijera</h1>\r\n      <p class=\"title\">Juega contra la máquina</p>\r\n      <p>UTN FRA </p>\r\n      \r\n      <a href=\"#\"><i class=\"fa fa-dribbble\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-twitter\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-facebook\"></i></a> \r\n      <p>           <button class=\"button\"  (click)=\"Juego('PPT')\">Jugar</button></p>\r\n    </div>\r\n    <div class=\"card\">\r\n      <img  class=\"img-thumbnail\"  src=\"./assets/imagenes/adivina.png\" alt=\"Avatar\" style=\"width:100%\">\r\n      <h1>Adivina el número secreto</h1>\r\n      <p class=\"title\">Juega de estrategia</p>\r\n      <p>UTN FRA </p>\r\n      \r\n      <a href=\"#\"><i class=\"fa fa-dribbble\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-twitter\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a> \r\n      <a href=\"#\"><i class=\"fa fa-facebook\"></i></a> \r\n      <p>           <button class=\"button\"  (click)=\"Juego('Adivina')\">Jugar</button></p>\r\n    </div>\r\n  </div>\r\n-->\r\n<!--\r\n  Please note: this code is in no way ready to be used as is in production on your website. It will need to be adapted to be cross browser compliant & accessible. I just wanted to share how one might go about this effect with CSS & JS and no other dependencies\r\n-->\r\n\r\n<form id=\"msform\">    \r\n    <fieldset>\r\n        <div class=\"container\">\r\n          <div class=\"card-column column-0\">\r\n                <div class=\"card card-color-0\" routerLink=\"/Juegos/Agilidad\">    \r\n                  <div class=\"border\"></div>\r\n                  <img src=\"../../../assets/imagenes/cubo.jpg\" />\r\n                  <h1 routerLink=\"/Juegos/Agilidad\" >Velocidad y Agilidad Aritmética </h1>\r\n                </div>\r\n\r\n                <div class=\"card card-color-2\" routerLink=\" /Juegos/PiedraPapelTijera\">\r\n                  <div class=\"border\"></div>\r\n                  <img src=\"../../../assets/imagenes/manos.jpg\" />\r\n                  <h1 routerLink=\"/Juegos/PiedraPapelTijera\">Piedra<br>Papel<br>ó Tijera </h1>\r\n                </div>\r\n                <div class=\"card card-color-1\" routerLink=\"/Juegos/Adivina\">\r\n                  <div class=\"border\"></div>\r\n                  <img src=\"../../../assets/imagenes/pregunta.jpg\" /> \r\n                  <h1 routerLink=\"/Juegos/Adivina\" >Adivina el Número Secreto</h1>\r\n                </div>\r\n          </div>\r\n\r\n          <div class=\"card-column column-1\">       \r\n                <div class=\"card card-color-3\" routerLink=\"/Juegos/Tateti\">\r\n                  <div class=\"border\"></div>\r\n                  <img src=\"../../../assets/imagenes/tateti.jpg\" />\r\n                  <h1 routerLink=\"/Juegos/Tateti\">TaTeTi</h1>\r\n                </div>\r\n                <div class=\"card card-color-4\" routerLink=\"/Juegos/Memotec\">\r\n                  <div class=\"border\"></div>\r\n                  <img src=\"../../../assets/imagenes/tateti.jpg\" />\r\n                  <h1 routerLink=\"/Juegos/Memotec\">MemoTec</h1>\r\n                </div>\r\n                <div class=\"card card-color-4\" routerLink=\"/Juegos/Memotec\">\r\n                  <div class=\"border\"></div>\r\n                  <img src=\"../../../assets/imagenes/tateti.jpg\" />\r\n                  <h1 routerLink=\"/Juegos/Anagrama\">Anagrama</h1>\r\n                </div>      \r\n          </div>\r\n        \r\n        </div>\r\n\r\n        <div id=\"cover\" class=\"cover\"></div>\r\n\r\n        <div id=\"open-content\" class=\"open-content\">\r\n          <a href=\"#\" id=\"close-content\" class=\"close-content\"><span class=\"x-1\"></span><span class=\"x-2\"></span></a>\r\n          <img id=\"open-content-image\" src=\"\" />\r\n          <div class=\"text\" id=\"open-content-text\">\r\n          </div>\r\n        </div>\r\n\r\n          \r\n    </fieldset>  \r\n </form>\r\n\r\n"
 
 /***/ }),
 
@@ -1875,7 +2396,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/menu/menu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"navbar navbar-inverse navbar-fixed-top bs-docs-nav\" role=\"banner\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-header\">\r\n      \r\n      <a href=\"./Principal\" class=\"navbar-brand\">Sala de Juegos</a>\r\n    </div>\r\n  \r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <li>\r\n          <a href=\"#\">Inicio</a>\r\n        </li>\r\n        <li class=\"dropdown\">\r\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Menú de Juegos <b class=\"caret\"></b></a>\r\n          <ul class=\"dropdown-menu\">\r\n            <li><a routerLink=\"/Juegos/Adivina\">Adivina</a></li>\r\n            <li><a routerLink=\"/Juegos/Agilidad\">Agilidad</a></li>\r\n            <li><a routerLink=\"/Juegos/Agilidad\">Piedra Papel Tijera</a></li>\r\n            <li><a routerLink=\"/Juegos/Agilidad\">MemoTec</a></li>\r\n            <li><a routerLink=\"/Paises\">Paises</a></li>\r\n            <li><a routerLink=\"/Animales\">Animales</a></li>\r\n           <!-- <li><a href=\"#\">Adivina+Listado</a></li>\r\n            <li><a href=\"#\">Agilidad+Listado</a></li>-->\r\n          </ul>\r\n        </li>\r\n        <li>\r\n          <a routerLink=\"/QuienSoy\">Mis datos</a>\r\n        </li>\r\n        <li>\r\n          <a routerLink=\"/Principal\">Salir</a>\r\n        </li>\r\n        \r\n      </ul>\r\n\r\n  </div>\r\n</header>"
+module.exports = "<header class=\"navbar navbar-inverse navbar-fixed-top bs-docs-nav\" role=\"banner\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-header\">\r\n      \r\n      <a href=\"./Principal\" class=\"navbar-brand\">Sala de Juegos</a>\r\n    </div>\r\n  \r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <li>\r\n          <a href=\"#\">Inicio</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/Juegos\">Juegos</a>\r\n        </li>\r\n        <!-- <li class=\"dropdown\">\r\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Menú de Juegos <b class=\"caret\"></b></a>\r\n          <ul class=\"dropdown-menu\">\r\n            <li><a routerLink=\"/Juegos/Adivina\">Adivina</a></li>\r\n            <li><a routerLink=\"/Juegos/Agilidad\">Agilidad</a></li>\r\n            <li><a routerLink=\"/Juegos/Anagrama\">Anagrama</a></li>\r\n            <li><a routerLink=\"/Juegos/PiedraPapelTijera\">Piedra Papel Tijera</a></li>\r\n            <li><a routerLink=\"/Juegos/Memotec\">MemoTec</a></li>\r\n            <li><a routerLink=\"/Juegos/Tateti\">Tateti</a></li>\r\n       \r\n            <li><a href=\"#\">Adivina+Listado</a></li>\r\n            <li><a href=\"#\">Agilidad+Listado</a></li>\r\n           </ul>\r\n        </li> -->\r\n        <li>\r\n            <a routerLink=\"/Listado\">Listado</a>\r\n          </li>\r\n        <li>\r\n          <a routerLink=\"/QuienSoy\">Mis datos</a>\r\n        </li>\r\n        <li>\r\n          <a routerLink=\"/Login\">Salir</a>\r\n        </li>\r\n        \r\n      </ul>\r\n\r\n  </div>\r\n</header>"
 
 /***/ }),
 
@@ -2015,7 +2536,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "html, body{\r\n  height: 50%;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.fondo{\r\nbackground-color: aquamarine;\r\n  background-size: cover;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n}\r\n\r\n\r\n\r\n#encima:before{\r\n  content: '';\r\n  background: url(https://i.imgur.com/dJLNhFN.jpg) no-repeat left top;\r\n  /*background: url(https://s22.postimg.org/urrt8jfq9/d_JLNh_FN.jpg) no-repeat left top;*/\r\n  background-size: cover;\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "html, body{\r\n  height: 50%;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n#msform {\r\n\t/* width: 400px; */\r\n\tmargin: 50px auto;\r\n\ttext-align: center;\r\n\tposition: relative;\r\n}\r\n#msform fieldset {\r\n\tbackground: rgba(67, 72, 82, 0.884);\r\n\tborder: 0 none;\r\n\tborder-radius: 3px;\r\n\tbox-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);\r\n\tpadding: 20px 30px;\r\n\tbox-sizing: border-box;\r\n\twidth: 80%;\r\n\tmargin: 0 10%;\r\n\t\r\n\t/*stacking fieldsets above each other*/\r\n\tposition: relative;\r\n}\r\n/*Hide all except first fieldset*/\r\n#msform fieldset:not(:first-of-type) {\r\n\tdisplay: none;\r\n}\r\n/*inputs*/\r\n#msform input, #msform textarea {\r\n\tpadding: 15px;\r\n\tborder: 1px solid #ccc;\r\n\tborder-radius: 3px;\r\n\tmargin-bottom: 10px;\r\n\twidth: 100%;\r\n\tbox-sizing: border-box;\r\n\tfont-family: montserrat;\r\n\tcolor: #2C3E50;\r\n\tfont-size: 13px;\r\n}\r\n/*buttons*/\r\n#msform .action-button {\r\n\twidth: 170px;\r\n\tbackground: rgba(0, 225, 255, 0.568);\r\n\tfont-weight: bold;\r\n\tcolor: rgb(0, 24, 88);\r\n\tborder: 0 none;\r\n\tborder-radius: 10px;\r\n\tcursor: pointer;\r\n\tpadding: 10px 5px;\r\n\tmargin: 10px 5px;\r\n}\r\n#msform .action-button:hover, #msform .action-button:focus {\r\n\tbox-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;\r\n}\r\n\r\n.fondo{\r\nbackground-color: aquamarine;\r\n  background-size: cover;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n}\r\n.imagen{\r\n  margin-left: 50px;\r\n  vertical-align: middle;\r\n    border-style: none;\r\n}\r\n\r\n\r\n#encima:before{\r\n  content: '';\r\n  background: url(https://i.imgur.com/dJLNhFN.jpg) no-repeat left top;\r\n  background-size: cover;\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n}\r\n\r\nbody {\r\n  font-family: Arial, sans-serif;\r\n  background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat;\r\n  background-size: cover;\r\n  height: 100vh;\r\n}\r\n.titulo{\r\n  text-align: center;\r\n  font-family: Tahoma, Arial, sans-serif;\r\n  color: rgb(0, 0, 0);\r\n  /* margin: 50px 0; */\r\n  margin-bottom: 10px;\r\n  margin-top: 30px;\r\n  font-size: 3.5rem;\r\n  text-align: center;\r\n}\r\nhr.style12 {\r\n\tmargin-top: 1rem;\r\n  margin-bottom: 1rem;\r\n  border: 0;\r\n  border-top: 1px solid #b3d7ff;\r\n}\r\n\r\nh1 {\r\n  text-align: center;\r\n  font-family: Tahoma, Arial, sans-serif;\r\n  color: #06D85F;\r\n  /* margin: 50px 0; */\r\n  margin-bottom: 10px;\r\n  margin-top: 30px;\r\n}\r\n\r\n.box {\r\n  width: 35%;\r\n  margin: 0 auto;\r\n  background: #212529a3;\r\n  padding: 20px;\r\n  border: 2px solid #fff;\r\n  border-radius: 20px/50px;\r\n  background-clip: padding-box;\r\n  text-align: center;\r\n}\r\n\r\n.button {\r\n  font-size: 1em;\r\n  padding: 10px;\r\n  margin-left: 10px;\r\n  color: #fffffff7;\r\n  border: 2px solid #0a9846;\r\n  border-radius: 20px/50px;\r\n  background-color: #061415;\r\n  text-decoration: none;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease-out;\r\n}\r\n.button:hover {\r\n  background: #06D85F;\r\n}\r\n\r\n.overlay {\r\n  position: fixed;\r\n  top: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  background: rgba(0, 0, 0, 0.7);\r\n  transition: opacity 500ms;\r\n  visibility: hidden;\r\n  opacity: 0;\r\n}\r\n.overlay:target {\r\n  visibility: visible;\r\n  opacity: 1;\r\n}\r\n\r\n.popup {\r\n  margin: 70px auto;\r\n  padding: 20px;\r\n  background: #fff;\r\n  border-radius: 5px;\r\n  width: 30%;\r\n  position: relative;\r\n  transition: all 5s ease-in-out;\r\n}\r\n\r\n.popup h2 {\r\n  margin-top: 0;\r\n  color: #333;\r\n  font-family: Tahoma, Arial, sans-serif;\r\n}\r\n.popup .close {\r\n  position: absolute;\r\n  top: 20px;\r\n  right: 30px;\r\n  transition: all 200ms;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n  color: #333;\r\n}\r\n.popup .close:hover {\r\n  color: #06D85F;\r\n}\r\n.popup .content {\r\n  max-height: 30%;\r\n  overflow: auto;\r\n}\r\n\r\n@media screen and (max-width: 700px){\r\n  .box{\r\n    width: 40%;\r\n  }\r\n  .popup{\r\n    width: 70%;\r\n  }\r\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -2028,7 +2549,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/piedra-papel-tijera/piedra-papel-tijera.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n<div style=\"text-align:center\">\r\n  <h1>\r\n    {{nuevoJuego.nombre}}!\r\n  </h1>\r\n </div>\r\n<h2></h2>\r\n<form name=\"juego\">\r\n\r\n   <label>ingrese una opcion:  </label> \r\n   <h2><button (click)=\"generarnumero()\"  class=\"btn btn-info btn-lg\">Juega el sistema</button></h2>\r\n \r\n    <input [(ngModel)]=\"nuevoJuego.numeroIngresado\" placeholder=\"ingrese numero\" name=\"numeroIngresado\" type=\"text\" class=\"form-control\" style=\"width:50%\"/>\r\n    <h1>{{nuevoJuego.numeroIngresado}}  </h1>\r\n \r\n    <h2 [hidden]=\"ocultarVerificar\"><button  *ngIf=\"nuevoJuego.numeroSecreto!=0\" (click)=\"verificar()\" class=\"btn btn-success btn-lg\">Verificar</button></h2>\r\n \r\n    <h2><button *ngIf=\"nuevoJuego.numeroSecreto==0 \" (click)=\"generarnumero()\"  class=\"btn btn-info btn-lg\">Nuevo número secreto</button></h2>\r\n \r\n    <h2><p *ngIf=\"nuevoJuego.numeroSecreto!=0\" ><i class=\"fa fa-spinner fa-spin\"></i>Esperando que ingrese un número</p></h2>\r\n\r\n    <h3 [hidden]=\"!nuevoJuego.gano\">usted adivino el número</h3>\r\n    <h3 [hidden]=\"nuevoJuego.gano\">usted aún no gano </h3>\r\n\r\n\r\n</form>\r\n<div id=\"snackbar\">{{Mensajes}}</div>"
+module.exports = "<div style=\"text-align:center\">\r\n    <h1 class=\"titulo\">\r\n            {{nuevoJuego.nombre}}!\r\n    </h1>\r\n</div>\r\n<form id=\"msform\"> \r\n <fieldset>\r\n   <div class=\"row\">\r\n      <div class=\"col-sm-1\"></div>\r\n      <div class=\"col-sm-10\">\r\n      <div class=\"container\">\r\n            <div class=\"bordeNumeros\">\r\n                  <button  *ngIf=\"botonComenzarVerificar == true\" (click)=\"primerJuego()\"  class=\"next action-button\" >Jugar!</button>\r\n                  <div class=\"img\"><br>             \r\n                      <h1>Seleccione una opción</h1>\r\n                      <div class=\"box\">\r\n                          <button id=\"botonPiedra\" class=\"button\"(click)=\"generarPartida(1)\"> Piedra </button> \r\n                          <button id=\"botonPapel\"  class=\"button\"(click)=\"generarPartida(2)\"> Papel </button>\r\n                          <button id=\"botonTijera\" class=\"button\"(click)=\"generarPartida(3)\"> Tijera </button>\r\n                      </div>     \r\n                      <br><br><br> \r\n                      <div> \r\n                          <img src=\"../../../assets/PPT/img/usuario.png\"  >\r\n                          <img src=\"../../../assets/PPT/img/neo.png\"  >\r\n                      </div>           \r\n                      <hr class=\"style12\">               \r\n                      <!-- resultados -->\r\n                      <div class=\"resultados\">\r\n                          <img id=\"resultado1\"  >\r\n                          <img id=\"resultado2\" >\r\n                      </div>\r\n                      <section id=\"msjPuntos\"></section>\r\n                      <h3 *ngIf=\"labelPuntos == true\" >\r\n                          <kbd class= \"label-info\">Vos <i class=\"far fa-hand-point-right\"></i> {{puntos}}</kbd>\r\n                          VS\r\n                          <kbd class= \"label-danger\"> {{puntosRival}} <i class=\"far fa-hand-point-left\"></i> Rival</kbd>\r\n                      </h3>\r\n                      <h3 *ngIf=\"labelGanaste == true\" >\r\n                          <kbd class= \"label-success\"> Ganaste!!! <i class=\"far fa-thumbs-up\"></i></kbd>\r\n                      </h3>\r\n                      <h3 *ngIf=\"labelPerdiste == true\" >\r\n                          <kbd class= \"label-danger\"> Perdiste :(<i class=\"far fa-thumbs-down\"></i></kbd>\r\n                      </h3>        \r\n                  </div>\r\n                  <div class = \"botones\">                 \r\n                        <button  type=\"buttons\"   class=\"next action-button\" >Salir</button>                \r\n                  </div>\r\n            </div>  <!--bordeNumeros-->           \r\n      </div> <!--container-->\r\n    </div>\r\n    <div class=\"col-sm-1\"></div>\r\n  </div>\r\n\r\n</fieldset>  \r\n\r\n</form>\r\n"
 
 /***/ }),
 
@@ -2053,69 +2574,134 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PiedraPapelTijeraComponent = /** @class */ (function () {
     function PiedraPapelTijeraComponent() {
         this.enviarJuego = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
-        this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_juego_piedra_papel_tijera__["a" /* JuegoPiedraPapelTijera */]();
-        console.info("numero Secreto:", this.nuevoJuego.numeroSecreto);
-        this.ocultarVerificar = false;
+        this.elecccionJugador = 0;
+        this.eleccionMalo = 0;
+        this.audio = new Audio();
+        this.puntos = 0;
+        this.puntosRival = 0;
+        this.botonComenzarVerificar = true;
+        this.mostrarGif = true;
+        this.labelPuntos = false;
+        this.labelGanaste = false;
+        this.labelPerdiste = false;
+        this.jugador = JSON.parse(localStorage.getItem("Id"));
+        this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_juego_piedra_papel_tijera__["a" /* JuegoPiedraPapelTijera */]("Piedra, Papel o Tijera", false, this.jugador, 0, "0");
+        this.arrayResultados = JSON.parse(this.jugador);
+        this.intentos = 0;
+        this.nuevoJuego.resultado = null;
+        console.info(this.arrayResultados);
     }
-    PiedraPapelTijeraComponent.prototype.generarnumero = function () {
-        this.nuevoJuego.generarnumero();
-        this.contador = 0;
+    PiedraPapelTijeraComponent.prototype.primerJuego = function () {
+        this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_juego_piedra_papel_tijera__["a" /* JuegoPiedraPapelTijera */]();
+        this.botonComenzarVerificar = false;
+        var botonPiedra = document.getElementById("botonPiedra");
+        var botonPapel = document.getElementById("botonPapel");
+        var botonTijera = document.getElementById("botonTijera");
+        botonPiedra.disabled = false;
+        botonPapel.disabled = false;
+        botonTijera.disabled = false;
     };
-    PiedraPapelTijeraComponent.prototype.verificar = function () {
-        this.contador++;
-        this.ocultarVerificar = true;
-        console.info("numero Secreto:", this.nuevoJuego.gano);
-        if (this.nuevoJuego.verificar()) {
-            this.enviarJuego.emit(this.nuevoJuego);
-            this.MostarMensaje("Sos un Genio!!!", true);
-            this.nuevoJuego.numeroSecreto = 0;
+    PiedraPapelTijeraComponent.prototype.generarPartida = function (eleccionAux) {
+        var _this = this;
+        var botonPiedra = document.getElementById("botonPiedra");
+        var botonPapel = document.getElementById("botonPapel");
+        var botonTijera = document.getElementById("botonTijera");
+        botonPiedra.disabled = true;
+        botonPapel.disabled = true;
+        botonTijera.disabled = true;
+        setTimeout(function () {
+            _this.botonComenzarVerificar = false;
+            _this.labelPuntos = true;
+            _this.labelGanaste = false;
+            _this.labelPerdiste = false;
+            _this.nuevoJuego.asignarPPT(eleccionAux);
+            _this.elecccionJugador = eleccionAux;
+            _this.eleccionMalo = _this.nuevoJuego.eleccionRandom;
+            _this.nuevoJuego.verificar();
+            _this.resultados();
+        }, 1000);
+    };
+    PiedraPapelTijeraComponent.prototype.resultados = function () {
+        if (this.nuevoJuego.verificar() == null) {
+            this.MostarMensaje("Empate!!!", null);
         }
-        else {
-            var mensaje = void 0;
-            switch (this.contador) {
-                case 1:
-                    mensaje = "No, intento fallido, animo";
-                    break;
-                case 2:
-                    mensaje = "No,Te estaras Acercando???";
-                    break;
-                case 3:
-                    mensaje = "No es, Yo crei que la tercera era la vencida.";
-                    break;
-                case 4:
-                    mensaje = "No era el  " + this.nuevoJuego.numeroIngresado;
-                    break;
-                case 5:
-                    mensaje = " intentos y nada.";
-                    break;
-                case 6:
-                    mensaje = "Afortunado en el amor";
-                    break;
-                default:
-                    mensaje = "Ya le erraste " + this.contador + " veces";
-                    break;
+        if (this.nuevoJuego.verificar() == true) {
+            this.puntos++;
+            if (this.puntos == 3) {
+                this.nuevoJuego.gano = true;
+                this.nuevoJuego.jugador = sessionStorage.getItem('user');
+                this.enviarJuego.emit(this.nuevoJuego);
+                this.botonComenzarVerificar = false;
+                this.labelGanaste = true;
+                this.labelPuntos = false;
+                this.puntosRival = 0;
+                this.puntos = 0;
+                this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_juego_piedra_papel_tijera__["a" /* JuegoPiedraPapelTijera */]();
             }
-            this.MostarMensaje("#" + this.contador + " " + mensaje + " ayuda :" + this.nuevoJuego.retornarAyuda());
+            this.MostarMensaje("Ganaste!!! +1", true);
         }
-        console.info("numero Secreto:", this.nuevoJuego.gano);
+        if (this.nuevoJuego.verificar() == false) {
+            this.puntosRival++;
+            if (this.puntosRival == 3) {
+                this.nuevoJuego.gano = false;
+                this.enviarJuego.emit(this.nuevoJuego);
+                this.botonComenzarVerificar = false;
+                this.labelPerdiste = true;
+                this.labelPuntos = false;
+                this.puntosRival = 0;
+                this.puntos = 0;
+                this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_juego_piedra_papel_tijera__["a" /* JuegoPiedraPapelTijera */]();
+            }
+            this.MostarMensaje("Perdiste!!! -1", false);
+        }
     };
     PiedraPapelTijeraComponent.prototype.MostarMensaje = function (mensaje, ganador) {
+        var _this = this;
         if (mensaje === void 0) { mensaje = "este es el mensaje"; }
-        if (ganador === void 0) { ganador = false; }
         this.Mensajes = mensaje;
-        var x = document.getElementById("snackbar");
-        if (ganador) {
-            x.className = "show Ganador";
+        this.mostrarGif = false;
+        var errorEmail = document.getElementById("msjPuntos");
+        var resultado1 = document.getElementById("resultado1");
+        var resultado2 = document.getElementById("resultado2");
+        var botonPiedra = document.getElementById("botonPiedra");
+        var botonPapel = document.getElementById("botonPapel");
+        var botonTijera = document.getElementById("botonTijera");
+        botonPiedra.disabled = true;
+        botonPapel.disabled = true;
+        botonTijera.disabled = true;
+        if (ganador == true) {
+            errorEmail.innerHTML = ("<h1 id='msjPuntos'><kbd class= label-success>" + mensaje + " <i class=\"far fa-smile\"></i> </kbd></h1>");
+            resultado1.src = "../../../assets/PPT/img/a" + this.elecccionJugador + ".png";
+            resultado2.src = "../../../assets/PPT/img/m" + this.eleccionMalo + ".png";
+            this.nuevoJuego.gano = true;
+            this.nuevoJuego.jugador = sessionStorage.getItem('user');
+            this.nuevoJuego.guardarLocal();
         }
-        else {
-            x.className = "show Perdedor";
+        if (ganador == false) {
+            errorEmail.innerHTML = ("<h1 id='msjPuntos'><kbd class= label-danger>" + mensaje + " <i class=\"far fa-frown\"></i></kbd></h1>");
+            resultado1.src = "../../../assets/PPT/img/a" + this.elecccionJugador + ".png";
+            resultado2.src = "../../../assets/PPT/img/m" + this.eleccionMalo + ".png";
+            this.nuevoJuego.gano = false;
+            this.nuevoJuego.jugador = sessionStorage.getItem('user');
+            this.nuevoJuego.guardarLocal();
+        }
+        if (ganador == null) {
+            errorEmail.innerHTML = ("<h1 id='msjPuntos'><kbd class= label-warning>" + mensaje + " <i class=\"far fa-meh\"></i></kbd></h1>");
+            resultado1.src = "../../../assets/PPT/img/a" + this.elecccionJugador + ".png";
+            resultado2.src = "../../../assets/PPT/img/m" + this.eleccionMalo + ".png";
         }
         var modelo = this;
         setTimeout(function () {
-            x.className = x.className.replace("show", "");
-            modelo.ocultarVerificar = false;
-        }, 3000);
-        console.info("objeto", x);
+            errorEmail.innerHTML = "";
+            resultado1.src = "";
+            resultado2.src = "";
+        }, 5000);
+        setTimeout(function () {
+            _this.mostrarGif = true;
+            botonPiedra.disabled = false;
+            botonPapel.disabled = false;
+            botonTijera.disabled = false;
+        }, 2500);
     };
     PiedraPapelTijeraComponent.prototype.ngOnInit = function () {
     };
@@ -2142,7 +2728,7 @@ var PiedraPapelTijeraComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/componentes/principal/principal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-cabecera></app-cabecera>\r\n<!-- \r\n<div class=\"container\" >\r\n   \r\n    <ul class=\"list-group\">\r\n        <li class=\"list-group-item list-group-item-danger\">\r\n           \r\n                <div class=\"media-body\">\r\n                    <div class=\"hero-text\">\r\n                        <h4 >Menú Principal</h4>\r\n                    </div>\r\n                 </div>\r\n               \r\n             \r\n          </li>\r\n        <li class=\"list-group-item list-group-item-success\">\r\n          <a routerLink=\"/Juegos\">\r\n            <div class=\"media\">\r\n              <div class=\"media-left\">\r\n                    <img src=\"./assets/imagenes/saladejuegos.png\" class=\"media-object imagenDeMenu\" >\r\n              </div>\r\n              <div class=\"media-body\">\r\n                <h4 class=\"media-heading\">Juegos</h4>\r\n                <p>El método lúdico es un conjunto de estrategias diseñadas para crear un ambiente de armonía en los estudiantes que están inmersos en el proceso de aprendizaje. Este método busca que los alumnos se apropien de los temas impartidos por los docentes utilizando el juego.</p>\r\n              </div>\r\n             \r\n            </div> \r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item list-group-item-info\">\r\n            <a routerLink=\"/Listado\">\r\n              <div class=\"media\">\r\n                  <div class=\"media-left\">\r\n                      <img src=\"./assets/imagenes/listado.jpg\" class=\"media-object imagenDeMenu\" >\r\n                    </div>\r\n                <div class=\"media-body\">\r\n                  <h4 class=\"media-heading\">Listados de resultados</h4>\r\n                  <p>Los listados de los resultados con ordenamiento y busqueda</p>\r\n                </div>\r\n                \r\n              </div> \r\n            </a>\r\n          </li>\r\n        <li class=\"list-group-item list-group-item-warning\">\r\n          <a routerLink=\"/Juegos\">\r\n            <div class=\"media\">\r\n                <div class=\"media-left\">\r\n                    <img src=\"./assets/imagenes/Configuracion.png\" class=\"media-object imagenDeMenu\" >\r\n                  </div>\r\n              <div class=\"media-body\">\r\n                <h4 class=\"media-heading\">Configuraci&oacute;n</h4>\r\n                <p>Ajustes de la aplicacion y los métodos de autentificación</p>\r\n              </div>\r\n             \r\n            </div> \r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item list-group-item-warning\">\r\n          <a routerLink=\"/Jugadores\">\r\n            <div class=\"media\">\r\n                <div class=\"media-left\">\r\n                    <img src=\"./assets/imagenes/jugadores.png\" class=\"media-object imagenDeMenu\" >\r\n                  </div>\r\n              <div class=\"media-body\">\r\n                <h4 class=\"media-heading\">Jugadores</h4>\r\n                <p>Listado de jugadores</p>\r\n              </div>\r\n             \r\n            </div> \r\n          </a>\r\n        </li>\r\n       \r\n        \r\n      </ul>\r\n</div>-->\r\n<!-- \r\nTODO \r\n- la navbar non e' responsiva?\r\n-->\r\n<!-- nav bar -->\r\n<br>\r\n<br>\r\n<hr width=\"75%\" />\r\n<h2 style='text-align:center;'>Menu Principal</h2>\r\n<div class=\"accordion\">\r\n  <ul>\r\n    <li tabindex=\"1\">\r\n      <div>\r\n          \r\n        <a routerLink=\"/Juegos\">\r\n          <p>El método lúdico es un conjunto de estrategias diseñadas para crear un ambiente de armonía en  los estudiantes.</p>\r\n          <h2>JUEGOS</h2>\r\n          <p> <a routerLink=\"/Juegos\"></a></p>\r\n        </a>\r\n      </div>\r\n    </li>\r\n    <li tabindex=\"2\">\r\n      <div>\r\n          <a routerLink=\"/Listado\">\r\n            <p>Los listados de los resultados con ordenamiento y busqueda</p>\r\n          <h2>LISTADO DE RESULTADOS</h2>\r\n          <p> <a routerLink=\"/Listado\"></a></p>\r\n        </a>\r\n      </div>\r\n    </li>\r\n    <li tabindex=\"3\">\r\n      <div>\r\n          <a routerLink=\"/Juegos\">\r\n          <p>Ajustes de la aplicacion y los métodos de autentificación</p>\r\n          <h2>CONFIGURACI&oacute;N</h2>\r\n          <p> <a routerLink=\"/Juegos\"></a></p>\r\n        </a>\r\n      </div>\r\n    </li>\r\n    \r\n  </ul>\r\n</div>\r\n<p class=\"about\">\r\n\r\n</p>\r\n    \r\n    \r\n  \r\n    \r\n    \r\n    \r\n \r\n\r\n"
+module.exports = "<app-cabecera></app-cabecera>\r\n<!-- \r\n<div class=\"container\" >\r\n   \r\n    <ul class=\"list-group\">\r\n        <li class=\"list-group-item list-group-item-danger\">\r\n           \r\n                <div class=\"media-body\">\r\n                    <div class=\"hero-text\">\r\n                        <h4 >Menú Principal</h4>\r\n                    </div>\r\n                 </div>\r\n               \r\n             \r\n          </li>\r\n        <li class=\"list-group-item list-group-item-success\">\r\n          <a routerLink=\"/Juegos\">\r\n            <div class=\"media\">\r\n              <div class=\"media-left\">\r\n                    <img src=\"./assets/imagenes/saladejuegos.png\" class=\"media-object imagenDeMenu\" >\r\n              </div>\r\n              <div class=\"media-body\">\r\n                <h4 class=\"media-heading\">Juegos</h4>\r\n                <p>El método lúdico es un conjunto de estrategias diseñadas para crear un ambiente de armonía en los estudiantes que están inmersos en el proceso de aprendizaje. Este método busca que los alumnos se apropien de los temas impartidos por los docentes utilizando el juego.</p>\r\n              </div>\r\n             \r\n            </div> \r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item list-group-item-info\">\r\n            <a routerLink=\"/Listado\">\r\n              <div class=\"media\">\r\n                  <div class=\"media-left\">\r\n                      <img src=\"./assets/imagenes/listado.jpg\" class=\"media-object imagenDeMenu\" >\r\n                    </div>\r\n                <div class=\"media-body\">\r\n                  <h4 class=\"media-heading\">Listados de resultados</h4>\r\n                  <p>Los listados de los resultados con ordenamiento y busqueda</p>\r\n                </div>\r\n                \r\n              </div> \r\n            </a>\r\n          </li>\r\n        <li class=\"list-group-item list-group-item-warning\">\r\n          <a routerLink=\"/Juegos\">\r\n            <div class=\"media\">\r\n                <div class=\"media-left\">\r\n                    <img src=\"./assets/imagenes/Configuracion.png\" class=\"media-object imagenDeMenu\" >\r\n                  </div>\r\n              <div class=\"media-body\">\r\n                <h4 class=\"media-heading\">Configuraci&oacute;n</h4>\r\n                <p>Ajustes de la aplicacion y los métodos de autentificación</p>\r\n              </div>\r\n             \r\n            </div> \r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item list-group-item-warning\">\r\n          <a routerLink=\"/Jugadores\">\r\n            <div class=\"media\">\r\n                <div class=\"media-left\">\r\n                    <img src=\"./assets/imagenes/jugadores.png\" class=\"media-object imagenDeMenu\" >\r\n                  </div>\r\n              <div class=\"media-body\">\r\n                <h4 class=\"media-heading\">Jugadores</h4>\r\n                <p>Listado de jugadores</p>\r\n              </div>\r\n             \r\n            </div> \r\n          </a>\r\n        </li>\r\n       \r\n        \r\n      </ul>\r\n</div>-->\r\n<!-- \r\nTODO \r\n- la navbar non e' responsiva?\r\n-->\r\n<!-- nav bar -->\r\n<br>\r\n<br>\r\n<hr width=\"75%\" />\r\n<h2 style='text-align:center;'>Menu Principal</h2>\r\n<div class=\"accordion\">\r\n  <ul>\r\n    <li tabindex=\"1\">\r\n      <div>\r\n          \r\n        <a routerLink=\"/Juegos\">\r\n          <p>El método lúdico es un conjunto de estrategias diseñadas para crear un ambiente de armonía en  los estudiantes.</p>\r\n          <h2>JUEGOS</h2>\r\n          <p> <a routerLink=\"/Juegos\"></a></p>\r\n        </a>\r\n      </div>\r\n    </li>\r\n    <li tabindex=\"2\">\r\n      <div>\r\n          <a routerLink=\"/Listado\">\r\n            <p>Los listados de los resultados con ordenamiento y busqueda</p>\r\n          <h2>LISTADO DE RESULTADOS</h2>\r\n          <p> <a routerLink=\"/Listado\"></a></p>\r\n        </a>\r\n      </div>\r\n    </li>\r\n    <li tabindex=\"3\">\r\n      <div>\r\n          <a routerLink=\"/Juegos\">\r\n          <p>Ajustes de la aplicacion y los métodos de autentificación</p>\r\n          <h2>CONFIGURACI&oacute;N</h2>\r\n          <p> <a routerLink=\"/Juegos\"></a></p>\r\n        </a>\r\n      </div>\r\n    </li>\r\n    \r\n  </ul>\r\n</div>\r\n<p class=\"about\">\r\n</p>\r\n    \r\n    \r\n  \r\n    \r\n    \r\n    \r\n \r\n\r\n"
 
 /***/ }),
 
@@ -2227,7 +2813,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/quien-soy/quien-soy.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Memotec</h1>\r\n<p>Se le mostraran 8 imagenes de animales al azar y tendrá que memorizarlas en 8 segundos.\r\n  Al acabar el tiempo se le preguntará por el animal que aparece en cierta ubicación. </p>\r\n   \r\n<div class=\"part\">\r\n  <h2>Paola Torrealba</h2>\r\n    <div class=\"dodeca\">\r\n      <div class=\"dode1\">\r\n        <div class=\"dode2\">\r\n          <img src=\"./assets/imagenes/quiensoy.jpg\" alt=\"\" width=\"320\" height=\"313\" />\r\n        </div>\r\n      </div>\r\n    </div>\r\n</div>\r\n<div id=\"container\">\r\n   <div class=\"btn-toolbar\" style='margin-left: 30%;' role=\"toolbar\" aria-label=\"Toolbar with button groups\">\r\n        <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Second group\">\r\n            <a  style='color: #000;' routerLink=\"/Principal\"  class=\"btn \">Principal </a>       \r\n        </div>   \r\n   </div> \r\n </div> \r\n\r\n\r\n\r\n<!--\r\n<nav class=\"navbar navbar-default\">\r\n    <div class=\"container\">\r\n      <div class=\"navbar-header\">\r\n        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>                        \r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"./\">Sala De Juegos</a>\r\n      </div>\r\n      <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\r\n        <ul class=\"nav navbar-nav navbar-right\">\r\n          <li><a href=\"./QuienSoy#quien\">Quien</a></li>\r\n          <li><a href=\"/TP_LAV4_2017/QuienSoy#que\">Ques es</a></li>\r\n          <li><a href=\"./QuienSoy#donde\">Donde</a></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </nav>\r\n  \r\n\r\n  <div id =\"quiwn\"class=\"container-fluid bg-1 text-center\">\r\n    <h3 class=\"margin\">Quién Soy?</h3>\r\n    <img src=\"./assets/imagenes/quiensoy.jpg\" class=\"img-responsive img-circle margin\" style=\"display:inline\" alt=\"Bird\" width=\"350\" height=\"350\">\r\n    <h3>Soy Un alumno de la UTN FRA</h3>\r\n  </div>\r\n  \r\n  \r\n  <div id =\"que\" class=\"container-fluid bg-2 text-center\">\r\n    <h3 class=\"margin\">Esto es un trabajo práctico</h3>\r\n    <p>Cada universidad, cada facultad, cada carrera y obviamente cada materia en particular tiene estrategias didácticas y formas de evaluación diferentes. A pesar de que en muchos casos las universidades intentan estandarizar la forma de dictar clase para generar un orden en las planificaciones cuatrimestre a cuatrimestre, las formas de evaluación son elementales tanto para las instituciones y profesores como para los alumnos. A través de la evaluación formativa el educador busca información en el alumno para lograr comprender cómo se está\r\n      produciendo el proceso de aprendizaje y poder reajustar los objetivos pedagógicos. Y para el alumno es una muestra del progreso que está logrando y si puede aplicar, materializar y darle visibilidad a la comprensión del tema. Según Black y William (1998), la evaluación formativa, ayuda a que los estudiantes sean independientes a la hora del aprendizaje, es decir, se presenta como receptor, autorregulador y centro de esa misma evaluación. </p>\r\n    <a href=\"#\" class=\"btn btn-default btn-lg\">\r\n      <span class=\"glyphicon glyphicon-file\"></span> Descargar PDF\r\n    </a>\r\n  </div>\r\n  \r\n\r\n  <div id =\"donde\" class=\"container-fluid bg-3 text-center\">    \r\n    <h3 class=\"margin\">Dónde Funciona?</h3><br>\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-4\">\r\n        <p>Con las tecnologias WEB que permiten desarrollar aplicaciones multiplataforma</p>\r\n        <img src=\"./assets/imagenes/quiensoy1.png\" class=\"img-responsive margin imagenDeQuienSoy\"  alt=\"Image\">\r\n      </div>\r\n      <div class=\"col-sm-4\"> \r\n        <p>Principalmente orientada a la experiencia del usuario, garantizando que su funcionamieto sea fluido y pensado en el comportamiento del usuario y en la funcionalidad.</p>\r\n        <img src=\"./assets/imagenes/quiensoy2.jpg\" class=\"img-responsive margin imagenDeQuienSoy\" alt=\"Image\">\r\n      </div>\r\n      <div class=\"col-sm-4\"> \r\n        <p>Para los sistemas operativos lideres en el mercado del consumo masivo</p>\r\n        <img src=\"./assets/imagenes/quiensoy3.png\" class=\"img-responsive margin imagenDeQuienSoy\" alt=\"Image\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n\r\n  <footer class=\"container-fluid bg-4 text-center\">\r\n    <p>Modificado por <a href=\"https://github.com/paolaTorrealba\">Mi github</a></p> \r\n  </footer>\r\n\r\n-->"
+module.exports = "\r\n<h1>Memotec</h1>\r\n<p>Memotec- descripcion Cada universidad, cada facultad, cada carrera y obviamente cada materia en particular tiene planificaciones cuatrimestre a cuatrimestre, las formas de evaluación son elementales tanto para </p>\r\n   \r\n<div class=\"part\">\r\n  <h2>Paola Torrealba</h2>\r\n    <div class=\"dodeca\">\r\n      <div class=\"dode1\">\r\n        <div class=\"dode2\">\r\n          <img src=\"./assets/imagenes/quiensoy.jpg\" alt=\"\" width=\"320\" height=\"313\" />\r\n        </div>\r\n      </div>\r\n    </div>\r\n</div>\r\n<div id=\"container\">\r\n   <div class=\"btn-toolbar\" style='margin-left: 30%;' role=\"toolbar\" aria-label=\"Toolbar with button groups\">\r\n        <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Second group\">\r\n            <a  style='color: #000;' routerLink=\"/Principal\"  class=\"btn \">Principal </a>       \r\n        </div>   \r\n   </div> \r\n </div> \r\n\r\n\r\n\r\n<!--\r\n<nav class=\"navbar navbar-default\">\r\n    <div class=\"container\">\r\n      <div class=\"navbar-header\">\r\n        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>                        \r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"./\">Sala De Juegos</a>\r\n      </div>\r\n      <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\r\n        <ul class=\"nav navbar-nav navbar-right\">\r\n          <li><a href=\"./QuienSoy#quien\">Quien</a></li>\r\n          <li><a href=\"/TP_LAV4_2017/QuienSoy#que\">Ques es</a></li>\r\n          <li><a href=\"./QuienSoy#donde\">Donde</a></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </nav>\r\n  \r\n\r\n  <div id =\"quiwn\"class=\"container-fluid bg-1 text-center\">\r\n    <h3 class=\"margin\">Quién Soy?</h3>\r\n    <img src=\"./assets/imagenes/quiensoy.jpg\" class=\"img-responsive img-circle margin\" style=\"display:inline\" alt=\"Bird\" width=\"350\" height=\"350\">\r\n    <h3>Soy Un alumno de la UTN FRA</h3>\r\n  </div>\r\n  \r\n  \r\n  <div id =\"que\" class=\"container-fluid bg-2 text-center\">\r\n    <h3 class=\"margin\">Esto es un trabajo práctico</h3>\r\n    <p>Cada universidad, cada facultad, cada carrera y obviamente cada materia en particular tiene estrategias didácticas y formas de evaluación diferentes. A pesar de que en muchos casos las universidades intentan estandarizar la forma de dictar clase para generar un orden en las planificaciones cuatrimestre a cuatrimestre, las formas de evaluación son elementales tanto para las instituciones y profesores como para los alumnos. A través de la evaluación formativa el educador busca información en el alumno para lograr comprender cómo se está\r\n      produciendo el proceso de aprendizaje y poder reajustar los objetivos pedagógicos. Y para el alumno es una muestra del progreso que está logrando y si puede aplicar, materializar y darle visibilidad a la comprensión del tema. Según Black y William (1998), la evaluación formativa, ayuda a que los estudiantes sean independientes a la hora del aprendizaje, es decir, se presenta como receptor, autorregulador y centro de esa misma evaluación. </p>\r\n    <a href=\"#\" class=\"btn btn-default btn-lg\">\r\n      <span class=\"glyphicon glyphicon-file\"></span> Descargar PDF\r\n    </a>\r\n  </div>\r\n  \r\n\r\n  <div id =\"donde\" class=\"container-fluid bg-3 text-center\">    \r\n    <h3 class=\"margin\">Dónde Funciona?</h3><br>\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-4\">\r\n        <p>Con las tecnologias WEB que permiten desarrollar aplicaciones multiplataforma</p>\r\n        <img src=\"./assets/imagenes/quiensoy1.png\" class=\"img-responsive margin imagenDeQuienSoy\"  alt=\"Image\">\r\n      </div>\r\n      <div class=\"col-sm-4\"> \r\n        <p>Principalmente orientada a la experiencia del usuario, garantizando que su funcionamieto sea fluido y pensado en el comportamiento del usuario y en la funcionalidad.</p>\r\n        <img src=\"./assets/imagenes/quiensoy2.jpg\" class=\"img-responsive margin imagenDeQuienSoy\" alt=\"Image\">\r\n      </div>\r\n      <div class=\"col-sm-4\"> \r\n        <p>Para los sistemas operativos lideres en el mercado del consumo masivo</p>\r\n        <img src=\"./assets/imagenes/quiensoy3.png\" class=\"img-responsive margin imagenDeQuienSoy\" alt=\"Image\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n\r\n  <footer class=\"container-fluid bg-4 text-center\">\r\n    <p>Modificado por <a href=\"https://github.com/paolaTorrealba\">Mi github</a></p> \r\n  </footer>\r\n\r\n-->"
 
 /***/ }),
 
@@ -2335,6 +2921,158 @@ var RegistroComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/componentes/tateti/tateti.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!-- <div class=\"fondo\">\n    <h1 style=\"color:red; text-align: center\">TaTeTi</h1> -->\n<div style=\"text-align:center\">\n    <h1>\n      {{nuevoJuego.nombre}}!\n    </h1>\n</div>\n<form id=\"msform\">    \n  <fieldset>\n    <div class=\"row\">\n      <div class=\"container\">\n          <div style=\"text-align: center\">\n                <button mat-raised-button (click)=\"presion(0,0)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[0][0]}}</button>\n                <button mat-raised-button (click)=\"presion(0,1)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[0][1]}}</button>\n                <button mat-raised-button (click)=\"presion(0,2)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[0][2]}}</button>\n                <br>\n                <button mat-raised-button (click)=\"presion(1,0)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[1][0]}}</button>\n                <button mat-raised-button (click)=\"presion(1,1)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[1][1]}}</button>\n                <button mat-raised-button (click)=\"presion(1,2)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[1][2]}}</button>\n                <br>\n                <button mat-raised-button (click)=\"presion(2,0)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[2][0]}}</button>\n                <button mat-raised-button (click)=\"presion(2,1)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[2][1]}}</button>\n                <button mat-raised-button (click)=\"presion(2,2)\" class=\"button2 b-orange rot-135\">{{nuevoJuego.posiciones[2][2]}}</button>\n            </div>\n            <div style=\"text-align: center\">\n                <button  *ngIf=\"botonComenzarVerificar == true\" (click)=\"primerJuego()\"  class=\"next action-button\" >Jugar!</button>\n                <button mat-button class=\"next action-button\" (click)=\"nuevoJuego.reiniciar()\">Reiniciar</button>\n            </div>\n            <div id=\"snackbar\">{{Mensajes}}</div>\n<!-- \n\n\n\n            <link href=\"https://fonts.googleapis.com/css?family=Roboto:100\" rel=\"stylesheet\">\n<div class=\"ctn\">\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button b-green\">Green Button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button b-pink\">Pink Button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button b-red\">Red Button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button b-orange\">Orange Button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button b-blue\">Blue Button</button>\n<br/>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button2 b-green rot-135\">Green button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button2 b-pink rot-135\">Pink button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button2 b-red rot-135\">Red button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button2 b-orange rot-135\">Orange button</button>\n<button (click)=\"nuevoJuego.reiniciar()\" class=\"button2 b-blue rot-135\">Blue button</button> -->\n<!-- </div> -->\n\n      </div> <!--contenenedor-->\n<!-- </div> -->\n    </div> <!-- row -->\n  </fieldset>\n  <br><br><br>\n<form>   \n \n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/componentes/tateti/tateti.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".fondo {\n  margin-top: -60px;\n  padding: 4%;\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.casilla {\n  height: 5rem;\n  margin: 0.5rem;\n  font-size: 3rem;\n  border-radius: 25px;\n  width: 10rem;\n  background-color: rgba(233, 111, 55, 0.692);\n  border: solid rgba(129, 46, 7, 0.692); }\n\n#snackbar {\n  visibility: hidden;\n  min-width: 250px;\n  margin-left: -125px;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  z-index: 1;\n  left: 50%;\n  bottom: 30px;\n  font-size: 17px; }\n\n#snackbar.Ganador {\n  background-color: rgba(5, 159, 46, 0.842); }\n\n#snackbar.Perdedor {\n  background-color: rgba(255, 0, 0, 0.87); }\n\n#snackbar.show {\n  visibility: visible;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s; }\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n#msform {\n  width: 400px;\n  text-align: center;\n  position: relative;\n  margin-left: 18%; }\n\n#msform fieldset {\n  background: rgba(67, 72, 82, 0.884);\n  border: 0 none;\n  border-radius: 3px;\n  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);\n  padding: 20px 30px;\n  box-sizing: border-box;\n  width: 200%;\n  margin: 0 10%;\n  /*stacking fieldsets above each other*/\n  position: relative; }\n\n/*Hide all except first fieldset*/\n#msform fieldset:not(:first-of-type) {\n  display: none; }\n\n/*inputs*/\n#msform input, #msform textarea {\n  padding: 15px;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  margin-bottom: 10px;\n  width: 100%;\n  box-sizing: border-box;\n  font-family: montserrat;\n  color: #2C3E50;\n  font-size: 13px; }\n\n/*buttons*/\n#msform .action-button {\n  width: 170px;\n  background: rgba(0, 225, 255, 0.568);\n  font-weight: bold;\n  color: #001858;\n  border: 0 none;\n  border-radius: 10px;\n  cursor: pointer;\n  padding: 10px 5px;\n  margin: 10px 5px; }\n\n#msform .action-button:hover, #msform .action-button:focus {\n  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60; }\n\n/* BY ESTEBAN MAUVAIS\r\n[--=INDEX=--]\r\n/BODY\r\n/GRADIENTS\r\n  /GREEN\r\n  /PINK\r\n  /RED\r\n  /ORANGE\r\n  /BLUE\r\n/BASE BUTTON\r\n/ROTATE\r\n[--=END INDEX=--]\r\n*/\n/*BODY*/\nbody {\n  font-family: 'Roboto', sans-serif; }\n\nbody, .button:after {\n  background: #2c3e50; }\n\n.ctn {\n  display: block;\n  margin: auto;\n  text-align: center; }\n\nfooter {\n  position: fixed;\n  bottom: 5px;\n  right: 5px;\n  color: #FFF; }\n\nfooter a, footer a:after {\n  font-size: 1em !important; }\n\n/*END BODY*/\n/*GRADIENTS*/\n/*GREEN*/\n.b-green, .b-green:before {\n  background: #499bea;\n  background: -webkit-gradient(left bottom, right top, color-stop(0%, #499bea), color-stop(100%, #1abc9c));\n  background: linear-gradient(45deg, #499bea 0%, #1abc9c 100%);\n  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#1abc9c', GradientType=1 ); }\n\n/*PINK*/\n.b-pink, .b-pink:before {\n  background: #e748ea;\n  background: -webkit-gradient(left bottom, right top, color-stop(0%, #e748ea), color-stop(100%, #4b1abc));\n  background: linear-gradient(45deg, #e748ea 0%, #4b1abc 100%);\n  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e748ea', endColorstr='#4b1abc', GradientType=1 ); }\n\n/*RED*/\n.b-red, .b-red:before {\n  background: #ea6e48;\n  background: -webkit-gradient(left bottom, right top, color-stop(0%, #ea6e48), color-stop(100%, #bc1a63));\n  background: linear-gradient(45deg, #ea6e48 0%, #bc1a63 100%);\n  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea6e48', endColorstr='#bc1a63', GradientType=1 ); }\n\n/*ORANGE*/\n.b-orange, .b-orange:before {\n  background: #ffc107;\n  background: -webkit-gradient(left bottom, right top, color-stop(0%, #ffc107), color-stop(100%, #ff5722));\n  background: linear-gradient(45deg, #ffc107 0%, #ff5722 100%);\n  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc107', endColorstr='#ff5722', GradientType=1 ); }\n\n/*BLUE*/\n.b-blue, .b-blue:before {\n  background: #0576ff;\n  background: -webkit-gradient(left bottom, right top, color-stop(0%, #0576ff), color-stop(100%, #24f8ff));\n  background: linear-gradient(45deg, #0576ff 0%, #24f8ff 100%);\n  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0576ff', endColorstr='#24f8ff', GradientType=1 ); }\n\n/*END GRADIENTS*/\n/*BASE BUTTON*/\n.button {\n  display: inline-block;\n  position: relative;\n  text-decoration: none;\n  padding: .5em;\n  font-weight: bold;\n  transition: all .5s;\n  -webkit-text-fill-color: transparent;\n  height: 5rem;\n  margin: 0.5rem;\n  font-size: 3rem;\n  border-radius: 25px;\n  width: 10rem; }\n\n.button:hover {\n  text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.75); }\n\n.button:hover:after {\n  left: 100%;\n  top: 100%;\n  bottom: 100%;\n  right: 100%; }\n\n.button:before {\n  content: '';\n  display: block;\n  position: absolute;\n  left: 0;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  z-index: -1;\n  border-radius: 5px;\n  transition: all .5s; }\n\n.button:after {\n  content: '';\n  display: block;\n  position: absolute;\n  left: 2px;\n  top: 2px;\n  bottom: 2px;\n  right: 2px;\n  z-index: -1;\n  border-radius: 5px;\n  transition: all .5s; }\n\n.button2 {\n  display: inline-block;\n  font-size: 2em;\n  margin: .5em;\n  padding-left: 5%;\n  padding-right: 5%;\n  border-radius: 5px;\n  transition: all .5s;\n  filter: hue-rotate(0deg);\n  color: #FFF;\n  text-decoration: none; }\n\n/*END BASE BUTTON*/\n/*ROTATE*/\n.rot-360-noscoop:hover {\n  filter: hue-rotate(360deg);\n  transform: rotate(360deg); }\n\n.rot-135:hover {\n  filter: hue-rotate(135deg); }\n\n.rot-90:hover {\n  filter: hue-rotate(90deg); }\n\n/*END ROTATE*/\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/componentes/tateti/tateti.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TatetiComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clases_tateti__ = __webpack_require__("../../../../../src/app/clases/tateti.ts");
+// import { Component, OnInit } from '@angular/core';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+// @Component({
+//   selector: 'app-tateti',
+//   templateUrl: './tateti.component.html',
+//   styleUrls: ['./tateti.component.scss']
+// })
+// export class TatetiComponent implements OnInit {
+//   constructor() { }
+//   ngOnInit() {
+//   }
+// }
+
+
+var TatetiComponent = /** @class */ (function () {
+    function TatetiComponent() {
+        this.jugador = JSON.parse(localStorage.getItem("Id"));
+        this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_tateti__["a" /* Tateti */]("Tateti", false, this.jugador, 0, "0");
+        this.ocultarVerificar = true;
+        this.arrayResultados = JSON.parse(this.jugador);
+    }
+    TatetiComponent.prototype.generar = function () {
+        this.ocultarVerificar = false;
+        this.nuevoJuego.generarTateti();
+        this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_tateti__["a" /* Tateti */]("Tateti", false, this.jugador, 0, "0");
+    };
+    TatetiComponent.prototype.presion = function (fila, columna) {
+        if (this.nuevoJuego.posiciones[fila][columna] == '-' && this.nuevoJuego.jugadas > 0) {
+            this.nuevoJuego.posiciones[fila][columna] = this.nuevoJuego.juega;
+            this.nuevoJuego.cambiarJugador();
+            this.nuevoJuego.eleccionMaquina();
+            this.nuevoJuego.cambiarJugador();
+            this.quienGano();
+        }
+    };
+    TatetiComponent.prototype.quienGano = function () {
+        if (this.verificarGano('O')) {
+            this.MostarMensaje("Sos un genio, le ganaste a la inteligencia artificial", true);
+            this.nuevoJuego.gano = true;
+            this.nuevoJuego.jugador = sessionStorage.getItem('user');
+            this.nuevoJuego.guardarLocal();
+            this.nuevoJuego.generarTateti();
+        }
+        if (this.verificarGano('X')) {
+            this.MostarMensaje("La maquina te gano", false);
+            this.nuevoJuego.gano = false;
+            this.nuevoJuego.jugador = sessionStorage.getItem('user');
+            this.nuevoJuego.guardarLocal();
+            this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_tateti__["a" /* Tateti */]("Tateti", false, this.jugador, 0, "0");
+            this.nuevoJuego.generarTateti();
+        }
+        if (this.nuevoJuego.jugadas == 0 && this.nuevoJuego.juega == 'X') {
+            this.nuevoJuego.gano = false;
+            this.nuevoJuego.jugador = sessionStorage.getItem('user');
+            this.nuevoJuego.guardarLocal();
+            this.MostarMensaje("empate", false);
+        }
+    };
+    TatetiComponent.prototype.verificarGano = function (ficha) {
+        if (this.nuevoJuego.posiciones[0][0] == ficha && this.nuevoJuego.posiciones[0][1] == ficha && this.nuevoJuego.posiciones[0][2] == ficha)
+            return true;
+        if (this.nuevoJuego.posiciones[1][0] == ficha && this.nuevoJuego.posiciones[1][1] == ficha && this.nuevoJuego.posiciones[1][2] == ficha)
+            return true;
+        if (this.nuevoJuego.posiciones[2][0] == ficha && this.nuevoJuego.posiciones[2][1] == ficha && this.nuevoJuego.posiciones[2][2] == ficha)
+            return true;
+        if (this.nuevoJuego.posiciones[0][0] == ficha && this.nuevoJuego.posiciones[1][0] == ficha && this.nuevoJuego.posiciones[2][0] == ficha)
+            return true;
+        if (this.nuevoJuego.posiciones[0][1] == ficha && this.nuevoJuego.posiciones[1][1] == ficha && this.nuevoJuego.posiciones[2][1] == ficha)
+            return true;
+        if (this.nuevoJuego.posiciones[0][2] == ficha && this.nuevoJuego.posiciones[1][2] == ficha && this.nuevoJuego.posiciones[2][2] == ficha)
+            return true;
+        if (this.nuevoJuego.posiciones[0][0] == ficha && this.nuevoJuego.posiciones[1][1] == ficha && this.nuevoJuego.posiciones[2][2] == ficha)
+            return true;
+        if (this.nuevoJuego.posiciones[0][2] == ficha && this.nuevoJuego.posiciones[1][1] == ficha && this.nuevoJuego.posiciones[2][0] == ficha)
+            return true;
+    };
+    TatetiComponent.prototype.MostarMensaje = function (mensaje, ganador) {
+        if (mensaje === void 0) { mensaje = "este es el mensaje"; }
+        if (ganador === void 0) { ganador = false; }
+        this.Mensajes = mensaje;
+        var x = document.getElementById("snackbar");
+        if (ganador) {
+            x.className = "show Ganador";
+        }
+        else {
+            x.className = "show Perdedor";
+        }
+        var modelo = this;
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+            modelo.ocultarVerificar = false;
+        }, 3000);
+        console.info("objeto", x);
+    };
+    TatetiComponent.prototype.ngOnInit = function () {
+        this.nuevoJuego.generarTateti();
+    };
+    TatetiComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+            selector: 'app-tateti',
+            template: __webpack_require__("../../../../../src/app/componentes/tateti/tateti.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/componentes/tateti/tateti.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], TatetiComponent);
+    return TatetiComponent;
+}());
+
+//# sourceMappingURL=tateti.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/pipes/sexo.pipe.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2393,7 +3131,9 @@ var SexoPipe = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__componentes_jugadores_listado_jugadores_listado_component__ = __webpack_require__("../../../../../src/app/componentes/jugadores-listado/jugadores-listado.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__componentes_piedra_papel_tijera_piedra_papel_tijera_component__ = __webpack_require__("../../../../../src/app/componentes/piedra-papel-tijera/piedra-papel-tijera.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__componentes_paises_paises_component__ = __webpack_require__("../../../../../src/app/componentes/paises/paises.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__componentes_animales_animales_component__ = __webpack_require__("../../../../../src/app/componentes/animales/animales.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__componentes_memotec_memotec_component__ = __webpack_require__("../../../../../src/app/componentes/memotec/memotec.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__componentes_tateti_tateti_component__ = __webpack_require__("../../../../../src/app/componentes/tateti/tateti.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__componentes_anagrama_anagrama_component__ = __webpack_require__("../../../../../src/app/componentes/anagrama/anagrama.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2420,20 +3160,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// import { AnimalesComponent } from '../componentes/animales/animales.component';
+
+
 
 // declaro donde quiero que se dirija
 var MiRuteo = [
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_3__componentes_login_login_component__["a" /* LoginComponent */] },
+    { path: 'Principal', component: __WEBPACK_IMPORTED_MODULE_5__componentes_principal_principal_component__["a" /* PrincipalComponent */] },
     { path: 'Jugadores', component: __WEBPACK_IMPORTED_MODULE_14__componentes_jugadores_listado_jugadores_listado_component__["a" /* JugadoresListadoComponent */] },
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_5__componentes_principal_principal_component__["a" /* PrincipalComponent */] },
     { path: 'Login', component: __WEBPACK_IMPORTED_MODULE_3__componentes_login_login_component__["a" /* LoginComponent */] },
-    //{path: 'Mapa' , component: MapaDeGoogleComponent},
     { path: 'QuienSoy', component: __WEBPACK_IMPORTED_MODULE_13__componentes_quien_soy_quien_soy_component__["a" /* QuienSoyComponent */] },
     { path: 'Registro', component: __WEBPACK_IMPORTED_MODULE_11__componentes_registro_registro_component__["a" /* RegistroComponent */] },
     { path: 'Principal', component: __WEBPACK_IMPORTED_MODULE_5__componentes_principal_principal_component__["a" /* PrincipalComponent */] },
     { path: 'Listado', component: __WEBPACK_IMPORTED_MODULE_9__componentes_listado_listado_component__["a" /* ListadoComponent */] },
-    //{path: 'Paises' , component: ListadoDePaisesComponent},
     { path: 'Paises', component: __WEBPACK_IMPORTED_MODULE_16__componentes_paises_paises_component__["a" /* PaisesComponent */] },
-    { path: 'Animales', component: __WEBPACK_IMPORTED_MODULE_17__componentes_animales_animales_component__["a" /* AnimalesComponent */] },
+    { path: 'Memotec', component: __WEBPACK_IMPORTED_MODULE_17__componentes_memotec_memotec_component__["a" /* MemotecComponent */] },
+    //{path: '' , component: PrincipalComponent},     
+    //{path: 'Paises' , component: ListadoDePaisesComponent},
+    //{path: 'Mapa' , component: MapaDeGoogleComponent},
     { path: 'Juegos',
         component: __WEBPACK_IMPORTED_MODULE_10__componentes_juegos_juegos_component__["a" /* JuegosComponent */],
         children: [{ path: '', component: __WEBPACK_IMPORTED_MODULE_12__componentes_menu_card_menu_card_component__["a" /* MenuCardComponent */] },
@@ -2441,6 +3186,10 @@ var MiRuteo = [
             { path: 'AdivinaMasListado', component: __WEBPACK_IMPORTED_MODULE_7__componentes_adivina_mas_listado_adivina_mas_listado_component__["a" /* AdivinaMasListadoComponent */] },
             { path: 'PiedraPapelTijera', component: __WEBPACK_IMPORTED_MODULE_15__componentes_piedra_papel_tijera_piedra_papel_tijera_component__["a" /* PiedraPapelTijeraComponent */] },
             { path: 'AgilidadaMasListado', component: __WEBPACK_IMPORTED_MODULE_8__componentes_agilidad_mas_listado_agilidad_mas_listado_component__["a" /* AgilidadMasListadoComponent */] },
+            { path: 'Memotec', component: __WEBPACK_IMPORTED_MODULE_17__componentes_memotec_memotec_component__["a" /* MemotecComponent */] },
+            { path: 'Anagrama', component: __WEBPACK_IMPORTED_MODULE_19__componentes_anagrama_anagrama_component__["a" /* AnagramaComponent */] },
+            { path: 'Tateti', component: __WEBPACK_IMPORTED_MODULE_18__componentes_tateti_tateti_component__["a" /* TatetiComponent */] },
+            { path: 'Listado', component: __WEBPACK_IMPORTED_MODULE_9__componentes_listado_listado_component__["a" /* ListadoComponent */] },
             { path: 'Agilidad', component: __WEBPACK_IMPORTED_MODULE_6__componentes_agilidad_aritmetica_agilidad_aritmetica_component__["a" /* AgilidadAritmeticaComponent */] }]
     },
     { path: '**', component: __WEBPACK_IMPORTED_MODULE_4__componentes_error_error_component__["a" /* ErrorComponent */] },
@@ -2546,6 +3295,61 @@ var ArchivosJugadoresService = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=archivos-jugadores.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/servicios/auth.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+// import { AngularFireAuth } from "@angular/fire/auth";
+var AuthService = /** @class */ (function () {
+    // constructor(private afAuth :  AngularFireAuth) { 
+    //   console.log('Hello AuthProvider Provider');
+    // }
+    function AuthService() {
+        console.log('Hello AuthProvider Provider');
+    }
+    // Login de usuario
+    AuthService.prototype.loginUser = function (email, password) {
+        var usuario = JSON.parse(localStorage.getItem("user"));
+        if (usuario.email === email && usuario.clave === 'password') {
+            return true;
+        }
+        // return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        //   .then(user=>Promise.resolve(user))
+        //   .catch(err=>Promise.reject(err))
+    };
+    // Devuelve la session
+    // public get Session(){
+    // //  return this.afAuth.authState;
+    // }
+    // Logout de usuario
+    AuthService.prototype.logout = function () {
+        // this.afAuth.auth.signOut().then(()=>{
+        // hemos salido
+        // })
+    };
+    AuthService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], AuthService);
+    return AuthService;
+}());
+
+//# sourceMappingURL=auth.service.js.map
 
 /***/ }),
 
