@@ -8,41 +8,39 @@
       <div class="col-sm-10">
       <div class="container">
             <div class="bordeNumeros">
-                  <button  *ngIf="botonComenzarVerificar == true" (click)="primerJuego()"  class="next action-button" >Jugar!</button>
-                  <div class="img"><br>             
+                  <button  *ngIf="botonComenzarVerificar" (click)="primerJuego()"  class="next action-button" >Jugar!</button>
+                  <div *ngIf="!botonComenzarVerificar" class="img"><br>             
                       <h1>Seleccione una opción</h1>
                       <div class="box">
                           <button id="botonPiedra" class="button"(click)="generarPartida(1)"> Piedra </button> 
                           <button id="botonPapel"  class="button"(click)="generarPartida(2)"> Papel </button>
                           <button id="botonTijera" class="button"(click)="generarPartida(3)"> Tijera </button>
                       </div>     
-                      <br><br><br> 
+                      <br>
                       <div> 
-                          <img src="../../../assets/PPT/img/usuario.png"  >
-                          <img src="../../../assets/PPT/img/neo.png"  >
+                          <img class="imagen" src="../../../assets/PPT/img/usuario.png"  >
+                          <img class="imagen" src="../../../assets/PPT/img/neo.png"  >
                       </div>           
                       <hr class="style12">               
                       <!-- resultados -->
-                      <div class="resultados">
-                          <img id="resultado1"  >
-                          <img id="resultado2" >
+                      <div class="resultadosImagenes">
+                            <img class="imagenJuego" id="resultado1">
+                            <img class="imagenJuego" id="resultado2">
                       </div>
                       <section id="msjPuntos"></section>
                       <h3 *ngIf="labelPuntos == true" >
-                          <kbd class= "label-info">Vos <i class="far fa-hand-point-right"></i> {{puntos}}</kbd>
-                          VS
-                          <kbd class= "label-danger"> {{puntosRival}} <i class="far fa-hand-point-left"></i> Rival</kbd>
+                          <p class= "resultados">{{puntos}} Vos ------|------  Rival  {{puntosRival}}</p>
                       </h3>
                       <h3 *ngIf="labelGanaste == true" >
-                          <kbd class= "label-success"> Ganaste!!! <i class="far fa-thumbs-up"></i></kbd>
+                          <p class= "resultados"> Ganaste!!! <i class="far fa-thumbs-up"></i></p>
                       </h3>
                       <h3 *ngIf="labelPerdiste == true" >
-                          <kbd class= "label-danger"> Perdiste :(<i class="far fa-thumbs-down"></i></kbd>
+                          <p class= "label-danger"> Perdiste :(<i class="far fa-thumbs-down"></i></p>
                       </h3>        
                   </div>
-                  <div class = "botones">                 
+                  <!-- <div class = "botones">                 
                         <button  type="buttons"   class="next action-button" >Salir</button>                
-                  </div>
+                  </div> -->
             </div>  <!--bordeNumeros-->           
       </div> <!--container-->
     </div>

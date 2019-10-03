@@ -132,7 +132,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
     
   
       if(ganador==true){
-          errorEmail.innerHTML = (`<h1 id='msjPuntos'><kbd class= label-success>${mensaje} <i class="far fa-smile"></i> </kbd></h1>`);
+          errorEmail.innerHTML = (`<h1 id='msjPuntos'><p class='resultados'>${mensaje} <i class="far fa-smile"></i> </p></h1>`);
           resultado1.src = `../../../assets/PPT/img/a${this.elecccionJugador}.png`;
           resultado2.src = `../../../assets/PPT/img/m${this.eleccionMalo}.png`;  
           this.nuevoJuego.gano= true;
@@ -141,7 +141,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
           
         }
       if(ganador==false) {
-        errorEmail.innerHTML = (`<h1 id='msjPuntos'><kbd class= label-danger>${mensaje} <i class="far fa-frown"></i></kbd></h1>`);
+        errorEmail.innerHTML = (`<h1 id='msjPuntos'><p class='resultados'>${mensaje} <i class="far fa-frown"></i></p></h1>`);
         resultado1.src = `../../../assets/PPT/img/a${this.elecccionJugador}.png`;
         resultado2.src = `../../../assets/PPT/img/m${this.eleccionMalo}.png`;        
         this.nuevoJuego.gano= false;
@@ -150,7 +150,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
         
         }
       if (ganador==null) {
-        errorEmail.innerHTML = (`<h1 id='msjPuntos'><kbd class= label-warning>${mensaje} <i class="far fa-meh"></i></kbd></h1>`);
+        errorEmail.innerHTML = (`<h1 id='msjPuntos'><p class='resultados'>${mensaje} <i class="far fa-meh"></i></p></h1>`);
         resultado1.src = `../../../assets/PPT/img/a${this.elecccionJugador}.png`;
         resultado2.src = `../../../assets/PPT/img/m${this.eleccionMalo}.png`;
     
@@ -162,7 +162,8 @@ export class PiedraPapelTijeraComponent implements OnInit {
         errorEmail.innerHTML = "";
         resultado1.src = "";
         resultado2.src = "";
-      }, 5000 );
+     }, 5000 );
+           
   
       setTimeout( () => {
         this.mostrarGif = true
@@ -170,6 +171,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
         botonPapel.disabled =false;
         botonTijera.disabled =false;
       }, 2500 );
+
     
      } 
 

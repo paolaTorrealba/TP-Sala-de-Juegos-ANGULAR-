@@ -2,7 +2,23 @@ html, body{
   height: 50%;
   padding: 0;
   margin: 0;
+  color: #cbd4dc;
 }
+
+.resultadosImagenes{
+  padding: 0.2rem 0.4rem;
+  font-size: 87.5%;
+  color: #ffc107;
+  background-color: #055aaf0a;
+  border-radius: 0.2rem;
+}   
+.resultados{     
+     padding-left: 7%;
+     font-size: 87.5%;
+     color: #ffc107;
+     background-color: #055aaf0a;
+     border-radius: 0.2rem;
+}   
 #msform {
 	/* width: 400px; */
 	margin: 50px auto;
@@ -64,9 +80,16 @@ background-color: aquamarine;
   width: 100%;
 }
 .imagen{
-  margin-left: 50px;
+  margin-left: 40px;
   vertical-align: middle;
-    border-style: none;
+  border-style: none;
+  width: 15%;
+}
+.imagenJuego{
+  margin-left: 40px;
+  vertical-align: middle;
+  border-style: none;
+  width: 10%;
 }
 
 
@@ -83,19 +106,20 @@ background-color: aquamarine;
 
 body {
   font-family: Arial, sans-serif;
-  background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat;
+  /* background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat; */
   background-size: cover;
+  color: #cbd4dc;
   height: 100vh;
 }
 .titulo{
   text-align: center;
-  font-family: Tahoma, Arial, sans-serif;
+  font-family: unset;
   color: rgb(0, 0, 0);
   /* margin: 50px 0; */
   margin-bottom: 10px;
   margin-top: 30px;
-  font-size: 3.5rem;
   text-align: center;
+  font-size: 2.5rem;
 }
 hr.style12 {
 	margin-top: 1rem;
@@ -110,14 +134,15 @@ h1 {
   color: #06D85F;
   /* margin: 50px 0; */
   margin-bottom: 10px;
-  margin-top: 30px;
+  margin-top: -10px;
 }
 
 .box {
-  width: 35%;
+  width: 40%;
   margin: 0 auto;
   background: #212529a3;
-  padding: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border: 2px solid #fff;
   border-radius: 20px/50px;
   background-clip: padding-box;

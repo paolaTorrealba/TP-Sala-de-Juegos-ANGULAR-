@@ -3,7 +3,7 @@ import { Juego } from '../clases/juego'
 export class JuegoAdivina extends  Juego {
     numeroSecreto: number = 0;
     numeroIngresado = 0;
-    nombre="Adivina el numero";
+    nombre="Adivina el Número";
     
     constructor(nombre?: string, gano?: boolean, jugador?:string, intentos?:any,resultado?:string) {
         super(nombre,gano,jugador, intentos,resultado);      
