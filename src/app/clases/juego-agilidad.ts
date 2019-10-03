@@ -5,6 +5,7 @@ export class JuegoAgilidad  extends  Juego {
     segundoNumero:number;
     resultado: number;
     operador: string;
+    numOperador:number;
     resultadoUsuario:number
     nombre="Agilidad Aritmética";
 
@@ -13,12 +14,11 @@ export class JuegoAgilidad  extends  Juego {
       }
 
     generar()
-    {
+    {     
         this.primerNumero = Math.round(Math.random()*10);
         this.segundoNumero = Math.round(Math.random()*10);
-        let numOperador = Math.round(Math.random()*3);
-
-        switch(numOperador)
+        this.numOperador = Math.round(Math.random()*3);  
+        switch( this.numOperador)
         {
             case 0:
                 this.operador = "+";
@@ -41,7 +41,9 @@ export class JuegoAgilidad  extends  Juego {
     }
     
     public verificar()
-        {        
+        {      
+ 
+
             if(this.resultado == this.resultadoUsuario)
             {
                 this.gano = true;
@@ -56,55 +58,3 @@ export class JuegoAgilidad  extends  Juego {
             }        
         }
     }
-
-//     primerNumero :number;
-//     segundoNumero :number;
-//     operadorList :string;
-//     operadorSeleccionado : any='';
-//     resultado = 0;
-//     resultadoIngresado = 0;
-
-//     constructor(nombre?: string, gano?: boolean, jugador?:string) {
-//         super("Agilidad Aritmetica",gano,jugador);      
-//     }
-
-//     public verificar() {
-//         if ((this.primerNumero !=0) &&  (this.segundoNumero!=0) && (this.operadorSeleccionado!='')) {
-//             switch(this.operadorSeleccionado) { 
-//                 case '+': { 
-//                     this.resultado= this.primerNumero +  this.segundoNumero;
-//                    break; 
-//                 } 
-//                 case '-': { 
-//                     this.resultado= this.primerNumero -  this.segundoNumero;         
-//                    break; 
-//                 } 
-//                 case '/': { 
-//                     if(this.segundoNumero>0)
-//                         this.resultado= this.primerNumero / this.segundoNumero;   
-//                     else  {
-//                         console.log("error al dividir por 0");
-//                     }    
-
-//                 break; 
-//                 } 
-//                 case '*': { 
-//                     this.resultado= this.primerNumero *  this.segundoNumero;         
-//                    break; 
-//                 } 
-//                 default: { 
-                   
-//                    break; 
-//                 } 
-//             } 
-           
-//             if(this.resultadoIngresado == this.resultado )
-//                this.gano = true;
-//         }
-//         if (this.gano) {
-//           return true;
-//         } else {
-//           return false;
-//         }
-//      }
-// }

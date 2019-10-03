@@ -75,15 +75,16 @@ html, body{
   }
   /*inputs*/
   #msform input, #msform textarea {
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      margin-bottom: 10px;
-      width: 100%;
-      box-sizing: border-box;
-      font-family: montserrat;
-      color: #2C3E50;
-      font-size: 13px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    color: #2C3E50;
+    font-size: 25px;
+    text-align: center;
   }
   /*buttons*/
   #msform .action-button {
@@ -153,11 +154,24 @@ html, body{
   
   h1 {
     text-align: center;
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: inherit;
     color: #06D85F;
     /* margin: 50px 0; */
     margin-bottom: 10px;
     margin-top: 30px;
+  }
+  .btnVerificar{	
+    border-color: #ffffff00;
+    background-color: #000000ba;
+    width: 20%;
+    height: 40px;
+    color: rgba(251, 255, 0, 0.979);
+  }
+  .btnReiniciar{
+    border-color: #ffffff00;
+    background-color: #000000ba;
+  width: 50%;
+  color:rgba(9, 255, 0, 0.979); 
   }
   .animales {
       /* margin: 0 auto; */
@@ -173,7 +187,8 @@ html, body{
     width: 35%;
     margin: 0 auto;
     background: #212529a3;
-    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border: 2px solid #fff;
     border-radius: 20px/50px;
     background-clip: padding-box;
@@ -225,9 +240,13 @@ html, body{
   
   .popup h2 {
     margin-top: 0;
-    color: #333;
+    color: rgb(255, 255, 255) !important;
     font-family: Tahoma, Arial, sans-serif;
   }
+  .h2{ 
+    margin-top: 0;
+    color: rgb(255, 255, 255);
+    font-family: Tahoma, Arial, sans-serif;}
   .popup .close {
     position: absolute;
     top: 20px;

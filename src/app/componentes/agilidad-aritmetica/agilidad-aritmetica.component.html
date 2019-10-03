@@ -3,23 +3,18 @@
 </div>
 <form id="msform">    
    <fieldset>
-        <button  (click)="generarnumero()"  name="next" class="next action-button" >Nuevo Numero</button>
-        <br>
-        <h3 class="fs-title">Ingrese primer numero</h3>
-        <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="primerIngresado" type="text" class="form-control" />
-        <h3 class="fs-title">Ingrese primer numero</h3>
-            <ul>
-                <li *ngFor="let item of operadorLista">
-                  {{item}}
-                </li>
-              </ul>          
-      <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="operadorIngresado" type="text" class="form-control" />
-      <button *ngIf="nuevoJuego.numeroIngresado!=0" (click)="verificar()" type="button" class="btn btn-outline-dark" style="color:rgba(251, 255, 0, 0.979); border-color: #ffffff00;">Verificar</button>
-      <br><br>
-      <div id="snackbar">{{Mensajes}}</div>       
-    </fieldset>
-    <br>
-    <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-    <h3 [hidden]="nuevoJuego.gano">--- Usted aún no gano ---</h3>
+      <ul style="list-style:none;margin-left: 417px; color:white;">
+         <li>Primer número: <input value={{nuevoJuego.primerNumero}}  placeholder="Primer Numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/></li>
+         <li>Operador: <input value={{nuevoJuego.operador}}  placeholder="Operador" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/></li>
+         <li>Segundo número: <input  value={{nuevoJuego.segundoNumero}} placeholder="Segundo Numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/></li>
+         <li>Respuesta: <input [(ngModel)]="nuevoJuego.resultadoUsuario" placeholder="ingrese Respuesta" name="numeroIngresado" type="text" class="form-control" style="width:50%"/></li>
+         <li></li>        
+       </ul>       
+       <br>
+           <h2 [hidden]="!ocultarVerificar"><button  (click)="NuevoJuego()"  class="btn btn-outline-warning btn-lg" style="margin-left: 50%;" >Nuevo</button></h2>
+          <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg" style="margin-left: 50%;" >Verificar {{Tiempo}} </button></h2>
+           
+       <div id="snackbar" >{{Mensajes}}</div>    <br><br><br><br><br>
+      </fieldset>
 </form>
   

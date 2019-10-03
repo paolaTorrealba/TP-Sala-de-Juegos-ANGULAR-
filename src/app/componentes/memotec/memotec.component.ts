@@ -52,8 +52,7 @@ export class MemotecComponent implements OnInit {
       this.mensaje='';
 }
 // Selecciona animales desde la lista cargada de forma random
- obtenerAnimalesRandom() {
-  
+ obtenerAnimalesRandom() {  
       this.animalesRandom= [];  
       console.log(this.animales);
       let num=0;
@@ -84,16 +83,27 @@ jugar() {
           clearInterval(this.repetidor);
           
           this.tiempo=8;
+          console.log(numRandom);
+          console.log(this.animalesRandom[numRandom-1]);
+          console.log(this.nombreAnimal=this.animalesRandom[numRandom-1].nombreAnimal)
           this.mensaje="Cual es el nombre del animal de la foto: "+numRandom+"?";
           this.nombreAnimal=this.animalesRandom[numRandom-1].nombreAnimal;
           this.mostrarFotos=false;
         }
         }, 900);
+
+      // }, 9000);
 }
 
 verificar() {
+      console.log("respuesta antes ");
+      console.log(this.respuesta);
       this.respuesta = this.respuesta.toLowerCase();
-      if(this.respuesta == this.nombreAnimal) {   
+      console.log("respuesta Tolower");
+      console.log(this.respuesta);
+      console.log("nomre animal");
+      console.log(this.nombreAnimal);
+      if(this.respuesta === this.nombreAnimal) {   
           this.mensajeRespuesta = "Felicidades!! Ganaste";
       } 
       else {
