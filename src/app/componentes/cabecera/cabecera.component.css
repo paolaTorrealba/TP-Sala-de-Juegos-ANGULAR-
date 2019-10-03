@@ -14,8 +14,8 @@ body {
   /*Neon*/
   p {
     text-align: center;
-    font-size: 7em;
-    margin: 20px 0 20px 0;
+    font-size: 6em;
+    /* margin: 20px 0 20px 0; */
   }
   
   a {

@@ -53,16 +53,17 @@
                                         <div class="form-group">
                                             <input placeholder="Contraseña"  [(ngModel)]="user.password " type="password" name="LGform1_pwd" class="form-control" value="" required/>
                                         </div>
-                                        <div class="form-group" *ngIf="logeando">
+                                        <div class="buttonsLogin" *ngIf="logeando">
                                                 <!-- <button  class="btn btn-primary" (click)="MoverBarraDeProgreso()" >Ingresar</button> -->
-                                                <button   class="btn btn-primary" (click)="entrarComoAdmin()" >Ingresar como admin</button>
-                                                <button class="btn btn-primary"  (click)="entrarComoInvitado()" >Ingresar como invitado</button>
+                                                <button class="btn login" (click)="entrarComoAdmin()" >Entrar como Admin</button>
+                                                <button class="btn login"  (click)="entrarComoInvitado()" >Entrar como Invitado</button>
                                         </div>
                                         <div *ngIf="!logeando" class="progress">
                                                 <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >
                                                   {{progresoMensaje}} - {{progreso}}%
                                                 </div>
-                                            </div>
+                                                <br> <br> <br> <br>
+                                         </div>
                                         <!-- <div class="container" *ngIf="logeando" >
                                                 <button type="button" class="cancelbtn" (click)="borrar()">Cancelar</button>
                                                 <button type="button" class="aceptbtn" routerLink="/Registro" >Registrarse</button>
