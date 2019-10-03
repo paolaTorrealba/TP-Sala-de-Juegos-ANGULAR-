@@ -5,12 +5,13 @@ export class JuegoPiedraPapelTijera extends Juego {
     elecccionJugador:number =0;
     eleccionRandom:number =0;
     resultado:boolean;
+    nombre = "Piedra, Papel o Tijera";
 
     constructor(nombre?: string, gano?: boolean, jugador?:string, intentos?:any,resultado?:string) {
         //super("Piedra-Papel-Tijera",gano,jugador);
         super(nombre, gano,jugador, intentos, resultado);
         //this.jugador =localStorage.getItem("jugador");
-        this.nombre = "Piedra, Papel o Tijera";
+        
       }
 
      

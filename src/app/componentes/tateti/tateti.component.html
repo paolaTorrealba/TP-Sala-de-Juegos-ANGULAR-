@@ -1,9 +1,5 @@
-<!-- <div class="fondo">
-    <h1 style="color:red; text-align: center">TaTeTi</h1> -->
 <div style="text-align:center">
-    <h1>
-      {{nuevoJuego.nombre}}!
-    </h1>
+    <h1>{{nuevoJuego.nombre}}</h1>
 </div>
 <form id="msform">    
   <fieldset>
@@ -24,13 +20,16 @@
             </div>
             <div style="text-align: center">
                 <button  *ngIf="botonComenzarVerificar == true" (click)="primerJuego()"  class="next action-button" >Jugar!</button>
-                <button mat-button class="next action-button" (click)="nuevoJuego.reiniciar()">Reiniciar</button>
+                <button mat-button class="next action-button" (click)="reiniciar()">Reiniciar</button>
             </div>
-            <div id="snackbar">{{Mensajes}}</div>
-<!-- 
+            <div *ngIf="mostrarMensajes" id="snackbar">{{Mensajes}}</div>
+      </div> <!--contenenedor-->
+    </div> <!-- row -->
+  </fieldset>
+  <br><br><br>
+<form>   
 
-
-
+   <!-- 
             <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
 <div class="ctn">
 <button (click)="nuevoJuego.reiniciar()" class="button b-green">Green Button</button>
@@ -45,11 +44,4 @@
 <button (click)="nuevoJuego.reiniciar()" class="button2 b-orange rot-135">Orange button</button>
 <button (click)="nuevoJuego.reiniciar()" class="button2 b-blue rot-135">Blue button</button> -->
 <!-- </div> -->
-
-      </div> <!--contenenedor-->
-<!-- </div> -->
-    </div> <!-- row -->
-  </fieldset>
-  <br><br><br>
-<form>   
  

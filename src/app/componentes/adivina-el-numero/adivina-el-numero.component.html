@@ -32,28 +32,26 @@
 <!-- multistep form -->
 
 <div style="text-align:center">
-    <h1>
-      {{nuevoJuego.nombre}}!
-    </h1>
+    <h1>{{nuevoJuego.nombre}}</h1>
 </div>
 <form id="msform">    
     <fieldset>
-        <button  (click)="generarnumero()"  name="next" class="next action-button" >Nuevo Numero</button>
-        <h2 [hidden]="nuevoJuego.numeroSecreto==0">Se ha generado un nuevo número secreto</h2>
+        <button *ngIf="nuevoJuego.numeroSecreto==0" (click)="generarnumero()"  name="next" class="next action-button" >Nuevo Numero</button>
+        <p class="notificacion" [hidden]="nuevoJuego.numeroSecreto==0">Se ha generado un nuevo número secreto</p>
         
         <br>
-      <h3 class="fs-title">Ingrese su respuesta</h3>
-      <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" />
+      <h3 *ngIf="nuevoJuego.numeroSecreto!=0" class="fs-title">Ingrese su respuesta</h3>
+      <input *ngIf="nuevoJuego.numeroSecreto!=0" [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" />
       
       <!-- <h1>{{nuevoJuego.numeroIngresado}}  </h1>-->
-       <button *ngIf="nuevoJuego.numeroIngresado!=0" (click)="verificar()" type="button" class="btn btn-outline-dark" style="color:rgba(251, 255, 0, 0.979); border-color: #ffffff00;">Verificar</button>
+       <button *ngIf="nuevoJuego.numeroIngresado!=0" (click)="verificar()" type="button" class="btnVerificar" >Verificar</button>
         <br>
         <br>
-        <div id="snackbar">{{Mensajes}}</div>  
+        <div id="msj" class="mensajes" >{{Mensajes}}</div>  
      
     </fieldset>
    <br>
-    <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-    <h3 [hidden]="nuevoJuego.gano">--- Usted aún no gano ---</h3>
+    <h3 [hidden]="!nuevoJuego.gano">Felicitaciones!! Adivino el número</h3>
+    <!-- <h3 [hidden]="nuevoJuego.gano"> Usted aún no gano</h3> -->
 </form>
   

@@ -4,10 +4,10 @@ import { Juego } from '../clases/juego';
         palabraOrdenada:string;
         palabraIngresada:string;
         palabraDesordenada:string;
-    
+        nombre="Anagrama";
         constructor(nombre?: string, gano?: boolean, jugador?:string, intentos?:any,resultado?:string) {
             super(nombre, gano,jugador, intentos, resultado);  
-            this.nombre="Anagrama";
+            
           }
     
     

@@ -6,9 +6,10 @@ export class JuegoAgilidad  extends  Juego {
     resultado: number;
     operador: string;
     resultadoUsuario:number
+    nombre="Agilidad Aritmética";
 
     constructor(nombre?: string, gano?: boolean, jugador?:string, intentos?:any,resultado?:string) {
-        super("Agilidad Aritmetica", gano,jugador, intentos, resultado);  
+        super(nombre, gano,jugador, intentos, resultado);  
       }
 
     generar()
@@ -38,26 +39,23 @@ export class JuegoAgilidad  extends  Juego {
             break;    
         }
     }
-        public verificar()
-        {
-        
+    
+    public verificar()
+        {        
             if(this.resultado == this.resultadoUsuario)
             {
-                    this.gano = true;
+                this.gano = true;
             }
             if(this.gano)
             {
-                return true;
+               return true;
             }
             else
             {
-                return false;
-            }
-        
+               return false;
+            }        
         }
-
-
-}
+    }
 
 //     primerNumero :number;
 //     segundoNumero :number;

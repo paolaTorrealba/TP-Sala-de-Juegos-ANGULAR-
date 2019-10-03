@@ -1,6 +1,6 @@
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
-import { JuegoAdivina } from '../../clases/juego-adivina'
-
+import { JuegoAdivina } from '../../clases/juego-adivina';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -8,18 +8,23 @@ import { JuegoAdivina } from '../../clases/juego-adivina'
   styleUrls: ['./adivina-el-numero.component.css']
 })
 export class AdivinaElNumeroComponent implements OnInit {
- @Output() enviarJuego: EventEmitter<any>= new EventEmitter<any>();
-
+ @Output() 
+  enviarJuego: EventEmitter<any>= new EventEmitter<any>();
   nuevoJuego: JuegoAdivina;
   Mensajes:string;
   contador:number;
   ocultarVerificar:boolean;
- 
+  private subscription: Subscription;
+
   constructor() { 
     this.nuevoJuego = new JuegoAdivina();
+    console.info("Inicio Adivinar"); 
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
   }
+
+  ngOnInit() {}
+  
   generarnumero() {
     this.nuevoJuego.generarnumero();
     this.contador=0;
@@ -34,6 +39,7 @@ export class AdivinaElNumeroComponent implements OnInit {
       this.enviarJuego.emit(this.nuevoJuego);
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
+      this.nuevoJuego.numeroIngresado=0;
 
     }else{
 
@@ -71,10 +77,11 @@ export class AdivinaElNumeroComponent implements OnInit {
 
   MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
     this.Mensajes=mensaje;    
-    var x = document.getElementById("snackbar");
+    var x = document.getElementById("msj");
     if(ganador)
       {
         x.className = "show Ganador";
+        this.ocultarVerificar=true;
       }else{
         x.className = "show Perdedor";
       }
@@ -86,7 +93,6 @@ export class AdivinaElNumeroComponent implements OnInit {
     console.info("objeto",x);
   
    }  
-  ngOnInit() {
-  }
+  
 
 }

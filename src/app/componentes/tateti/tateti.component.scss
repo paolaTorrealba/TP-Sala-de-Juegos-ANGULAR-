@@ -20,31 +20,35 @@
   }
   
   #snackbar {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
+      color: rgb(255, 255, 255);
+  }
+  
+  // #snackbar {
+  //   visibility: hidden;
+  //   min-width: 250px;
+  //   margin-left: -125px;
    
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    font-size: 17px;
-  }
-  #snackbar.Ganador {
-    background-color: rgba(5, 159, 46, 0.842);
-  }
-  #snackbar.Perdedor {
-    background-color: rgba(255, 0, 0, 0.87);
-  }
-  #snackbar.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
+  //   color: #fff;
+  //   text-align: center;
+  //   border-radius: 2px;
+  //   padding: 16px;
+  //   position: fixed;
+  //   z-index: 1;
+  //   left: 50%;
+  //   bottom: 30px;
+  //   font-size: 17px;
+  // }
+  // #snackbar.Ganador {
+  //   background-color: rgba(5, 159, 46, 0.842);
+  // }
+  // #snackbar.Perdedor {
+  //   background-color: rgba(255, 0, 0, 0.87);
+  // }
+  // #snackbar.show {
+  //   visibility: visible;
+  //   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  //   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  // }
   
   @-webkit-keyframes fadein {
     from {bottom: 0; opacity: 0;} 

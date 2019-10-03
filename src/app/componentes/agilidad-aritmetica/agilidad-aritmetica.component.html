@@ -1,70 +1,24 @@
-<!--<form name="juego">
-<ul>
-   <li>
-   Primer número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" />
-
-  </li>
-  <li>
-   Operador: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" />
-
-  </li>
-  <li>
-   Segundo número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" />
-
-  </li>
-  <li>
-    Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/>
-
-   </li>
-  <li>
-    <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg">Verificar {{Tiempo}} </button></h2>
-  </li>
-  <li>
-    <h2 [hidden]="!ocultarVerificar"><button  (click)="NuevoJuego()"  class="btn btn-info btn-lg">Nuevo</button></h2>
-  </li>
-  <li>
-    <h2><p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p></h2>
-
-    <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-    <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3>
-  </li>
-</ul>
-
-</form>-->
-
 <div style="text-align:center">
-    <h1>
-      {{nuevoJuego.nombre}}!
-    </h1>
+    <h1>{{nuevoJuego.nombre}}</h1>
 </div>
 <form id="msform">    
-    <fieldset>
+   <fieldset>
         <button  (click)="generarnumero()"  name="next" class="next action-button" >Nuevo Numero</button>
-   
-        
         <br>
-      <h3 class="fs-title">Ingrese primer numero</h3>
-      <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="primerIngresado" type="text" class="form-control" />
-
-      <h3 class="fs-title">Ingrese primer numero</h3>
-     
-         
+        <h3 class="fs-title">Ingrese primer numero</h3>
+        <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="primerIngresado" type="text" class="form-control" />
+        <h3 class="fs-title">Ingrese primer numero</h3>
             <ul>
                 <li *ngFor="let item of operadorLista">
                   {{item}}
                 </li>
-              </ul>
-          
+              </ul>          
       <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="operadorIngresado" type="text" class="form-control" />
-      
-      <!-- <h1>{{nuevoJuego.numeroIngresado}}  </h1>-->
-       <button *ngIf="nuevoJuego.numeroIngresado!=0" (click)="verificar()" type="button" class="btn btn-outline-dark" style="color:rgba(251, 255, 0, 0.979); border-color: #ffffff00;">Verificar</button>
-        <br>
-        <br>
-        <div id="snackbar">{{Mensajes}}</div>  
-     
+      <button *ngIf="nuevoJuego.numeroIngresado!=0" (click)="verificar()" type="button" class="btn btn-outline-dark" style="color:rgba(251, 255, 0, 0.979); border-color: #ffffff00;">Verificar</button>
+      <br><br>
+      <div id="snackbar">{{Mensajes}}</div>       
     </fieldset>
-   <br>
+    <br>
     <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
     <h3 [hidden]="nuevoJuego.gano">--- Usted aún no gano ---</h3>
 </form>
