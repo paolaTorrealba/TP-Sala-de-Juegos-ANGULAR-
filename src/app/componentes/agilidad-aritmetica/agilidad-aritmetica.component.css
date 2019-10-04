@@ -13,9 +13,7 @@
     bottom: 30px;
     font-size: 17px;
 }
-.mensajes{
-	color: #002ec3;
-}
+
 #snackbar.Ganador {
     color: rgb(0, 0, 0)
 }

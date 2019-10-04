@@ -133,8 +133,8 @@ export class PiedraPapelTijeraComponent implements OnInit {
   
       if(ganador==true){
           errorEmail.innerHTML = (`<h1 id='msjPuntos'><p class='resultados'>${mensaje} <i class="far fa-smile"></i> </p></h1>`);
-          resultado1.src = `../../../assets/PPT/img/a${this.elecccionJugador}.png`;
-          resultado2.src = `../../../assets/PPT/img/m${this.eleccionMalo}.png`;  
+          resultado1.src = `./assets/PPT/img/a${this.elecccionJugador}.png`;
+          resultado2.src = `./assets/PPT/img/m${this.eleccionMalo}.png`;  
           this.nuevoJuego.gano= true;
           this.nuevoJuego.jugador=sessionStorage.getItem('user');
           this.nuevoJuego.guardarLocal();
@@ -142,8 +142,8 @@ export class PiedraPapelTijeraComponent implements OnInit {
         }
       if(ganador==false) {
         errorEmail.innerHTML = (`<h1 id='msjPuntos'><p class='resultados'>${mensaje} <i class="far fa-frown"></i></p></h1>`);
-        resultado1.src = `../../../assets/PPT/img/a${this.elecccionJugador}.png`;
-        resultado2.src = `../../../assets/PPT/img/m${this.eleccionMalo}.png`;        
+        resultado1.src = `./assets/PPT/img/a${this.elecccionJugador}.png`;
+        resultado2.src = `./assets/PPT/img/m${this.eleccionMalo}.png`;        
         this.nuevoJuego.gano= false;
         this.nuevoJuego.jugador=sessionStorage.getItem('user');
         this.nuevoJuego.guardarLocal();
@@ -151,8 +151,8 @@ export class PiedraPapelTijeraComponent implements OnInit {
         }
       if (ganador==null) {
         errorEmail.innerHTML = (`<h1 id='msjPuntos'><p class='resultados'>${mensaje} <i class="far fa-meh"></i></p></h1>`);
-        resultado1.src = `../../../assets/PPT/img/a${this.elecccionJugador}.png`;
-        resultado2.src = `../../../assets/PPT/img/m${this.eleccionMalo}.png`;
+        resultado1.src = `./assets/PPT/img/a${this.elecccionJugador}.png`;
+        resultado2.src = `./assets/PPT/img/m${this.eleccionMalo}.png`;
     
         
       }
