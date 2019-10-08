@@ -54,10 +54,10 @@ export class AgilidadAritmeticaComponent implements OnInit {
           this.Tiempo=8;
           
         }
-        },900);
-        
-  
+        },900);  
     }
+
+    
     verificar()
     {
       this.ocultarVerificar=false;

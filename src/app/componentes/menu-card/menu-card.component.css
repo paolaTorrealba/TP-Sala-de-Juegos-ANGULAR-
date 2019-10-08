@@ -79,6 +79,9 @@ p {
 .card-color-3 {
   background-color: rgba(182, 58, 0, 0.692);
 }
+.card-color-5 {
+  background-color: rgba(9, 190, 136, 0.876);
+}
 
 /* The cover (expanding background) */
 .cover {

@@ -14,7 +14,7 @@ export class JuegoAgilidad  extends  Juego {
       }
 
     generar()
-    {     
+    {   this.resultado=0;  
         this.primerNumero = Math.round(Math.random()*10);
         this.segundoNumero = Math.round(Math.random()*10);
         this.numOperador = Math.round(Math.random()*3);  
@@ -42,8 +42,6 @@ export class JuegoAgilidad  extends  Juego {
     
     public verificar()
         {      
- 
-
             if(this.resultado == this.resultadoUsuario)
             {
                 this.gano = true;
