@@ -260,7 +260,7 @@ var JuegoAdivina = /** @class */ (function (_super) {
             return false;
         }
     };
-    JuegoAdivina.prototype.generarnumero = function () {
+    JuegoAdivina.prototype.generarNuevo = function () {
         this.numeroSecreto = Math.floor((Math.random() * 100) + 1);
         console.info('numero Secreto:' + this.numeroSecreto);
         this.gano = false;
@@ -693,7 +693,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat);", ""]);
 
 // module
-exports.push([module.i, "/*custom font*/\r\n\r\n/*basic reset*/\r\n* {margin: 0; padding: 0;}\r\n\r\nhtml {\r\n\theight: 100%;\r\n\t/*Image only BG fallback*/\r\n\t\r\n\t/*background = gradient + image pattern combo*/\r\n\tbackground: \r\n\t\tlinear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));\r\n}\r\n.notificacion{\r\n\tcolor: #3eda22;\r\n    font-family: sans-serif;\r\n    font-size: x-large;\r\n}\r\n.btnVerificar{\t\r\n\tborder-color: #ffffff00;\r\n    background-color: #000000ba;\r\n\twidth: 50%;\r\n\tcolor:rgba(251, 255, 0, 0.979); \r\n}\r\nbody {\r\n\tfont-family: montserrat, arial, verdana;\r\n}\r\n/*form styles*/\r\n#msform {\r\n\twidth: 400px;\r\n\tmargin: 50px auto;\r\n\ttext-align: center;\r\n\tposition: relative;\r\n}\r\n#msform fieldset {\r\n\tbackground: rgba(67, 72, 82, 0.884);\r\n\tborder: 0 none;\r\n\tborder-radius: 3px;\r\n\tbox-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);\r\n\tpadding: 20px 30px;\r\n\tbox-sizing: border-box;\r\n\twidth: 80%;\r\n\tmargin: 0 10%;\r\n\t\r\n\t/*stacking fieldsets above each other*/\r\n\tposition: relative;\r\n}\r\n/*Hide all except first fieldset*/\r\n#msform fieldset:not(:first-of-type) {\r\n\tdisplay: none;\r\n}\r\n/*inputs*/\r\n#msform input, #msform textarea {\r\n\tpadding: 15px;\r\n\tborder: 1px solid #ccc;\r\n\tborder-radius: 3px;\r\n\tmargin-bottom: 10px;\r\n\twidth: 100%;\r\n\tbox-sizing: border-box;\r\n\tfont-family: montserrat;\r\n\tcolor: #2C3E50;\r\n\tfont-size: 13px;\r\n}\r\n/*buttons*/\r\n#msform .action-button {\r\n\twidth: 170px;\r\n\tbackground: rgba(0, 225, 255, 0.568);\r\n\tfont-weight: bold;\r\n\tcolor: rgb(0, 24, 88);\r\n\tborder: 0 none;\r\n\tborder-radius: 10px;\r\n\tcursor: pointer;\r\n\tpadding: 10px 5px;\r\n\tmargin: 10px 5px;\r\n}\r\n#msform .action-button:hover, #msform .action-button:focus {\r\n\tbox-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;\r\n}\r\n/*headings*/\r\n.fs-title {\r\n\tfont-size: 15px;\r\n\t/* text-transform: uppercase; */\r\n\tcolor: #b3d7ff;\r\n    margin-bottom: 10px;\r\n    margin-top: 20px;\r\n}\r\n.mensajes{\r\n\tcolor: #ffffff;\r\n}\r\n.fs-subtitle {\r\n\tfont-weight: normal;\r\n\tfont-size: 13px;\r\n\tcolor: #666;\r\n\tmargin-bottom: 20px;\r\n}\r\n/*progressbar*/\r\n#progressbar {\r\n\tmargin-bottom: 30px;\r\n\toverflow: hidden;\r\n\t/*CSS counters to number the steps*/\r\n\tcounter-reset: step;\r\n}\r\n#progressbar li {\r\n\tlist-style-type: none;\r\n\tcolor: white;\r\n\ttext-transform: uppercase;\r\n\tfont-size: 9px;\r\n\twidth: 33.33%;\r\n\tfloat: left;\r\n\tposition: relative;\r\n}\r\n#progressbar li:before {\r\n\tcontent: counter(step);\r\n\tcounter-increment: step;\r\n\twidth: 20px;\r\n\tline-height: 20px;\r\n\tdisplay: block;\r\n\tfont-size: 10px;\r\n\tcolor: #333;\r\n\tbackground: white;\r\n\tborder-radius: 3px;\r\n\tmargin: 0 auto 5px auto;\r\n}\r\n/*progressbar connectors*/\r\n#progressbar li:after {\r\n\tcontent: '';\r\n\twidth: 100%;\r\n\theight: 2px;\r\n\tbackground: white;\r\n\tposition: absolute;\r\n\tleft: -50%;\r\n\ttop: 9px;\r\n\tz-index: -1; /*put it behind the numbers*/\r\n}\r\n#progressbar li:first-child:after {\r\n\t/*connector not needed before the first step*/\r\n\tcontent: none; \r\n}\r\n/*marking active/completed steps green*/\r\n/*The number of the step and the connector before it = green*/\r\n#progressbar li.active:before,  #progressbar li.active:after{\r\n\tbackground: #27AE60;\r\n\tcolor: white;\r\n}\r\n", ""]);
+exports.push([module.i, "/*custom font*/\r\n\r\n/*basic reset*/\r\n* {margin: 0; padding: 0;}\r\n\r\nhtml {\r\n\theight: 100%;\r\n\t/*Image only BG fallback*/\r\n\t\r\n\t/*background = gradient + image pattern combo*/\r\n\tbackground: \r\n\t\tlinear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));\r\n}\r\n.notificacion{\r\n\tcolor: #3eda22;\r\n    font-family: sans-serif;\r\n    font-size: x-large;\r\n}\r\n.btnVerificar{\t\r\n\tborder-color: #ffffff00;\r\n    background-color: #000000ba;\r\n\twidth: 50%;\r\n\tcolor:rgba(251, 255, 0, 0.979); \r\n}\r\nbody {\r\n\tfont-family: montserrat, arial, verdana;\r\n}\r\n/*form styles*/\r\n#msform {\r\n\twidth: 400px;\r\n\tmargin: 50px auto;\r\n\ttext-align: center;\r\n\tposition: relative;\r\n}\r\n#msform fieldset {\r\n\tbackground: rgba(67, 72, 82, 0.884);\r\n\tborder: 0 none;\r\n\tborder-radius: 3px;\r\n\tbox-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);\r\n\tpadding: 20px 30px;\r\n\tbox-sizing: border-box;\r\n\twidth: 80%;\r\n\tmargin: 0 10%;\r\n\t\r\n\t/*stacking fieldsets above each other*/\r\n\tposition: relative;\r\n}\r\n/*Hide all except first fieldset*/\r\n#msform fieldset:not(:first-of-type) {\r\n\tdisplay: none;\r\n}\r\n/*inputs*/\r\n#msform input, #msform textarea {\r\n\tpadding: 15px;\r\n\tborder: 1px solid #ccc;\r\n\tborder-radius: 3px;\r\n\tmargin-bottom: 10px;\r\n\twidth: 100%;\r\n\tbox-sizing: border-box;\r\n\tfont-family: montserrat;\r\n\tcolor: #2C3E50;\r\n\tfont-size: 13px;\r\n}\r\n/*buttons*/\r\n#msform .action-button {\r\n\twidth: 170px;\r\n\tbackground: rgba(0, 225, 255, 0.568);\r\n\tfont-weight: bold;\r\n\tcolor: rgb(0, 24, 88);\r\n\tborder: 0 none;\r\n\tborder-radius: 10px;\r\n\tcursor: pointer;\r\n\tpadding: 10px 5px;\r\n\tmargin: 10px 5px;\r\n}\r\n#msform .action-button:hover, #msform .action-button:focus {\r\n\tbox-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;\r\n}\r\n/*headings*/\r\n.fs-title {\r\n\tfont-size: 15px;\r\n\t/* text-transform: uppercase; */\r\n\tcolor: #b3d7ff;\r\n    margin-bottom: 10px;\r\n    margin-top: 20px;\r\n}\r\n.mensajes{\r\n\tcolor: #ffffff !important;\r\n}\r\n.fs-subtitle {\r\n\tfont-weight: normal;\r\n\tfont-size: 13px;\r\n\tcolor: #666;\r\n\tmargin-bottom: 20px;\r\n}\r\n/*progressbar*/\r\n#progressbar {\r\n\tmargin-bottom: 30px;\r\n\toverflow: hidden;\r\n\t/*CSS counters to number the steps*/\r\n\tcounter-reset: step;\r\n}\r\n#progressbar li {\r\n\tlist-style-type: none;\r\n\tcolor: white;\r\n\ttext-transform: uppercase;\r\n\tfont-size: 9px;\r\n\twidth: 33.33%;\r\n\tfloat: left;\r\n\tposition: relative;\r\n}\r\n#progressbar li:before {\r\n\tcontent: counter(step);\r\n\tcounter-increment: step;\r\n\twidth: 20px;\r\n\tline-height: 20px;\r\n\tdisplay: block;\r\n\tfont-size: 10px;\r\n\tcolor: #333;\r\n\tbackground: white;\r\n\tborder-radius: 3px;\r\n\tmargin: 0 auto 5px auto;\r\n}\r\n/*progressbar connectors*/\r\n#progressbar li:after {\r\n\tcontent: '';\r\n\twidth: 100%;\r\n\theight: 2px;\r\n\tbackground: white;\r\n\tposition: absolute;\r\n\tleft: -50%;\r\n\ttop: 9px;\r\n\tz-index: -1; /*put it behind the numbers*/\r\n}\r\n#progressbar li:first-child:after {\r\n\t/*connector not needed before the first step*/\r\n\tcontent: none; \r\n}\r\n/*marking active/completed steps green*/\r\n/*The number of the step and the connector before it = green*/\r\n#progressbar li.active:before,  #progressbar li.active:after{\r\n\tbackground: #27AE60;\r\n\tcolor: white;\r\n}\r\n", ""]);
 
 // exports
 
@@ -706,7 +706,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/componentes/adivina-el-numero/adivina-el-numero.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n    <h1>{{nuevoJuego.nombre}}</h1>\r\n</div>\r\n<form id=\"msform\">    \r\n    <fieldset>\r\n        <button *ngIf=\"nuevoJuego.numeroSecreto==0\" (click)=\"generarnumero()\"  name=\"next\" class=\"next action-button\" >Nuevo Numero</button>\r\n        <p class=\"notificacion\" [hidden]=\"nuevoJuego.numeroSecreto==0\">Se ha generado un nuevo número secreto</p>\r\n        \r\n        <br>\r\n      <h3 *ngIf=\"nuevoJuego.numeroSecreto!=0\" class=\"fs-title\">Ingrese su respuesta</h3>\r\n      <input *ngIf=\"nuevoJuego.numeroSecreto!=0\"  placeholder=\"ingrese numero\" name=\"numeroIngresado\" type=\"text\" class=\"form-control\" />\r\n      \r\n      <!-- <h1>{{nuevoJuego.numeroIngresado}}  </h1>-->\r\n       <button *ngIf=\"nuevoJuego.numeroIngresado!=0\" (click)=\"verificar()\" type=\"button\" class=\"btnVerificar\" >Verificar</button>\r\n        <br>\r\n        <br>\r\n        <div id=\"msj\" class=\"mensajes\" >{{Mensajes}}</div>  \r\n     \r\n    </fieldset>\r\n   <br>\r\n    <h3 [hidden]=\"!nuevoJuego.gano\">Felicitaciones!! Adivino el número</h3>\r\n    <!-- <h3 [hidden]=\"nuevoJuego.gano\"> Usted aún no gano</h3> -->\r\n</form>\r\n  "
+module.exports = "<div style=\"text-align:center\">\r\n    <h1>{{nuevoJuego.nombre}}</h1>\r\n</div>\r\n<form id=\"msform\">    \r\n    <fieldset>\r\n        <button *ngIf=\"nuevoJuego.numeroSecreto==0\" (click)=\"generarNumero()\"  name=\"next\" class=\"next action-button\" >Nuevo Numero</button>\r\n        <p class=\"notificacion\" [hidden]=\"nuevoJuego.numeroSecreto==0\">Se ha generado un nuevo número secreto</p>\r\n        \r\n        <br>\r\n      <h3 *ngIf=\"nuevoJuego.numeroSecreto!=0\" class=\"fs-title\">Ingrese su respuesta</h3>\r\n      <input *ngIf=\"nuevoJuego.numeroSecreto!=0\"  [(ngModel)]=\"nuevoJuego.numeroIngresado\" placeholder=\"ingrese numero\" name=\"numeroIngresado\" type=\"text\" class=\"form-control\" />\r\n      \r\n      <!-- <h1>{{nuevoJuego.numeroIngresado}}  </h1>-->\r\n       <button *ngIf=\"nuevoJuego.numeroSecreto!=0\" (click)=\"verificar()\" type=\"button\" class=\"btnVerificar\" >Verificar</button>\r\n        <br><br>\r\n        <div id=\"msj\" style=\"color: #ffffff !important;\" >{{Mensajes}}</div>  \r\n     \r\n    </fieldset>\r\n   <br>\r\n    <h3 [hidden]=\"!nuevoJuego.gano\">Felicitaciones!! Adivino el número</h3>\r\n    <!-- <h3 [hidden]=\"nuevoJuego.gano\"> Usted aún no gano</h3> -->\r\n</form>\r\n  "
 
 /***/ }),
 
@@ -732,19 +732,24 @@ var AdivinaElNumeroComponent = /** @class */ (function () {
     function AdivinaElNumeroComponent() {
         this.enviarJuego = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
         this.nuevoJuego = new __WEBPACK_IMPORTED_MODULE_1__clases_juego_adivina__["a" /* JuegoAdivina */]();
+        this.ocultarVerificar = false;
+        // log
         console.info("Inicio Adivinar");
         console.info("numero Secreto:", this.nuevoJuego.numeroSecreto);
-        this.ocultarVerificar = false;
+        console.info("numero Ingresado:", this.nuevoJuego.numeroIngresado);
     }
     AdivinaElNumeroComponent.prototype.ngOnInit = function () { };
-    AdivinaElNumeroComponent.prototype.generarnumero = function () {
-        this.nuevoJuego.generarnumero();
+    // ---------------generarNumero-----------------------  
+    AdivinaElNumeroComponent.prototype.generarNumero = function () {
+        this.nuevoJuego.generarNuevo();
         this.contador = 0;
     };
+    // ---------------verificar-----------------------  
     AdivinaElNumeroComponent.prototype.verificar = function () {
+        console.info("numero Ingresado:", this.nuevoJuego.numeroIngresado);
         this.contador++;
         this.ocultarVerificar = true;
-        console.info("numero Secreto:", this.nuevoJuego.gano);
+        console.info("numero Secreto:", this.nuevoJuego.numeroSecreto);
         if (this.nuevoJuego.verificar()) {
             this.enviarJuego.emit(this.nuevoJuego);
             this.MostarMensaje("Sos un Genio!!!", true);
@@ -778,7 +783,9 @@ var AdivinaElNumeroComponent = /** @class */ (function () {
             }
             this.MostarMensaje("#" + this.contador + " " + mensaje + " ayuda :" + this.nuevoJuego.retornarAyuda());
         }
-        console.info("numero Secreto:", this.nuevoJuego.gano);
+        console.info("numero Ingresado:", this.nuevoJuego.numeroIngresado);
+        console.info("gano:", this.nuevoJuego.gano);
+        console.info("numero Secreto:", this.nuevoJuego.numeroSecreto);
     };
     AdivinaElNumeroComponent.prototype.MostarMensaje = function (mensaje, ganador) {
         if (mensaje === void 0) { mensaje = "este es el mensaje"; }
