@@ -18,22 +18,29 @@ export class AdivinaElNumeroComponent implements OnInit {
 
   constructor() { 
     this.nuevoJuego = new JuegoAdivina();
+    this.ocultarVerificar=false;
+
+    // log
     console.info("Inicio Adivinar"); 
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
-    this.ocultarVerificar=false;
+    console.info("numero Ingresado:",this.nuevoJuego.numeroIngresado); 
+    
   }
 
   ngOnInit() {}
   
-  generarnumero() {
-    this.nuevoJuego.generarnumero();
+  // ---------------generarNumero-----------------------  
+  generarNumero() {
+    this.nuevoJuego.generarNuevo();
     this.contador=0;
   }
-  verificar()
-  {
+
+  // ---------------verificar-----------------------  
+  verificar(){
+    console.info("numero Ingresado:",this.nuevoJuego.numeroIngresado); 
     this.contador++;
     this.ocultarVerificar=true;
-    console.info("numero Secreto:",this.nuevoJuego.gano);  
+    console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     if (this.nuevoJuego.verificar()){
       
       this.enviarJuego.emit(this.nuevoJuego);
@@ -72,7 +79,9 @@ export class AdivinaElNumeroComponent implements OnInit {
      
 
     }
-    console.info("numero Secreto:",this.nuevoJuego.gano);  
+    console.info("numero Ingresado:",this.nuevoJuego.numeroIngresado); 
+    console.info("gano:",this.nuevoJuego.gano);  
+    console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
   }  
 
   MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {

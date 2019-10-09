@@ -3,18 +3,17 @@
 </div>
 <form id="msform">    
     <fieldset>
-        <button *ngIf="nuevoJuego.numeroSecreto==0" (click)="generarnumero()"  name="next" class="next action-button" >Nuevo Numero</button>
+        <button *ngIf="nuevoJuego.numeroSecreto==0" (click)="generarNumero()"  name="next" class="next action-button" >Nuevo Numero</button>
         <p class="notificacion" [hidden]="nuevoJuego.numeroSecreto==0">Se ha generado un nuevo número secreto</p>
         
         <br>
       <h3 *ngIf="nuevoJuego.numeroSecreto!=0" class="fs-title">Ingrese su respuesta</h3>
-      <input *ngIf="nuevoJuego.numeroSecreto!=0"  placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" />
+      <input *ngIf="nuevoJuego.numeroSecreto!=0"  [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" />
       
       <!-- <h1>{{nuevoJuego.numeroIngresado}}  </h1>-->
-       <button *ngIf="nuevoJuego.numeroIngresado!=0" (click)="verificar()" type="button" class="btnVerificar" >Verificar</button>
-        <br>
-        <br>
-        <div id="msj" class="mensajes" >{{Mensajes}}</div>  
+       <button *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" type="button" class="btnVerificar" >Verificar</button>
+        <br><br>
+        <div id="msj" style="color: #ffffff !important;" >{{Mensajes}}</div>  
      
     </fieldset>
    <br>

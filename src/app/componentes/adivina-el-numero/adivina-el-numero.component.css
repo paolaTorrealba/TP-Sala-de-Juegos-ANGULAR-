@@ -86,7 +86,7 @@ body {
     margin-top: 20px;
 }
 .mensajes{
-	color: #ffffff;
+	color: #ffffff !important;
 }
 .fs-subtitle {
 	font-weight: normal;
